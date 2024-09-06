@@ -102,6 +102,9 @@
 			<if test = "emp.hireDate != null">
 				, hire_date = #{emp.hireDate}
 			</if>
+			<if test = "emp.salary > 0">
+				, salary = #{emp.salary}
+			</if>
 		WHERE employee_id = #{eid}
 	</update>
 	

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yedam.app.dept.mapper.DeptMapper">
+	<select id="selectDeptAll" resultType="DeptVO">
+		SELECT department_id
+			, department_name
+			, manager_id
+			, location_id
+		FROM departments
+		ORDER BY department_id
+	</select>
+	
+	<!-- 단건조회 -->
+	<select id="selectDeptInfo" resultType="DeptVO">
+		SELECT department_id
+			, department_name
+			, manager_id
+			, location_id
+		FROM departments
+		WHERE department_id = #{departmentId}
+	</select>
+	
+	<!-- 등록 -->
+	<insert id="insertDeptInfo" parameterType="DeptVO">
+		<!-- Primary Key를 구하는 Select문을 이용할 경우에는 무조건 널에대한 처리를 해야한다. -->
+		<selectKey 	keyProperty="departmentId"
+								resultType="Integer"
+								order="BEFORE">
+			SELECT NVL(MAX(department_id), 100) + 1
+			FROM departments
+		</selectKey>
+		INSERT INTO departments(
+			department_id
+			, department_name
+			, manager_id
+			, location_id
+		)
+		VALUES(
+			#{departmentId}
+			, #{departmentName}
+			, #{managerId}
+			, #{locationId}
+		)
+	</insert>
+	
+	<!-- 수정 -->
+	<!-- 파라미터가 여러개면 parameterType 타입은 생략하고 EmpMapper에서 @Param을 설정하면 된다 -->
+	<update id="updateDeptInfo">
+		UPDATE departments
+		SET 
+			department_name = #{emp.departmentName}
+			<if test = "dept.managerId != null and !dept.managerId.equals('')">
+				, manager_id = #{dept.managerId}
+			</if>
+			<if test = "dept.locationId != null and !dept.locationId.equals('')">
+				, locationd_id = #{dept.locationId}
+			</if>
+		WHERE department_id = #{deptid}
+	</update>
+	
+	<!-- 삭제 -->
+	<delete id="deleteDeptInfo" parameterType="int">
+		DELETE FROM departments
+		WHERE department_id = #{id}
+	</delete>
+</mapper>

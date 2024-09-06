@@ -40,13 +40,14 @@ public class EmpController {
 		List<EmpVO> list = empService.empList();
 		
 		// 2) 클라이언트에 전달할 데이터 담기
-		model.addAttribute("emps", list);
+		model.addAttribute("emps", list); // 이부분이 우리가 여는 페이지에 데이터가 담겨 있는것
 		
-		return "emp/list"; // 3) 데이터를 출력할 페이지 결정
+		return "emp/list"; // 3) 데이터를 출력할 페이지 결정 // 리턴에는 /로 시작을 하면 안된다.
+		// prefix + return + suffix => /ViewResolver
 	}// end empList
 	
 	// 단건조회 : Get => QueryString, employeeId  커맨더 객체로 처리 (Get 방식이기 때문에 커맨드 객체 OR @RequestParam)
-	@GetMapping("empInfo")
+	@GetMapping("empInfo") //empInfo?key=value
 	public String empInfo(EmpVO empVO, Model model) {
 		EmpVO findVO = empService.empInfo(empVO);
 		model.addAttribute("emp", findVO);
@@ -89,7 +90,7 @@ public class EmpController {
 	
 	// 수정처리 할 때 2가지 경우를 다 해보겠다. 
 	// 수정 - 처리(기능) : AJAX => QueryString : POST
-	@PostMapping("empUpdate")
+	//@PostMapping("empUpdate")
 	//반환하는 리턴타입에 대해 달라졌다라는 의미 // 응답이기 때문에 리턴하기 전에 해야한다.
 	@ResponseBody // AJAX 
 	public Map<String, Object> empUpdateAJAXQueryString(EmpVO empVO){
@@ -97,7 +98,7 @@ public class EmpController {
 	}// end empUpdateAJAXQueryString
 	
 	// 수정 - 처리(기능) : AJAX => JSON (@RequestBody) : POST
-	//@PostMapping("empUpdate") 
+	@PostMapping("empUpdate") 
 	/*
 	 * {POST [/empUpdate]}: There is already 'empController' bean method 이렇게 발생하는 경우는 위에 어노테이션이 중복이기 때문에 발생한다.
 	 * 
