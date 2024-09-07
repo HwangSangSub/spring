@@ -1,40 +1,28 @@
 <!DOCTYPE html>
-<html lang="ko"  xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<title>deptInfo</title>
-</head>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{common/layouts/default_layout}" layout:fragment="Content">
 <body>
-	<div>
+	<div class="container">
 		<h3>부서 정보 조회</h3>
 		<div>
-			<label for= "did">사원번호</label>
-			<input type="number" id="did" th:value="${emp.employeeId}" readonly>
+			<label for= "did">부서번호</label>
+			<input type="number" id="did" th:value="${dept.departmentId}" readonly>
 		</div>
 		<div>
-			<label for= "ename">이름</label>
-			<input type="text" id="ename" th:value="${emp.lastName}" readonly>
+			<label for= "dname">부서명</label>
+			<input type="text" id="dname" th:value="${dept.departmentName}" readonly>
 		</div>
 		<div>
-			<label for= "email">이메일</label>
-			<input type="text" id="email" th:value="${emp.email}" readonly>
+			<label for= "dmanager">부서책임자</label>
+			<input type="text" id="dmanager" th:value="${dept.managerId}" readonly>
 		</div>
 		<div>
-			<label for= "hDate">입사일자</label>
-			<input type="date" id="hDate" th:value="${#dates.format(emp.hireDate, 'yyyy-MM-dd')}" readonly>
+			<label for= "dlocation">지역번호</label>
+			<input type="text" id="dlocation" th:value="${dept.locationId}" readonly>
 		</div>
 		<div>
-			<label for= "job">업무</label>
-			<input type="text" id="job" th:value="${emp.jobId}" readonly>
-		</div>
-		<div>
-			<label for= "sal">급여</label>
-			<input type="number" step="0.01" min="1" id="sal" th:value="${emp.salary}" readonly>
-		</div>
-		<div>
-			<button type="button" th:onclick="|location.href='@{/empUpdate(employeeId=${emp.employeeId})}'|">수정</button>
-			<button type="button" th:onclick="|location.href='@{/empList}'|">목록</button>
-			<button type="button" th:onclick="|location.href='@{/empDelete(employeeId=${emp.employeeId})}'|">삭제</button>
+			<button type="button" th:onclick="|location.href='@{/deptUpdate(departmentId=${dept.departmentId})}'|">수정</button>
+			<button type="button" th:onclick="|location.href='@{/deptList}'|">목록</button>
+			<button type="button" th:onclick="|location.href='@{/deptDelete(departmentId=${dept.departmentId})}'|">삭제</button>
 		</div>
 	</div>
 </body>

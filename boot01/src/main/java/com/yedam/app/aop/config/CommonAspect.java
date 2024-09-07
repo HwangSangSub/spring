@@ -19,8 +19,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j // lombok이 가지고 있는 어노테이션이며 log와 연결하는 Bean
 public class CommonAspect {
 	// 포인트컷 : 조인포인트(@Service의 메소드들) 중에서 Advice(횡단관심, 부가기능)이 적용될 메소드 조건
-	@Pointcut("within(com.yedam.app.emp.service.impl.*)") // () 경로 안에 ~
-	//@Pointcut("within(com.yedam.app..service.impl.*)"
+	//@Pointcut("within(com.yedam.app.emp.service.impl.*)") // () 경로 안에 ~
+	@Pointcut("within(com.yedam.app..service.impl.*)") 
 	// 위의 어노테이션에 들고 있는 정보를 밑에 있는 메서드에 넣어서 사용한다
 	public void empPointCut() { }// end empPointCut 
 	

@@ -1,16 +1,9 @@
 <!DOCTYPE html>
-<html lang="ko"  xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<!--/* 원래는 context를 사용하지만 우리가 원하는 형태로 작동을 안해서 강제로 value로 사용함. */-->
-<meta name="ctxPath" th:value="${contextPath}">
-<title>deptList</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-</head>
+<html lang="ko" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{common/layouts/default_layout}" layout:fragment="Content">
 <body>
-	<div>
+	<div class="container">
 		<h3>전체 부서 조회</h3>
-		<table>
+		<table class="table">
 			<thead>
 				<tr>
 					<th>No.</th>

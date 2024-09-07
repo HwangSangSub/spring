@@ -29,15 +29,22 @@ public class DeptController {
 		model.addAttribute("depts", list);
 		
 		return "dept/list";
-	}// deptList
+	}// end deptList
 	
-	// 등록 - 페이지
+	// 단건조회 : Get
 	@GetMapping("deptInfo")
 	public String deptInfo(DeptVO deptVO, Model model) {
 		DeptVO findVO = deptService.deptInfo(deptVO);
 		model.addAttribute("dept", findVO);
 		return "dept/info";
-	}
+	}//end deptInfo
+	
+	// 등록 - 페이지 : GET
+	@GetMapping("deptInsert")
+	public String empInsertForm() {
+		return "dept/insert";
+	}// end empInsertForm
+	
 	// 등록 - 처리
 	@PostMapping("deptInsert")
 	public String deptInsertProcess(DeptVO deptVO) {
@@ -49,26 +56,29 @@ public class DeptController {
 			url = "redirect:deptList";
 		}
 		return url;
-	}
+	}// end deptInsertProcess
+	
 	// 수정 - 페이지
 	@GetMapping("deptUpdate")
 	public String deptUpdateForm(DeptVO deptVO, Model model) {
 		DeptVO findVO = deptService.deptInfo(deptVO);
 		model.addAttribute("dept", findVO);
 		return "dept/update";
-	}
+	}// end deptUpdateForm
+	
 	// 수정 - 처리 : JSON
 	@PostMapping("deptUpdate")
 	@ResponseBody
 	public Map<String, Object> deptUpdateAJAXJSON(@RequestBody DeptVO deptVO) {
 		return deptService.deptUpdate(deptVO);
-	}
+	}// end deptUpdateAJAXJSON
+	
 	// 삭제 - 처리
 	@GetMapping("deptDelete")
 	public String deptDelete(Integer departmentId) {
 		deptService.deptDelete(departmentId);
 		return "redirect:deptList";
-	}
+	}// end deptDelete
 	
 	
 }// end class

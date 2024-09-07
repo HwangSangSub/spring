@@ -1,39 +1,24 @@
 <!DOCTYPE html>
 <html lang="ko"  xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{common/layouts/default_layout}" layout:fragment="Content">
 <body>
-
 	<div class="container">
-		<form name="updateForm" th:object="${emp}">
-			<!--/* 보통 Form 태그에 많이 사용한다 그 이유는 input의 name과 값을 같이 넣기 위해서 */-->
-			<h3>사원 정보 조회</h3>
+		<form name="updateForm" th:object="${dept}">
+			<h3>부서 정보 조회</h3>
 			<div>
-				<label for="eid">사원번호</label> <input type="number" id="eid"
-					th:field="*{employeeId}" readonly>
-				<!--/* 객체선택변수 th:field="*{필드명}" */-->
+				<label for= "did">부서번호</label>
+				<input type="number" id="did" th:field="*{departmentId}" readonly>
 			</div>
 			<div>
-				<label for="ename">이름</label> <input type="text" id="ename"
-					th:field="*{lastName}">
+				<label for= "dname">부서명</label>
+				<input type="text" id="dname" th:field="*{departmentName}">
 			</div>
 			<div>
-				<label for="email">이메일</label> <input type="email" id="email"
-					th:field="*{email}">
+				<label for= "dmanager">부서책임자</label>
+				<input type="text" id="dmanager" th:field="*{managerId}">
 			</div>
 			<div>
-				<label for="hDate">입사일자</label> <input type="date" id="hDate"
-					th:field="*{hireDate}">
-				<!--/* VO내에서 DATE fromat를 처리했기 때문에 따로 처리안해도 된다 */-->
-			</div>
-			<div>
-				<label for="job">업무</label> <input type="text" id="job"
-					th:field="*{jobId}">
-			</div>
-			<div>
-				<label for="sal">급여</label> <input type="number" step="0.01" min="1"
-					id="sal" th:field="*{salary}">
-			</div>
-			<div>
-				<button type="button" id="updateBtn">저장</button>
+				<label for= "dlocation">지역번호</label>
+				<input type="text" id="dlocation" th:field="*{locationId}">
 			</div>
 		</form>
 	</div>
@@ -44,7 +29,7 @@
 			let dataObj = getFormData(); 
 				
 			// 2) AJAX 실행
-			$.ajax("empUpdate", {
+			$.ajax("deptUpdate", {
 				type: 'post', // method
 				// data : dataObj // 객체 -> QueryString
 				contentType : 'application/json',
