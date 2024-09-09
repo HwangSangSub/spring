@@ -26,6 +26,7 @@ public class CommonAspect {
 	
 	// Weaving : 포인트컷 + 동작시점 + Advice
 	// (포인트컷)이 동작하기 전에 하겠다는 의미
+	/*
 	@Before("empPointCut()")
 	public void beforeAdvice(JoinPoint joinPoint) { // JoinPoint : 현재 포인트컷에 걸린 대상을 의미 함. 
 		// Advice를 구현
@@ -41,8 +42,10 @@ public class CommonAspect {
 			}
 		}
 	}// end beforeAdvice
+	*/
 
 	// (포인트컷)이 동작한 후에 하겠다는 의미
+	/*
 	@After("empPointCut()")
 	public void afterAdvice(JoinPoint joinPoint) { // JoinPoint : 현재 포인트컷에 걸린 대상을 의미 함. 
 		// Advice를 구현
@@ -58,6 +61,7 @@ public class CommonAspect {
 			}
 		}
 	}// end afterAdvice
+	*/
 	
 	@Around("empPointCut()")
 	public Object executeTime(ProceedingJoinPoint joinPoint) throws Throwable {

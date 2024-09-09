@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ko"  xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{common/layouts/default_layout}" layout:fragment="Content">
+<!-- file 업로드(formUpload) -->
+<!-- formUpload.html -->
+<body>
+	<div class="container">
+		<form th:action="@{uploadForm}" method="post" enctype="multipart/form-data">
+			<!-- file의 name이 Controller의 매개변수명과 일치해야한다. -->
+			<!-- 여러개를 넘어가니깐 files 로 변경 -->
+			<input type="file" name="files" multiple>
+			<button type="submit">저장</button>
+		</form>
+	</div>
+</body>
+</html>

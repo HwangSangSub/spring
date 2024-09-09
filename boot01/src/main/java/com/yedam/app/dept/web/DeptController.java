@@ -21,7 +21,7 @@ public class DeptController {
 	// 서비스 주입
 	private final DeptService deptService;
 	
-	// 전체조회
+	// 전체조회 : Get
 	@GetMapping("deptList")
 	public String deptList(Model model) {
 		List<DeptVO> list = deptService.deptList();
@@ -45,7 +45,7 @@ public class DeptController {
 		return "dept/insert";
 	}// end empInsertForm
 	
-	// 등록 - 처리
+	// 등록 - 처리 : Post
 	@PostMapping("deptInsert")
 	public String deptInsertProcess(DeptVO deptVO) {
 		int deptid = deptService.deptInser(deptVO);
@@ -73,7 +73,7 @@ public class DeptController {
 		return deptService.deptUpdate(deptVO);
 	}// end deptUpdateAJAXJSON
 	
-	// 삭제 - 처리
+	// 삭제 - 처리 : Get
 	@GetMapping("deptDelete")
 	public String deptDelete(Integer departmentId) {
 		deptService.deptDelete(departmentId);
