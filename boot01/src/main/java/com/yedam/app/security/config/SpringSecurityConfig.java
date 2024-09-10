@@ -19,6 +19,7 @@ public class SpringSecurityConfig {
 		return new BCryptPasswordEncoder();
 	}// end passWordEncoder
 	
+	/*
 	@Bean // 메모리상 인증정보 등록 => 테스트 전용
 	InMemoryUserDetailsManager inMEmoryUserDetail() {
 		// 일반회원
@@ -41,7 +42,7 @@ public class SpringSecurityConfig {
 		
 		return new InMemoryUserDetailsManager(user, admin);
 	}// end inMEmoryUserDetail
-	
+	*/
 	//인증 및 인가
 	@Bean
 	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -60,8 +61,13 @@ public class SpringSecurityConfig {
 			.formLogin(formlogin -> formlogin
 					.defaultSuccessUrl("/all")) // 로그인 성공 시 이동할 기본 페이지(리다이렉트 경로)
 			.logout(logout -> logout
-					.logoutSuccessUrl("/login")) // 로그아웃이 성공할 경우 이동할 페이지(자동완성에 아이콘에 사선이 있으면 그방식을 사용하지 말라는 의미) > 로그아웃에서는 무조건 커스텀마이징을 하라는 의미
+					.logoutSuccessUrl("/login")
+					.invalidateHttpSession(true)) // 로그아웃이 성공할 경우 이동할 페이지(자동완성에 아이콘에 사선이 있으면 그방식을 사용하지 말라는 의미) > 로그아웃에서는 무조건 커스텀마이징을 하라는 의미
 			;
+
+		// 일시적으로 csrf를 사용하지 않겠다 > 절대로 운영할때는 사용하면 안된다.
+		// 개발 및 테스트 할때만 csrf를 잠시 꺼두고 하고 완료한 후 일괄적용하면 된다.
+		http.csrf(csrf -> csrf.disable());
 		return http.build();
 	}// end filterChain
 
