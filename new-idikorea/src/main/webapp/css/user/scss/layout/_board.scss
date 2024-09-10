@@ -1,0 +1,2114 @@
+
+/* 게시판 */
+.bd {
+    &:has(.bdNormal-wrap) {
+        display: flex;
+        flex-direction: column;
+        gap: px(30);
+    }
+
+    .box-border {
+        margin-top: px(18);
+    }
+
+    &Normal {
+        /* 게시판 일반 */
+        position: relative;
+        border-top: 1px solid #222;
+        &.boardFaq {
+            border-top : unset;
+        }
+
+        ~ .bdNormal {
+            margin-top: px(30);
+        }
+        + .boardPaging {
+            margin-top: px(30);
+        }
+        
+        &-wrap {
+            position: relative;
+
+            ~ .bdNormal-wrap {
+                margin-top: 40px;
+            }
+            ~ .box-border, ~ .box-border-wrap {
+                margin-top: 80px;
+            }
+        }
+        &-tit {
+            font-family: $nanumS, sans-serif;
+            font-weight: 700;
+            font-size: 20px;
+            color: #373737;
+
+            + .bdNormal {
+                margin-top: 20px;
+            }
+        }
+        &-top {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            margin-bottom: px(15);
+            @include pad {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+        &-filter {
+            @include flex-all-center;
+            gap: px(13 + 5);
+            flex-wrap: wrap;
+            @include laptop {
+                justify-content: flex-start;
+            }
+
+            .list {
+                @include flex-all-center;
+                gap: 17px;
+                flex-wrap: wrap;
+
+                > li {
+                    position: relative;
+                    @include flex-all-center;
+                    gap: px(5);
+                    flex-wrap: wrap;
+                    &:not(:last-child)::before {
+                        display: block;
+                    }
+                    &::before {    
+                        content: '';
+                        position: absolute;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        display: none;
+                        width: 1px;
+                        height: 9px;
+                        background: #e7e7e7;
+                        right: px((17 - 1) / -2);
+                    }
+                }
+            }
+
+            &-switch {
+                display: flex;
+                flex-direction: column;
+                gap: px(6);
+                > li button {
+                    display: flex;
+
+                    img {
+                        width: px(8);
+                        height: auto;
+                    }
+                }
+            }
+            &-order {
+                min-width: px(100);
+            }
+        }
+        &-sum {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            dl {
+                display: flex;
+                align-items: center;
+                gap: 3px;
+                font-family: $verdana, Malgun Gothic;
+                color: #666666;
+            }
+        }
+        &-total {
+
+            dd {
+                font-weight: 700;
+                color: #373737;
+            }
+        }
+        &-pages {
+        }
+        &-search {
+
+            &-container {
+                display: flex;
+                align-items: center;
+                gap: 6px;
+            }
+            &-cate {
+                position: relative;
+                padding: 0px 8px;                
+                &::before {
+                    content: '';
+                    position: absolute;
+                    right: px(7);
+                    top: 50%;
+                    transform: translateY(-50%);
+                    display: block;
+                    width: 8px;
+                    height: 4px;
+                    background: url('/images/user/common/select.png') no-repeat center;
+                    background-size: cover;
+                }
+
+                select {
+                    width: px(82);
+                    height: px(32);
+                    @include input-clear-style;
+                }
+
+                &s {}
+            }
+            &-input {
+                
+                input {
+                    height: 32px;
+                }
+            }
+        }
+        &-li {
+            width: 100%;
+            border-bottom: 1px solid #ddd;
+            @include laptop {
+                height: auto;
+                padding: 8px 0;
+            }
+            @include pad {
+                border-bottom-color: transparent;
+            }
+            &.empty {
+                @include flex-all-center;
+                flex-direction: column;
+                gap: px(21);
+                padding: px(65) 0;
+
+                .icon{
+                    width: 36px;
+                }
+                .txt {
+                    position: relative;
+                    font-family: $verdana, Malgun Gothic;
+                    font-weight: 400;
+                    font-size: 13px;
+                    color: #cccccc;
+                }
+            }
+            &:first-child {
+                @include laptop {
+                    border-bottom-width: 0;
+                    padding: 0;
+                }
+            }
+            &:not(.bdNormal-head):not(.empty):hover {
+                background-color: #FFFBF6;
+            }
+
+            a {
+                display: block;
+                color: #666;
+                &.btn {
+                    @include flex-all-center;
+                }
+            }
+
+            &st {
+                width: 100%;
+            }
+            &nk {
+
+                &-more {
+                    font-size: 13px;
+                    color: #666666;
+                }
+            }
+        }
+        &-rowli {
+            flex: 1;
+            width: 0;
+            overflow: hidden;
+            padding: 1rem 0;
+            &.col-tit:first-child {
+                padding-left: px(20);
+            }
+            &.col {
+                @each $classname, $basis, $flex in $bdNormalList {
+                    
+                    &-#{$classname} {
+                        flex: $flex $flex $basis;
+                        @if($classname == 'num') {
+                            @include laptop {
+                                flex: 0;
+                                font-size: 0;
+                            }
+                        }
+                        @if($classname == 'tit') {
+                            @include line-skip;
+                            @include laptop {
+                                flex: 0 0 100%;
+                            }
+                        } 
+                        @else {
+                            @include flex-all-center;
+                            @include laptop{
+                                justify-content: flex-start;
+                                flex: none;
+                                width: auto;
+                            }
+                        }
+                    }
+                }
+            }
+
+            img {
+                vertical-align: 0;
+            }
+            .icon {
+                &.reply {
+
+                    img {
+                        width: 31px;
+                        padding-right: 5px;
+                    }
+                }
+            }
+
+            &st {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                gap: 0 10px;
+                @include laptop {
+                    flex-wrap: wrap;
+                    gap: 8px 20px;
+                }
+            }
+        }
+        &-head {
+            
+            &li {
+                @include flex-all-center;
+                height: px($bdNormalHeadH);
+                font-family: "Malgun Gothic", sans-serif;
+                font-weight: bold;
+                font-size: 14px;
+                color: #373737;
+                word-break: keep-all;
+    
+                &st {
+                    background: #f9f9f9;
+                    @include laptop {
+                        display: none;
+                    }
+                }
+            }
+        }
+        &-tag {
+            // .boardno-tag
+            @include flex-all-center;
+            padding: 2px 10px 3px;
+            border-radius: 800px;
+            font-size: 12px;
+            border: 1px solid #5A5243;
+            background-color: #fff;
+            color: #5A5243;
+
+            &s {
+                // .boardno-tags
+                display: flex;
+                align-items: center;
+                gap: 0 3px;
+            }
+        }
+        &-btn {
+            display: block;
+            height: 38px;
+            border-radius: 3px;
+            border: 1px solid #ddd;
+            background: #fff;
+            color: #666;
+            text-align: center;
+            padding: 9px 20px;
+            transition: all .3s;
+            &.active, &:hover {
+                border-color: #373737;
+                background: #373737;
+                color: #fff;
+            }
+            &.btn-list {
+                border-color: #373737;
+                background: #373737;
+                color: #fff;
+            }
+            &.btn-newbd {
+                border-color: #373737;
+                background: #373737;
+                color: #fff;
+            }
+
+            &s {
+                @include flex-all-center;
+                gap: 5px;
+                margin: 20px 0 45px 0;
+
+                &-wrap {}
+            }
+            &-wrap {}
+        }
+        &-input {
+
+            &s {    
+                display: flex;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: 10px 14px;
+                @include mobile {
+                    flex: 1;
+                }
+                &:has(textarea) {
+                    flex: 1;
+                }
+                &:has(.bdNormal-input-group-wrap) {
+                    flex-direction: column;
+                    align-items: flex-start;
+                }
+
+                .input-box:has(textarea) {
+                    flex: 1;
+
+                    textarea {
+                        min-height: px(126);
+                    }
+                }
+            }
+            &-group {
+                display: flex;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: 6px;
+                &.line-full {
+                    width: 100%;
+                    gap: px(20);
+                }
+
+                &-wrap {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 6px;
+                    &:has(.line-full) {
+                        width: 100%;
+                    }
+
+                    ~ .bdNormal-input-group-wrap:has(.bdNormal-input-group-tit) {
+                        padding-top: px(15);
+                    }
+                }
+            }
+        }
+    }
+    &NormalL {
+        /* 좌측해더 */
+
+        .input-box {
+            @include mobile {
+                flex: 1;
+            }
+            &.address {
+                flex: 1;
+                @include mobile {
+                    flex: 1;
+                    width: 100%;
+                }
+            }
+            &.address-detail {
+                flex: 1;
+                @include mobile {
+                    flex: unset;
+                    width: 100%;
+                }
+            }
+        }
+        .barlist {
+            @include list-style-bar($fontSize: 13, $barWidth: 4);
+
+            > li {
+                font-size: px(13);
+                line-height: px(24);
+            }
+
+            &-wrap {
+                padding-left: px(10);
+            }
+        }
+        .checkbox {
+
+            .txt {
+                font-size: px(13);
+                line-height: px(20);
+            }
+        }
+        
+        &-wrap {
+        }
+        &-li {
+            position: relative;
+            @include laptop {
+                padding: 0;
+            }
+            &:first-child {
+                border-bottom-width: 1px;
+            }
+            &.required {
+
+                .bdNormalL-headli .txt::before {
+                    content: '';
+                    position: absolute;
+                    right: calc(100% + 20px);
+                    // top: 50%;
+                    top: 30px;
+                    transform: translate(50%, -50%);
+                    display: block;
+                    width: 11px;
+                    height: 9px;
+                    background: url('/images/user/basket/check2.png') no-repeat center;
+                    background-size: contain;
+                }
+            }
+            &.consent-info {
+
+                .checkbox.round {
+                    padding-left: px(16);
+                }
+            }
+            &:not(.bdBasket-li-head):not(.empty):hover, &:not(.bdOrder-li-head):not(.empty):hover {
+                background-color: unset;
+            }
+            &.basket-orderer-memo {
+                .bdNormalL-headli {
+                    height: 138px;
+                }
+            }
+            &.join {
+
+                .checkbox.round .icon {
+                    margin-top: 4px;
+                }
+            }
+
+            &st {}
+            &nk { }
+        }
+        &-rowli {
+            position: relative;
+            @include pad {
+                width: 100%;
+            }
+            &:not(.bdNormalL-headli) {
+                display: flex;
+                align-items: center;
+                height: 100%;
+                min-height: px($bdNormalLHeadH + 20);
+                // padding: 13px 10px 12px;
+                padding: 13px 10px 16px;
+            }
+
+            &st {
+                align-items: flex-start;
+                gap: 0;
+                background: linear-gradient(90deg, #f9f9f9 px($bdNormalLHeadW), transparent px($bdNormalLHeadW));
+                @include pad {
+                    // background: linear-gradient(180deg, #f9f9f9 px($bdNormalLHeadH), transparent px($bdNormalLHeadH));
+                    background: transparent;
+                    flex-direction: column;
+                }
+            }
+        }
+        &-head {
+            
+            &li {
+                display: flex;
+                align-items: flex-start;
+                justify-content: flex-start;
+                height: 100%;
+                padding-left: px(40);
+                padding-right: px(15);
+                max-width: px($bdNormalLHeadW);
+                @include pad {
+                    max-width: unset;
+                    background-color: #f9f9f9;
+                }
+
+                .txt {
+                    position: relative;
+                    display: flex;
+                    // align-items: center;
+                    min-height: px($bdNormalLHeadH - 18 - 18);
+                    padding-top: px(18);
+                    padding-bottom: px(18);
+                }
+
+                &st { }
+            }
+        }
+        &-tag {
+
+            &s { }
+        }
+    }
+    &Basket {
+        /* 주문서 - 상단물품 */
+
+        .checkbox {
+            @include input-clear-style;
+            &:checked {
+
+                + .checkbox-box {
+                    background: url('/images/user/common/check_all.png') no-repeat center;
+                }
+            }
+
+            &-box {
+                position: relative;
+                display: block;
+                width: 14px;
+                height: 14px;
+                border: 1px solid #cccccc;
+                border-radius: 2px;
+                vertical-align: middle;
+                cursor: pointer;
+            }
+        }
+        
+        &-wrap {
+        }
+        &-li {
+            @include pad {
+                border-bottom-color: #666;
+            }
+            &:first-child {
+                @include laptop {
+                }
+            }
+            &:not(.bdBasket-li-head):not(.empty):hover {
+                background-color: transparent;
+            }
+            
+
+            .checkbox {
+                
+                &-wrap {
+                    pointer-events: none;
+                }
+            }
+
+            &st {
+                &:has([class*=colspan]) {
+                    display: grid;
+                    grid-template-columns: px(120 + 10) 1fr;
+                    @include pad {
+                        grid-template-columns: 1fr;
+                    }
+
+                    .bdBasket-head {
+                        grid-column: 1 / 3;
+                    }
+                    .bdBasket-li {
+                        grid-column: 2 / 3;
+                        @include pad {
+                            grid-column: 1 / 2;
+                        }
+                        &[class*=colspan] {
+                            @include flex-all-center;
+                            grid-column: 1 / 2;
+                            padding-right: px(10);
+                            @include pad {
+                                display: none;
+                            }
+                        }
+                        &.total {
+                            grid-column: 1 / 3;
+                        }
+                        @for $i from 1 through 7 {
+                            &.colspan#{$i} {
+                                // grid-row:  2 / calc(2 + $i);
+                                grid-row:  span $i;
+                            }
+                        }
+                    }
+                }
+            }
+            &nk { }
+        }
+        &-rowli {
+            padding: transNum(10, pc) 0;
+            &.col {
+                @each $classname, $basis, $flex in $bdBasketList {
+                    
+                    &-#{$classname} {
+                        flex: $flex $flex $basis;
+                        @include flex-all-center;
+                        @if($classname == 'img') {
+                            @include flex-all-center;
+                            @include pad {
+                                // flex : 0 0 80px;
+                                flex: 0 0 100%;
+                            }
+
+                            > img {
+                                width: 90px;
+                                aspect-ratio: 1 / 1;
+                                @include pad {
+                                    width: 100%;
+                                }
+                            }
+                        } 
+                        @else if($classname == 'name') {
+                            justify-content: flex-start;
+                            margin-left: 6px;
+                            
+                            > .txt {
+                                @include laptop {
+                                }
+                                @include pad {
+                                    line-height: 18px;
+                                }
+                            }
+                            
+                            @include laptop {
+                            }
+                            @include pad {
+                                align-items: flex-start;
+                                flex-direction: column;
+                                gap: 7px;
+                            }
+                        }
+                        @else if($classname == 'day') {
+                            @include laptop {
+                                display: none;
+                            }
+                        }
+                        @else if($classname == 'period') {
+                            @include laptop {
+                                display: none;
+                            }
+                        }
+                        @else {
+                            @include pad {
+                                display: none;
+                            }
+                        }
+                        @if($classname == 'sum') {
+                            .sum-control-wrap {
+                                @include flex-all-center;
+                                gap: 10px;
+                                @include pad {
+                                    gap: 6px;
+                                }
+                            }
+                            .sum {
+                                text-align: center;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .laptop, .pad {
+                display: none;
+            }
+            .laptop {
+                @include laptop {
+                    display: block;
+                }
+            }
+            .pad {
+                @include pad {
+                    display: block;
+                }
+            }
+            .unit {    
+                color: #999;
+                font-weight: normal;
+            }
+
+            &st {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                gap: 0 10px;
+                @include laptop {
+                    flex-wrap: wrap;
+                    gap: 8px 20px;
+                }
+            }
+        }
+        &-head {
+            
+            &li {
+                height: px($bdOrderHeadH);
+                &.col {
+                    @each $classname, $basis, $flex in $bdOrderList {
+                        
+                        &-#{$classname} {
+                            @include pad {
+                                display: none;
+                            }
+                            @if($classname == 'img') {
+                                @include laptop {
+                                }
+
+                                > img {}
+                            } 
+                            @else if($classname == 'name') {
+                                justify-content: center;
+                                
+                                .pad, .mobile {}
+                                
+                                @include laptop {
+                                    flex-direction: row;
+                                    align-items: center;
+                                }
+                                @include pad {}
+                                @include mobile {}
+                            } 
+                            @else if($classname == 'sum') {
+                                @include pad {
+                                }
+                            } 
+                            @else if($classname == 'price') {
+                                @include mobile {
+                                }
+                            } 
+                            @else if($classname == 'order-price') {
+                                @include mobile {
+                                }
+                            } 
+                            @else {
+                                @include laptop{
+                                }
+                            }
+                        }
+                    }
+                }
+
+                &st { }
+            }
+        }
+        &-tag {
+
+            &s { }
+        }
+    }
+    &Mypage {
+        /* 마이페이지 공통 게시판  */
+        
+        &-wrap {
+        }
+        &-li {
+            @include laptop {
+                &:first-child {}
+            }
+            @include pad {
+                border-bottom: 1px solid #ddd;
+            }
+            &:not(.bdOrder-li-head):hover {}
+
+            &st {}
+            &nk { }
+        }
+        &-rowli {
+            flex: 1;
+            padding: transNum(10, pc) 0;
+            &.col {
+                @each $classname, $basis, $flex in $bdMypageAddList {
+                    
+                    &-#{$classname} {
+                        flex: $flex $flex $basis;
+                        @include flex-all-center; 
+                        @include pad {
+                            justify-content: flex-start;
+                            padding: 10px;
+                        }
+                        @if($classname == 'num') {
+                            @include laptop {
+                                display: none;
+                            }
+                        } 
+                        @if($classname == 'nickname') {
+                            @include pad {
+                                display: none;
+                            }
+                        } 
+                        @if($classname == 'base') {
+                            @include pad {
+                                display: none;
+                            }
+                        }
+                        @if($classname == 'modify') {
+                            @include pad {
+                                display: none;
+                            }
+                        }
+                        @if($classname == 'remove') {
+                            @include pad {
+                                display: none;
+                            }
+                        }
+                        @if($classname == 'ordername') {
+                            &:not(.bdMypage-headli) {
+
+                                > .txt {
+                                    @include laptop {
+                                        display: none;
+                                    }
+                                }
+                            }
+                        }
+                        @if($classname == 'order-date') {
+                            @include laptop {
+                                display: none;
+                            }
+                        }
+                        @if($classname == 'order-prod') {
+                            &:not(.bdMypage-headli) {
+                                justify-content: flex-start;
+                                @include laptop {
+                                }
+                            }
+
+                            > .btn {
+                                @include laptop {
+                                    display: none;
+                                }
+                            }
+                        }
+                        @if($classname == 'date') {
+                            @include laptop {
+                                display: none;
+                            }
+                        }
+                        @if($classname == 'episode') {
+                            @include laptop {
+                                display: none;
+                            }
+                        }
+                        @if($classname == 'change') {
+                            @include pad {
+                                display: none;
+                            }
+                        }
+                        @if($classname == 'more') {
+                            @include pad {
+                                display: none;
+                            }
+                        }
+                        @if($classname == 'price') {
+                            @include laptop {
+                                display: none;
+                            }
+                        }
+                        @if($classname == 'state') {
+                            @include pad {
+                                display: none;
+                            }
+                        }
+                        @if($classname == 'cancle') {
+                            @include pad {
+                                display: none;
+                            }
+                        }
+                        @if($classname == 'else') {
+                            @include pad {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .laptop, .pad {
+                display: none;
+            }
+            .laptop {
+                @include laptop {
+                    display: block;
+                }
+            }
+            .pad {
+                @include pad {
+                    display: block;
+                }
+            }
+            .unit {    
+                color: #999;
+                font-weight: normal;
+            }
+            .group {
+                display: flex;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: 6px;
+                &.flex-column {
+                    flex-direction: column;
+                    align-items: unset;
+                    justify-content: center;
+                }
+                &.line-full {
+                    width: 100%;
+                }
+
+                &-wrap {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 6px;
+                }
+            }
+            .dl {
+                display: flex;
+                align-items: center;
+                column-gap: 8px;
+            }
+            .result {
+                display: none;
+                &.active {
+                    display: block;
+                }
+            }
+
+            &st {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                gap: 0 10px;
+                @include laptop {
+                    flex-wrap: wrap;
+                    gap: 8px 20px;
+                }
+            }
+        }
+        &-head {
+            
+            &li {
+                height: px($bdOrderHeadH);
+                
+                &st {
+                    @include pad {
+                        display: none;
+                    }
+                }
+            &.col {
+                @each $classname, $basis, $flex in $bdOrderList {
+                    
+                    &-#{$classname} {
+                        @if($classname == 'img') {
+                            @include laptop {
+                            }
+
+                            > img {}
+                        } 
+                        @else if($classname == 'name') {
+                            justify-content: center;
+                            
+                            .pad, .mobile {}
+                            
+                            @include laptop {
+                                flex-direction: row;
+                                align-items: center;
+                            }
+                            @include pad {}
+                            @include mobile {}
+                        } 
+                        @else if($classname == 'sum') {
+                            @include pad {
+                            }
+                        } 
+                        @else if($classname == 'price') {
+                            @include mobile {
+                            }
+                        } 
+                        @else if($classname == 'order-price') {
+                            @include mobile {
+                            }
+                        } 
+                        @else {
+                            @include laptop{
+                            }
+                        }
+                    }
+                }
+            }
+
+                &st { }
+            }
+        }
+        &-tag {
+
+            &s { }
+        }
+    }
+    &Order {
+        /* 주문서 - 상단물품 */
+        
+        &-wrap {
+        }
+        &-li {
+            @include laptop {
+                &:first-child {}
+            }
+            @include pad {
+                border-bottom: 1px solid #ddd;
+            }
+            &:not(.bdOrder-li-head):hover {}
+
+            &st {}
+            &nk { }
+        }
+        &-rowli {
+            padding: transNum(10, pc) 0;
+            flex: 1;
+            &.col {
+                @each $classname, $basis, $flex in $bdOrderList {
+                    
+                    &-#{$classname} {
+                        flex: $flex $flex $basis;
+                        @include flex-all-center;
+                        @include pad {
+                            flex-direction: column;
+                        }
+                        @if($classname == 'img') {
+                            @include flex-all-center;
+                            @include pad {
+                                flex : 0 0 80px;
+                            }
+
+                            > img {
+                                width: 90px;
+                                aspect-ratio: 1 / 1;
+                                @include pad {
+                                    width: 100%;
+                                }
+                            }
+                        } 
+                        @if($classname == 'name') {
+                            justify-content: flex-start;
+                            
+                            > .txt {
+                                @include laptop {
+                                }
+                                @include pad {
+                                    line-height: 18px;
+                                }
+                            }
+                            
+                            @include laptop {
+                                align-items: flex-start;
+                                flex-direction: column;
+                                gap: 7px;
+                            }
+                            @include pad {}
+                        } 
+                        @if($classname == 'sum') {
+                            @include laptop {
+                                display: none;
+                            }
+                        } 
+                        @if($classname == 'price') {
+                            @include pad {
+                                display: none;
+                            }
+                        } 
+                        @if($classname == 'order-price') {
+                            @include pad {
+                                display: none;
+                            }
+                        }
+                        @if($classname == 'else') {
+                            @include laptop {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .laptop, .pad {
+                display: none;
+            }
+            .laptop {
+                @include laptop {
+                    display: block;
+                }
+            }
+            .pad {
+                @include pad {
+                    display: block;
+                }
+            }
+            .unit {    
+                color: #999;
+                font-weight: normal;
+            }
+
+            &st {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                gap: 0 10px;
+                @include laptop {
+                    flex-wrap: wrap;
+                    gap: 8px 20px;
+                }
+            }
+        }
+        &-head {
+            
+            &li {
+                height: px($bdOrderHeadH);
+                
+            &.col {
+                @each $classname, $basis, $flex in $bdOrderList {
+                    
+                    &-#{$classname} {
+                        @if($classname == 'img') {
+                            @include laptop {
+                            }
+
+                            > img {}
+                        } 
+                        @else if($classname == 'name') {
+                            justify-content: center;
+                            
+                            .pad, .mobile {}
+                            
+                            @include laptop {
+                                flex-direction: row;
+                                align-items: center;
+                            }
+                            @include pad {}
+                            @include mobile {}
+                        } 
+                        @else if($classname == 'sum') {
+                            @include pad {
+                            }
+                        } 
+                        @else if($classname == 'price') {
+                            @include mobile {
+                            }
+                        } 
+                        @else if($classname == 'order-price') {
+                            @include mobile {
+                            }
+                        } 
+                        @else {
+                            @include laptop{
+                            }
+                        }
+                    }
+                }
+            }
+
+                &st { }
+            }
+        }
+        &-tag {
+
+            &s { }
+        }
+    }
+    &ModalAdd {
+        /* 배송지 목록 */
+        
+        &-wrap {
+            height: 100%;
+            overflow-y: auto;
+            @include scroll-custom-basic;
+            @include scroll-custom-gray;
+        }
+        &-li {
+            cursor: pointer;
+            @include laptop {
+                &:first-child {
+                }
+            }
+            &:not(.bdModalAdd-head):hover {
+                background-color: rgba($color: #c93535, $alpha: 0.12);
+            }
+
+            &st {}
+            &nk {}
+        }
+        &-rowli {
+            padding: transNum(10, pc) 0;
+            &.col {
+                @each $classname, $basis, $flex in $bdModalAddList {
+                    
+                    &-#{$classname} {
+                        flex: $flex $flex $basis;
+                        @if($classname == 'img') {
+                            @include flex-all-center;
+                            @include laptop {
+                            }
+
+                            > img {
+                                width: 90px;
+                                aspect-ratio: 1 / 1;
+                            }
+                        } 
+                        @if($classname == 'name') {
+                            @include laptop {
+                            }
+                        } 
+                        @else {
+                            @include flex-all-center;
+                            @include laptop{
+                                justify-content: flex-start;
+                                flex: none;
+                                width: auto;
+                            }
+                        }
+                    }
+                }
+            }
+
+            &st {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                gap: 0 10px;
+                @include laptop {
+                    flex-wrap: wrap;
+                    gap: 8px 20px;
+                }
+            }
+        }
+        &-head {
+            position: sticky;
+            top: 0;
+            z-index: 5;
+            
+            &li {
+                height: px($bdOrderHeadH);
+
+                &st { }
+            }
+        }
+        &-tag {
+
+            &s { }
+        }
+    }
+    &Product {
+        // 상품 리스트
+
+        &-controller {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            // padding-top: px(30);
+            padding-bottom: px(17);
+            border-bottom: 2px solid #474747;
+            @include pad {
+                flex-direction: column-reverse;
+                align-items: flex-start;
+                gap: px(20);
+            }
+
+            &-total {
+                
+                .txt { 
+                    font-family: $notoKr, sans-serif;
+                    font-size: 14px;
+                    color: #666666;
+                }
+                .num {
+                    font-family: $ptSansCaption, sans-serif;
+                    font-weight: bold;
+                    color: #ed1b24;
+                }
+            }
+            &-order {
+                display: flex;
+                align-items: center;
+                gap: px(5);
+                &.active {
+
+                    .icon {
+                        width: px(13);
+                    }
+                    .txt {
+                        color: #000;
+                    }
+                }
+
+                .icon {
+                    width: 0;
+                    overflow: hidden;
+                    transition: width .3s;
+                    
+                    i {
+                        font-weight: 700;
+                    }
+                }
+                .txt {
+                    font-family: $notoKr, sans-serif;
+                    font-weight: 500;
+                    color: #666666;
+                }
+
+
+                &s {
+                    display: flex;
+                    align-items: center;
+                    gap: px(24);
+                    @include mobile {
+                        flex-wrap: wrap;
+                        row-gap: px(10);
+                    }
+                }
+            }
+        }
+        &-tag {
+            position: relative;
+            @include flex-all-center;
+            width: px(48);
+            height: px(48);
+            border-radius: 50%;
+            background: #474747;
+            font-size: 12px;
+            font-family: 'Verdana', Malgun Gothic;
+            font-weight: bold;
+            letter-spacing: -0.08em;
+            color: #fff;
+            @include mobile {
+                width: px(37);
+                height: px(37);
+                line-height: 34px;
+                font-size: 9px;
+            }
+
+            &s {
+                position: absolute;
+                left: px(26);
+                top: px(26);
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                z-index: 1;
+                @include pad {
+                    left: unset;
+                    right: px(26);
+                    justify-content: flex-end;
+                    flex-wrap: wrap;
+                }
+                
+                .popovers-main {
+                    display: flex;
+                    align-items: center;
+                    gap: 4px;
+                    @include pad {
+                        flex-wrap: wrap;
+                    }
+                }
+            }
+        }
+        &-wrap {
+        }
+        &-li {
+            // cursor: pointer;
+            position: relative;
+            @include flex-all-center;
+            flex-direction: column;
+            width: calc(100% / 4);
+            border: 1px solid #dfdfdf;
+            padding-bottom: 50px;
+            @include laptop {
+                width: calc(100% / 3);
+            }
+            @include pad {
+                width: calc(100% / 2);
+            }
+            @include mobile {
+                width: calc(100% / 1);
+            }
+            &:hover {
+                border-color: #474747;
+
+                .bdProduct-li-btns {
+                    left: 50%;
+                    opacity: 1;
+                }
+                .bdProduct-li-overlay {
+                    display: flex;
+                    opacity: 1;
+                    @include mobileMin {
+                        display: none;
+                        opacity: 0;
+                    }
+                }
+            }
+            @for $i from 4 through 1 {
+                &:nth-child(n + #{$i + 1}) {
+                    @if($i == 4) {
+                        margin-top: -1px;
+                        border-top-color: transparent;
+                        @include laptop {
+                            margin-top: 0;
+                            border-top-color: #dfdfdf;
+                        }
+                    }
+                    @if($i == 3) {
+                        @include laptop {
+                            margin-top: -1px;
+                            border-top-color: transparent;
+                        }
+                        @include pad {
+                            margin-top: 0;
+                            border-top-color: #dfdfdf;
+                        }
+                    }
+                    @if($i == 2) {
+                        @include pad {
+                            margin-top: -1px;
+                            border-top-color: transparent;
+                        }
+                        @include mobileMin {
+                            margin-top: 0;
+                            border-top-color: #dfdfdf;
+                        }
+                    }
+                    @if($i == 1) {
+                        @include mobileMin {
+                            margin-top: -1px;
+                            border-top-color: transparent;
+                        }
+                    }
+                    &:hover {
+                        border-top-color: #7e2727;
+                    }
+                }
+                &:not(:nth-child(#{$i}n + 1)) {
+                    @if($i == 4) {
+                        margin-left: -1px;
+                        border-left-color: transparent;
+                        @include laptop {
+                            margin-left: 0;
+                            border-left-color: #dfdfdf;
+                        }
+                    }
+                    @if($i == 3) {
+                        @include laptop {
+                            margin-left: -1px;
+                            border-left-color: transparent;
+                        }
+                        @include pad {
+                            margin-left: 0;
+                            border-left-color: #dfdfdf;
+                        }
+                    }
+                    @if($i == 2) {
+                        @include pad {
+                            margin-left: -1px;
+                            border-left-color: transparent;
+                        }
+                        @include mobileMin {
+                            margin-left: 0;
+                            border-left-color: #dfdfdf;
+                        }
+                    }
+                    @if($i == 1) {
+                        @include mobileMin {
+                            margin-left: -1px;
+                            border-left-color: transparent;
+                        }
+                    }
+                    &:hover {
+                        border-left-color: #474747;
+                    }
+                }
+            }
+
+
+            &st {
+                display: flex;
+                flex-wrap: wrap;
+            }
+            &nk {
+                position: relative;
+                overflow: hidden;
+             }
+            &-overlay {
+                cursor:pointer;
+                position:absolute;
+                left:0;
+                top:0;
+                width:100%;
+                height:100%;
+                background:rgba(255,255,255,0.7);
+                opacity:0;
+                transition: opacity .3s;
+                z-index: 1;
+            }
+            &-btn {
+
+                &s {
+                    @include absolute-all-center;
+                    left: 0;
+                    @include flex-all-center;
+                    gap: 4px;
+                    opacity: 0;
+                    z-index: 1;
+                    transition: left 0.3s, opacity 0.3s;
+                }
+            }
+        }
+        &-img {
+            position: relative;
+            @include flex-all-center;
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            padding: 30px;
+
+            img {
+                width: 100%;
+            }
+        }
+        &-tit {
+            position: relative;
+            @include flex-all-center;
+            margin-bottom: auto;
+            z-index: 0;
+            padding: 0 30px;
+
+            .txt {
+                position: relative;
+                display: block;
+                font-size: 12px;
+                color: #666666;
+                line-height: 1.4; 
+                text-align: center;
+                word-break: keep-all;
+            }
+        }
+        &-price {
+            padding-top: px(15);
+            text-align: center;
+            &.fw-bold {
+                font-family: $ptSansCaption, sans-serif;
+                font-weight: bold;
+                font-size: 16px;
+                color: #000000;
+            }
+        }
+        &-sum {
+            padding: 10px 80px 0;
+            @include desktop {
+                padding: 10px 20% 0;
+            }
+
+            .sum-control-wrap {
+                @include flex-all-center;
+                gap: 10px;
+
+                .sum {
+                    text-align: center;
+                }
+            }
+        }
+        &-cate {
+        
+            &-tit {
+                position: relative;
+                @include flex-all-center;
+                flex-direction: column;
+                gap: 10px;
+                
+                .tit {
+                    position: relative;
+                    display: block;
+                    font-family: $playBasicItalic, sans-serif;
+                    font-weight: bold;
+                    color: #000;
+                    font-size: 16px;
+                    letter-spacing: 0.05em;
+                }
+                .info {
+                    position: relative;
+                    display: block;
+                    font-family: 'Malgun Gothic', sans-serif;
+                    font-weight: normal;
+                    font-size: 12px;
+                    color: #474747;
+                }
+
+                &-wrap {
+                    position: relative;
+                    display: block;
+                    padding: 38px 0 27px;
+                }
+            }
+            &-tag {
+
+                &s {
+                    margin-top: px(26);
+                    margin-left: px(26);
+                }
+            }
+        }
+
+    }
+    &Join {
+        border-top-color: transparent;
+
+        .bdNormal-tit h4 {
+            font-family: $nanumS;
+            font-weight: 700;
+            font-size: 28px;
+            margin-top: 65px;
+        }
+        .bdNormal-li {
+            border-bottom-color: transparent;
+            &.support {
+
+                .checkbox .txt {
+                    font-family: $notoKr;
+                    font-weight: 500;
+                    font-size: 16px;
+                    margin-left: 4px;
+                    word-break: keep-all;
+                }
+            }
+        }
+        .bdNormalL-headli .txt {
+            font-family: $notoKr;
+            font-weight: 500;
+            font-size: px(15);
+        }
+        .bdNormalL-rowlist {
+            background: transparent;
+        }
+        .input-box input {
+            height: px(47);
+        }
+        .btn-square-black {
+            width: 100%;
+            height: px(47);
+            white-space: nowrap;
+        }
+        .input-box {
+            [class*="width_"] {
+                @include pad {
+                    width: 100% !important;
+                }
+            }
+        }
+        .bdNormalL-rowli:not(.bdNormalL-headli) {
+            gap: 10px;
+        }
+        .bdNormal-inputs {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr 145px;
+            gap: px(10);
+            @include pad {
+                grid-template-columns: 1fr;
+            }
+
+            > .input-box {
+                grid-column: span 1;
+                @include pad {
+                    // grid-column: span 2;
+                }
+            }
+            > .full {
+                grid-column: span 2;
+                @include pad {
+                    grid-column: span 1;
+                }
+            }
+            > .btn-wrap {
+                grid-column: span 1;
+            }
+            > .box {
+                flex-direction: row;
+            }
+            > .checkboxes {
+                display: flex;
+                align-items: center;
+                gap: px(15);
+            }
+            .checkbox-wrap {
+                display: flex;
+            }
+            .bdNormal-input-group {
+                gap: px(15);
+            }
+        }
+
+        &-wrap {
+            
+        }
+    }
+    /* 게시판 paging */
+    &Paging {
+        
+        &-li {
+            &.first, &.prev, &.next, &.last {
+                @include pad {
+                    display: none;
+                }
+            }
+
+            &st {
+                @include flex-all-center;
+                gap: 6px;
+
+                .paging {
+                    display: block;
+                    height: 32px;
+                    padding: 0 11px;
+                    font-family: $verdana, "Malgun Gothic", sans-serif;
+                    font-weight: normal;
+                    line-height: 29px;
+                    color: #888;
+                    border-radius: 3px;
+                    border: 1px solid #d2d2d2;
+                }
+            }
+        }
+    }
+    /* //게시판 paging */
+    /* 게시판공통 정보 */
+    &PostInfo {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    /* 게시판공통 정보 */
+    &-top { }
+}
+
+$bdTypes : 'v', 'fm', 'bd', 'bdQ';
+@each $type in $bdTypes {
+    .#{$type}-wrap {
+        display: none;
+        &.active {
+            display: block;
+        }
+    }
+}
+/* //게시판 */
+
+/* 게시판 form */
+.fm {
+
+    &-plate {
+
+        &-date-wrap {
+            position: relative;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px 5px;
+        }
+    }
+}
+/* //게시판 form */
+
+
+/* 게시판 상세 */
+.v {
+
+    &Normal {
+
+        &-wrap {}
+        &-tit {
+            font-weight: bold;
+            line-height: 20px;
+            margin-bottom: 10px;
+
+            &-wrap {
+                position: relative;
+                display: block;
+                border-top: 1px solid #999;
+                border-bottom: 1px solid #ddd;
+                background: #fafafa;
+                padding: 15px;
+            }
+        }
+        &-info {
+            // float: left;
+            font-size: 12px;
+            line-height: 19px;
+            @include outFontsize(12);
+            &:not(:last-child) {
+                margin-right: 20px;
+            }
+
+            &s {
+                position: relative;
+                display: flex;
+                align-items: center;
+            }
+        }
+        &-cont {
+            min-height: px(400 + 30);
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 30px;
+            line-height: 21px;
+            padding: 30px 15px 0;
+        }
+        &-btn {
+            display: block;
+            height: 38px;
+            border-radius: 3px;
+            border: 1px solid #ddd;
+            background: #fff;
+            color: #666;
+            text-align: center;
+            padding: 9px 20px;
+            transition: all .3s;
+            &.active, &:hover {
+                border-color: #373737;
+                background: #373737;
+                color: #fff;
+            }
+            &.btn-list {
+                border-color: #373737;
+                background: #373737;
+                color: #fff;
+            }
+            &.btn-newbd {
+                border-color: #373737;
+                background: #373737;
+                color: #fff;
+            }
+
+            &s {
+                // text-align: right;
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                gap: 5px;
+                margin: 20px 0 45px 0;
+
+                &-wrap {}
+            }
+            &-wrap {}
+        }
+    }
+}
+/* //게시판 상세 */
+
+
+/* faq */
+.boardFaq {
+    &.bdNormal {
+        margin-bottom: 0;
+        
+        > ul > li {
+            > .answer {
+
+                .box:not(:first-child) {
+                    margin-top: 10px;
+                }
+                .postMark {
+                    left: px(-40);
+                    top: 0;
+                }
+            }
+        }
+    }
+
+    li {
+        &.empty {
+            @include flex-all-center;
+            flex-direction: column;
+            gap: px(21);
+            padding: px(65) 0;
+
+            .icon{
+                width: 36px;
+            }
+            .txt {
+                position: relative;
+                font-family: $verdana, Malgun Gothic;
+                font-weight: 400;
+                font-size: 13px;
+                color: #cccccc;
+            }
+        }
+
+        .line {
+            // padding: 15px 0px;
+            cursor: pointer;
+        }
+    }
+}
+/* faq */
+
+
+
+#itemTable {
+    margin-top: 20px;
+    border-top: 1px solid #222222;
+    border-bottom: 1px solid #dddddd;
+
+    t {
+
+        &head {
+
+            th {
+                text-align: center;
+                font-family: 'Malgun Gothic', sans-serif;
+                font-weight: bold;
+                font-size: 14px;
+                color: #373737;
+                padding: 15px 0;
+                background: #f9f9f9;
+            }
+        }
+        &body {
+
+            td {
+                font-family: $verdana, 'Malgun Gothic', sans-serif;
+                text-align: center;
+                border-top: 1px solid #dddddd;
+                padding: 10px 0;
+                @include mobile {
+                    padding: 10px 0 5px;
+                }
+                &.table_pc_td {
+                    text-align: left;
+                    padding-left: 20px;
+                    @include mobile {
+                        padding-left: 10px;
+                    }
+                }
+
+                img {
+                    width: auto;
+                    max-width: 100%;
+                    height: 80px;
+                }
+            }
+        }
+    }
+}
+
+
+
+
+div.boardTable {
+
+    .col-tit
+    {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        text-align: left;
+        
+        .txt {
+            @include line-skip;
+        }
+    }
+    .no_txt {
+        position: relative;
+        border-top: 0;
+        font-family: $verdana, Malgun Gothic;
+        padding-top: 65px;
+        padding-bottom: 75px;
+        
+        img {
+            width: px(36);
+        }
+        .txt {
+            padding-top: 11px;
+            font-size: 13px;
+            font-weight: 400;
+            color: #cccccc;
+        }
+    }
+}
+
+div.board input[type="text"], 
+div.board input[type="password"], 
+div.board input[type="email"], 
+div.board select, 
+div.board textarea {
+    padding: 0.5em;
+    border: 1px solid #ccc;
+}
+div.boardTable table tr td a img.newContent {
+    width: 16px;
+    margin-left: 0px;
+    vertical-align: middle;
+}
+
+div.viewInfo ul {
+    display: flex;
+    align-items: center;
+    gap: px(4) px(20);
+    @include laptop {
+        flex-wrap: wrap;
+    }
+    
+    li {
+        float: unset;
+        margin-right: 0;
+    }
+}
+
+div.boardMenu ul {
+    @include mobile {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 5px;
+    }
+
+    li {
+        @include mobile {
+            float: unset;
+            width: 100%;
+            margin-left: 0;
+        }
+    }
+}
+
+.table_pc_list {
+    text-align: left;
+    margin-top: 7px;
+    @include mobile {
+        margin-top: 1px;
+    }
+
+    ul li {
+        font-size: 13px;
+        font-family: $verdana, Malgun Gothic;
+        margin-bottom: 7px;
+
+        strong {
+            font-weight: normal;
+            color: #000;
+            /* line-height: 19px; */
+        }
+    }
+}
+
+.cus_best > div.boardList {
+    border-top: unset;
+}
+
+.cus_best div.boardFaq > ul > li > div.answer {
+    line-height: 21px !important;
+}
+
+.cus_best div.boardFaq > ul > li > div.answer {
+    padding: 28px 28px 28px 80px;
+}

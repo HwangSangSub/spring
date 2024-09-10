@@ -1,0 +1,11 @@
+div.pageContent
+{
+	padding-top: 72px;
+}
+
+div.pageContent div.contentTitle
+{
+	width: 100%;
+	left: 0;
+	top: 0;
+}

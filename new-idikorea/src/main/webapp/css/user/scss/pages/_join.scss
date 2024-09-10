@@ -1,0 +1,167 @@
+
+.join {
+
+    &-sect {
+
+        &.sect-btns {
+            padding-top: px(30);
+        }
+        &.sect-tabs {
+            max-width: 600px;
+            margin: 0 auto;
+            padding-top: px(55);
+            padding-bottom: px(15);
+        }
+        &.sect-form {
+
+            .bdJoin {
+                max-width: 600px;
+                margin: 0 auto;
+            }
+        }
+    }
+    &-step {
+        position: relative;
+        max-width: px(400);
+        margin: 0 auto;
+        padding-top: px(35);
+
+        &-list {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            &::before {
+                content: '';
+                position: absolute;
+                left: 0%;
+                top: calc(50% - px(10));
+                transform: translateY(-50%);
+                display: block;
+                width: 100%;
+                height: 1px;
+                background-color: #efefef;
+                z-index: -1;
+            }
+        }
+        &-box {
+            display: inline-block;
+            text-align: center;
+
+            img {
+                width: px(78);
+            }
+            span {    
+                display: block;
+                margin-top: 13px;
+                font-weight: bold;
+                color: #999;
+                &.active {
+                    color: #474747;
+                }
+            }
+        }
+    }
+    &-terms {
+        max-width: px(600);
+        margin: 0 auto;
+        padding-top: px(23);
+
+        .checkbox {
+            justify-content: unset;
+        }
+    }
+    &-btn {
+        &.btn-prev {
+            background: #efefef;
+            color: #999;
+        }
+
+        &s {
+            @include flex-all-center;
+            gap: 10px;
+        }
+    }
+}
+
+.wrap-typeJoinSearch {
+
+    .join-btn {
+        @include flex-all-center;
+        width: 100%;
+
+        &s {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        &-wrap {
+            width: 100%;
+        }
+    }
+    .li-id {
+        display: none;
+        &.active {
+            display: block;
+        }
+    }
+    .sub-tabs-list {
+        @include pad {
+            width: 100%;
+            padding: 0;
+        }
+    }
+    .join-sect.sect-tabs {
+        @include pad {
+            margin: 0;
+            max-width: unset;
+        }
+    }
+}
+
+/* 서브5. 회원가입-3 */
+div.joincomplete
+{
+   padding-top:190px;
+   text-align:center;
+   background:url("/images/user/join/bg2_joincomplete.png") center 75px no-repeat;
+}
+
+div.joincomplete p
+{
+   padding:0;
+   word-break: keep-all;
+}
+
+div.joincomplete p:nth-of-type(1)
+{
+   font-family:'nanum_basicB';
+   font-size:24px;
+   letter-spacing:-0.025em;
+   color:#999999
+}
+
+div.joincomplete p:nth-of-type(1) strong
+{
+   font-family:'nanum_basicB';
+   font-size:24px;
+   font-weight:normal;
+   color:#474747;
+}
+
+div.joincomplete p:nth-of-type(2)
+{
+   padding-top:25px;
+   line-height:22px;
+}
+
+div.joincomplete a
+{
+   display:inline-block;
+   width:120px;
+   margin-top:45px;
+   padding:16px 0;
+   color:#fff;
+   border:1px solid #474747;
+   background:#474747;
+   border-radius:150px
+}

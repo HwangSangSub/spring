@@ -1,0 +1,168 @@
+
+
+
+
+/* animation */
+@keyframes modalFadeIn {
+    0% {
+        left: 100%;
+        opacity: 0;
+    }
+    10% {
+        left: 0;
+        opacity: 0;
+    }
+    100% {
+        left: 0;
+        opacity: 1;
+    }
+    
+    
+}
+@keyframes modalFadeOut {
+    0% {
+        left: 0;
+        opacity: 1;
+    }
+    90% {
+        left: 0;
+        opacity: 0;
+    }
+    100% {
+        left: 100%;
+        opacity: 0;
+    }    
+}
+
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 0;
+    }
+    100% {
+        z-index: 0;
+        visibility: hidden;
+        display: none;
+    }
+}
+
+@keyframes dropdownSlideUp {
+    0% {
+        transform: translate3d(calc(var(--center) * 1%), calc(var(--tailH) * 1px + 0%), 0) rotateX(0deg);
+        opacity: 1;
+        visibility: visible;
+    }
+    90% {
+        // transform: translate3d(calc(var(--center) * 1%), -45%, 0) rotateX(90deg);
+        transform: translate3d(calc(var(--center) * 1%), 25%, 0) rotateX(0deg);
+        opacity: 0;
+        visibility: visible;
+    }
+    100% {
+        // transform: translate3d(calc(var(--center) * 1%), -45%, 0) rotateX(90deg);
+        transform: translate3d(calc(var(--center) * 1%), 25%, 0) rotateX(0deg);
+        opacity: 0;
+        visibility: hidden;
+        display: none;
+    }
+}
+
+@keyframes dropdownSlideDown {
+    0% {
+        // transform: translate3d(calc(var(--center) * 1%), -45%, 0) rotateX(90deg);
+        transform: translate3d(calc(var(--center) * 1%), 25%, 0) rotateX(0deg);
+        opacity: 0;
+        visibility: hidden;
+        display: flex;
+        
+    }
+    10% {
+        // transform: translate3d(calc(var(--center) * 1%), -45%, 0) rotateX(90deg);
+        transform: translate3d(calc(var(--center) * 1%), 25%, 0) rotateX(0deg);
+        opacity: 1;
+        visibility: visible;
+    }
+    100% {
+        transform: translate3d(calc(var(--center) * 1%), calc(var(--tailH) * 1px + 0%), 0) rotateX(0deg);
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+
+@keyframes dropdownFadeOff {
+    0% {
+        opacity: 1;
+        visibility: visible;
+    }
+    90% {
+        opacity: 0;
+        visibility: visible;
+    }
+    100% {
+        opacity: 0;
+        visibility: hidden;
+        display: none;
+    }
+}
+
+@keyframes dropdownFadeOn {
+    0% {
+        opacity: 0;
+        visibility: hidden;
+        display: flex;
+        
+    }
+    10% {
+        opacity: 1;
+        visibility: visible;
+    }
+    100% {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+@keyframes moveLeftRight {
+    0% {
+        margin-left: 0;
+        margin-right: 0;
+    }
+    50% {
+        margin-left: 5px;
+        margin-right: -5px;
+    }
+    100% {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
+@keyframes moveUpDown {
+    0% {
+        margin-up: 0;
+        margin-bottom: 0;
+    }
+    50% {
+        margin-up: 5px;
+        margin-bottom: -5px;
+    }
+    100% {
+        margin-up: 0;
+        margin-bottom: 0;
+    }
+}
+
+@keyframes isFlex {
+    0% {
+        display: none;
+    }
+    100% {
+        display: flex;
+    }
+}
+
+/* //animation */

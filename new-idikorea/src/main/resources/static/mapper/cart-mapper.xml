@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.brighten.idi.order.cart.mapper.CartMapper">
+
+	<insert id="insertCart" parameterType="com.brighten.idi.goods.dto.GoodsDto">
+		INSERT INTO idi_cart
+		(
+		<if test='memberNo!=null and memberNo!=""'>
+			member_no,
+		</if>
+		<if test='uuid!=null and uuid!=""'>
+			uuid,
+		</if>
+			ea,
+			create_time,
+			option_sno,
+		    cart_type
+		)VALUES(
+		<if test='memberNo!=null and memberNo!=""'>
+			#{memberNo},
+		</if>
+		<if test='uuid!=null and uuid!=""'>
+			#{uuid},
+		</if>
+			#{ea},
+			now(),
+			#{sno},
+			#{cartType}
+		)
+	</insert>
+	
+	<select id="cartList" resultType="com.brighten.idi.goods.dto.GoodsDto" parameterType="com.brighten.idi.goods.dto.GoodsDto">
+			SELECT * 
+			FROM idi_cart ic
+			LEFT JOIN idi_goods_option igo
+			ON ic.option_sno = igo.sno
+			LEFT JOIN idi_goods ig
+			ON igo.goods_no = ig.goods_no
+			WHERE 1=1 
+		<if test='memberNo!=null and memberNo!=""'>
+			AND ic.member_no = #{memberNo}
+		</if>
+		<if test='uuid!=null and uuid!=""'>
+			AND ic.uuid = #{uuid}
+		</if>
+		<if test='sno!=null and sno!=""'>
+			AND ic.option_sno = #{sno}
+		</if>
+		AND ic.cart_type = #{cartType}
+	</select>
+</mapper>	 

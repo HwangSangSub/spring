@@ -1,0 +1,27 @@
+
+{
+    "product" :[
+        {
+            "id" : "000900010",
+            "name" : "18>IDI SOLARE IDI BB CREMA 36 - 비비크림",
+            "originalPrice" : 45000,
+            "dicountedPrice" : 45000,
+            "like" : 3,
+            "likeMax" : 5,
+            "desc" : "부드럽고 꼼꼼히 밀착되어 화사하고 깨끗한 피부로 만들어 주는 주름개선, 미백, 선블럭 삼중 기능의 스페셜 비비크림",
+            "imgUrl" : "/images/user/sample/8b44ad28ee674dad9e72563c21d8ea0d.png",
+            "url" : "/user/product/detail?no=000900010"
+        },
+        {
+            "id" : "001900019",
+            "name" : "38>이디 비타미나 치프리아",
+            "originalPrice" : 55000,
+            "dicountedPrice" : 55000,
+            "like" : 4,
+            "likeMax" : 5,
+            "desc" : "사르르 녹아 흡수되어 피부가 먼저 아는 비타민 파우더 에센스! 드라마틱한 효과로 매일매일 변화되는 피부를 확인해 보세요~",
+            "imgUrl" : "/images/user/sample/8399351b8f5f41979727034a89d0e89d.png",
+            "url" : "/user/product/detail?no=001900019"
+        }
+    ]
+}

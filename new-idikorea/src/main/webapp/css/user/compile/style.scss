@@ -1,0 +1,50 @@
+
+@use 'sass:list';
+
+@import '../scss/abstracts/variable';
+@import '../scss/abstracts/mixin';
+@import '../scss/abstracts/placeholder';
+@import '../scss/abstracts/function';
+
+// @import 'vendors/swiper/swiper-bundle.min.css';
+// @import 'vendors/flatpickr/flatpickr.min.css';
+
+@import '../scss/base/typography';
+@import '../scss/base/base';
+@import '../scss/base/utilites';
+@import '../scss/base/animations';
+
+@import '../scss/layout/forms';
+@import '../scss/layout/board';
+// @import '../scss/layout/grid';
+@import '../scss/layout/navigation';
+@import '../scss/layout/header';
+@import '../scss/layout/footer';
+
+@import '../scss/components/button';
+@import '../scss/components/popup';
+@import '../scss/components/swiper';
+@import '../scss/components/jquery-ui';
+
+@import '../scss/before/before';
+@import '../scss/pages/main';
+@import '../scss/pages/sub';
+@import '../scss/pages/basket';
+
+// @import '../scss/pages/basketList';
+// @import '../scss/pages/basketOrder';
+@import '../scss/pages/basketComplete';
+
+@import '../scss/pages/login';
+@import '../scss/pages/join';
+@import '../scss/pages/brand';
+@import '../scss/pages/productGoods';
+@import '../scss/pages/productDetail';
+@import '../scss/pages/productList';
+@import '../scss/pages/event';
+@import '../scss/pages/mypage';
+
+
+
+// @import '../scss/themes/admin';
+// @import '../scss/themes/theme';

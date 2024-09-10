@@ -1,0 +1,217 @@
+html,body { 
+	width:100%; 
+	height:100%
+}
+
+html { 
+	font-size:62.5%; 
+	overflow-y:scroll; 
+	overflow-x:hidden;
+}
+
+body {
+	min-width:inherit !important;
+}
+
+body,input,select,textarea,button { 
+	font-size:1.4rem; 
+	line-height:1; 
+	letter-spacing:-0.00em; 
+	color:#444; 
+	font-family:'Verdana', Malgun Gothic, sans-serif; 
+}
+
+h1,h2,h3,h4,h5,h6 { 
+	font-size:100%; 
+	font-weight:normal; 
+}
+
+a, button { 
+	color:inherit; 
+	text-decoration:none; 
+}
+
+address,em { 
+    font-style:normal; 
+}
+
+img,video,canvas { 
+    height:auto; 
+}
+
+select::-ms-expand { 
+    display:none; 
+}
+
+[type="text"],[type="password"],[type="email"],select,textarea { 
+	padding:0.5em; 
+	border:1px solid #ccc; 
+}
+
+.layout { 
+	position:relative; 
+	max-width:1200px; 
+	margin:0 auto;
+}
+
+.clearfix::after
+{
+	content:"";
+	clear:both;
+	display:block;
+}
+
+.leftFrame {
+    display:none
+}
+
+
+
+/* 상품 더보기 아이콘 */
+.prod_soldOut, .icon_event
+{
+	width:37px;
+	height:37px;
+	line-height:34px;
+	font-size:9px
+}
+#hiddenIcon185
+{
+	top:55px;
+	left:0px;
+}
+#hiddenIcon185 span + span + span + span + span
+{
+	margin-top:3px;
+}
+
+.prod_soldOut, .icon_event
+{
+    /* position:absolute; */
+    display:inline-block;
+    top:20px;
+    left:20px;
+    background:#474747;
+    width:48px;
+    height:48px;
+    border-radius:100%;
+    color:#fff;
+    font-size:12px;
+    font-family:'Verdana', Malgun Gothic;
+    font-weight:bold;
+    letter-spacing:-0.08em;
+}
+.icon_event
+{
+    line-height:45px;
+    text-align:center;
+}
+.icon_event:nth-of-type(1)
+{
+    /* color:#fff !important;
+    font-size:11px !important;
+    display:inherit !important;
+    margin-top:0 !important;
+    position:absolute !important; */
+}
+
+
+.icon_event1
+{
+    background:#fff;
+    border:2px solid #fb8e8c;
+    color:#fb8e8c
+}
+.icon_event2
+{
+    background:#fff;
+    border:2px solid #001e41;
+    color:#001e41
+}
+.icon_event3
+{
+    background:#fff;
+    border:2px solid #0dac59;
+    color:#0dac59
+}
+.icon_event4
+{
+    background:#fff;
+    border:2px solid #e33886;
+    color:#e33886;
+}
+.icon_event5
+{
+    background:#fff;
+    border:2px solid #bf6dd8;
+    color:#bf6dd8;
+}
+.icon_event6
+{
+    background:#fff;
+    border:2px solid #bda474;
+    color:#bda474;
+}
+.icon_event7
+{
+    background:#fff;
+    border:2px solid #51bec0;
+    color:#39b5b7
+}
+.icon_event8
+{
+    background:#fff;
+    border:2px solid #f88122;
+    color:#f88122
+}
+span.icon_event9
+{
+    cursor:pointer;
+    background:#fff;
+    border:2px solid #9e9e9e;
+    color:#9e9e9e;
+    letter-spacing:-0.4em;
+    padding-right:4px;
+}
+label.icon_event9
+{
+    cursor:pointer;
+}
+
+
+.prod_soldOut
+{
+	display: none;
+    background:#fff;
+    border:2px solid #b4b4b4;
+    color:#888888
+}
+.prod_soldOut.active {
+	display: block;
+}
+.prodList_icon
+{
+	position:absolute;
+    top:21px;
+	left:21px;
+}
+.prodList_icon.active,
+div.prod_view_list_left .prodDetail_icons.active
+{
+	background:#fff;
+	border:1px solid #d5d5d5;
+	padding:30px;
+	width:100%;
+	z-index:1;
+	box-shadow:1px 1px 3px rgba(0,0,0,0.15);
+}
+.prodList_icon.active span.icon_event9
+{
+	display:none;
+}
+.prodList_icon span, .prodList_icon
+{
+    float:left;
+    margin-right:7px;
+    margin-top:5px;
+}

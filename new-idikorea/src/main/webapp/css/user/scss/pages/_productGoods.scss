@@ -1,0 +1,51 @@
+
+.wrap-typeProductGoods {
+
+    .product {
+    
+        &-sect {
+            &.sect {
+
+                &-notice {
+                    @include flex-all-center;
+                    flex-direction: column;
+                    padding: 48px 0 27px;
+                    text-align: center;
+
+                    h4 {
+                        font-family: $playBasicItalic, sans-serif;
+                        font-weight: bold;
+                        font-size: 16px;
+                        color: #000;
+                        letter-spacing: 0.05em;
+                        
+                        + * {
+                            padding-top: px(10);
+                        }
+                        ~ * {
+                            line-height: 1.4;
+                        }
+                    }
+                }
+            }
+        }
+        &-btn {
+            @include flex-all-center;
+            width: px(160);
+            height: 56px;
+            border-radius: 150px;
+            border: 1px solid #d5d5d5;
+            font-family: 'NotoKrM', sans-serif;
+            font-size: 18px;
+            color: #999999;
+            padding: 0;
+            
+            &s {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                padding-top: px(43);
+            }
+        }
+    }
+}

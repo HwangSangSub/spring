@@ -1,0 +1,772 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.brighten.idi.goods.mapper.GoodsMapper">
+
+	<resultMap type="com.brighten.idi.goods.dto.GoodsDto" id="goodsDetail">
+	    <id property="goodsNo" column="goods_no"/>
+ 	  <!--   <id property="searchMaker" column="searchMaker"/>
+	    <id property="country" column="country"/> -->
+<!-- 	    <collection property="optionList" ofType="com.brighten.idi.goods.option.GoodsOptionDto"
+	                column="goods_no" select="goodsOptionList"/> -->
+	    <collection property="makerList" ofType="String" javaType="java.util.List"
+	                column="makerList" select="makerList"/>
+	    <collection property="countryList" ofType="String" javaType="java.util.List"
+	                column="countryList" select="makerList"/> 
+	</resultMap>
+	
+	<resultMap type="com.brighten.idi.goods.dto.CareLineDto" id="careLine">
+ 	  <!--   <id property="searchMaker" column="searchMaker"/>
+	    <id property="country" column="country"/> -->
+<!-- 	    <collection property="optionList" ofType="com.brighten.idi.goods.option.GoodsOptionDto"
+	                column="goods_no" select="goodsOptionList"/> -->
+	    <collection property="goodsList" ofType="com.brighten.idi.goods.dto.GoodsDto" javaType="java.util.List"
+	                column="category_no" select="goodsListByCategoryNo"/>
+	</resultMap>
+	
+	<select id="makerList" resultType="String" parameterType="String">
+	    SELECT <!-- DISTINCT  -->DISTINCT  if(#{maker} = 'makerList' , maker , if(#{maker}='countryList', country_origin , if(brand_no!=0 ,'LUKA' , '' ) ) )
+	    FROM idi_goods
+	    where if(#{maker} = 'makerList' , maker , if(#{maker}='countryList', country_origin , brand_no ) ) != ''
+	</select>
+	
+	<select id="goods" parameterType="Long" resultMap="goodsDetail">
+		SELECT ig.goods_no, 
+				ig.goods_name, 
+				ig.goods_code, 
+				ig.country_origin, 
+				ig.maker,  
+				LPAD( ig.category ,  if(  LENGTH(ig.category)%3 = 0 ,  ig.category  , ( LENGTH(ig.category) + 3 - LENGTH(ig.category)%3 ) )    , '0') category ,
+				ig.brand_no, 
+				ig.tax, 
+				ig.delivery_type, 
+				ig.keyword, 
+				ig.short_content,  
+				ig.long_content, 
+				ig.icon_image, 
+				ig.small_image, 
+				ig.midium_image, 
+				ig.large_image, 
+				ig.mobile_image, 
+				ig.content_image, 
+				ig.create_time, 
+				lpad(bin(ig.icon) , 8 , '0') icon, 
+				ig.user_open, 
+				ig.call_open, 
+				ig.sold_out, 
+				ig.ex1, 
+				ig.ex2, 
+				ig.ex3, 
+				ig.ex4, 
+				ig.ex5, 
+				ig.ex6, 
+				ig.ex7, 
+				ig.use_stock, 
+				ig.goods_delivery, 
+				ig.use_emoney, 
+				ig.min_ea, 
+				ig.max_ea, 
+				ig.update_time, 
+				ig.open_mobile, 
+				ig.detail_view, 
+				ig.receiving_time, 
+				ig.use_regular,
+				ig.memo,
+				'countryList' countryList,
+				'makerList' as makerList,
+				igo.price,
+				igo.sno,
+				igo.consumer,
+				igo.supply,
+				igo.stock nowStock,
+				igo.reserve,
+				ib.name brandName,
+				iif.origin_name iconImageName, 
+				sif.origin_name smallImageName,
+				mif.origin_name midiumImageName,
+				lif.origin_name largeImageName,
+				mbif.origin_name mobileImageName,
+				cif.origin_name contentImageName,
+				iei.save_emoney_percent
+		FROM idi_goods ig
+		LEFT JOIN idi_file iif
+		ON ig.icon_image = iif.id
+		LEFT JOIN idi_brand ib
+		ON ig.brand_no = ib.brand_no
+		LEFT JOIN idi_file sif
+		ON ig.icon_image = sif.id
+		LEFT JOIN idi_file mif
+		ON ig.icon_image = mif.id
+		LEFT JOIN idi_file lif
+		ON ig.icon_image = lif.id
+		LEFT JOIN idi_file mbif
+		ON ig.icon_image = mbif.id
+		LEFT JOIN idi_file cif
+		ON ig.icon_image = cif.id
+		LEFT JOIN (SELECT * FROM idi_goods_option WHERE  select_option = 'Y' ) igo
+		ON ig.goods_no = igo.goods_no
+		JOIN (SELECT save_emoney_percent FROM idi_emoney_info ORDER BY id desc LIMIT 1) iei
+		WHERE 
+		ig.goods_no = #{goodsNo}
+		AND ig.hidden IS NOT NULL
+	</select>
+	
+	<select id="goodsList" parameterType="com.brighten.idi.goods.dto.GoodsDto" resultType="com.brighten.idi.goods.dto.GoodsDto">
+		SELECT ig.goods_no, 
+				ig.goods_name, 
+				ig.goods_code, 
+				ig.country_origin, 
+				<!-- ig.maker,  -->
+				LPAD( ig.category ,  if(  LENGTH(ig.category)%3 = 0 ,  ig.category  , ( LENGTH(ig.category) + 3 - LENGTH(ig.category)%3 ) )    , '0') category,
+				ig.brand_no, 
+				ig.tax, 
+				ig.delivery_type, 
+				ig.keyword, 
+				ig.short_content,  
+				ig.long_content, 
+				ig.icon_image, 
+				ig.small_image, 
+				ig.midium_image, 
+				ig.large_image, 
+				ig.mobile_image, 
+				ig.content_image, 
+				ig.create_time, 
+				lpad(bin(ig.icon) , 8 , '0') icon, 
+				ig.user_open, 
+				ig.call_open, 
+				ig.sold_out, 
+				ig.ex1, 
+				ig.ex2, 
+				ig.ex3, 
+				ig.ex4, 
+				ig.ex5, 
+				ig.ex6, 
+				ig.ex7, 
+				ig.use_stock, 
+				igo.stock now_stock, 
+				ig.goods_delivery, 
+				ig.use_emoney, 
+				ig.min_ea, 
+				ig.max_ea, 
+				ig.update_time, 
+				ig.open_mobile, 
+				ig.detail_view, 
+				ig.receiving_time, 
+				ig.use_regular,
+				go.price,
+				#{callOpen},
+				#{userOpen},
+				go.sno
+		FROM idi_goods ig
+		LEFT JOIN (SELECT SUM(stock) stock , COUNT(*) ,goods_no FROM  idi_goods_option GROUP BY goods_no) igo
+		ON ig.goods_no = igo.goods_no
+		LEFT JOIN (SELECT * FROM idi_goods_option WHERE select_option = 'Y') go
+		ON ig.goods_no = go.goods_no
+		WHERE ig.hidden is not null
+		<if test='startDateTime != null'>
+			AND date_format(ig.create_time , '%Y-%m-%d') >= date_format( #{startDateTime} , '%Y-%m-%d')
+		</if>
+		<if test='endDateTime != null'>
+			AND date_format(ig.create_time , '%Y-%m-%d') <![CDATA[<=]]> date_format( #{endDateTime} , '%Y-%m-%d')
+		</if>
+		<if test='minPrice!=null and minPrice!=0'>
+			AND go.price >= #{minPrice}
+		</if>
+		<if test='maxPrice!=null and maxPrice!=0'>
+			AND go.price <![CDATA[<=]]> #{maxPrice}
+		</if>
+		<if test='category!=null and category!="" and category != 0'>
+			AND LPAD( ig.category ,  if(  LENGTH(ig.category)%3 = 0 ,  ig.category  , ( LENGTH(ig.category) + 3 - LENGTH(ig.category)%3 ) )    , '0') like concat(#{category},'%') 
+		</if>
+		<if test='category!=null and category!="" and category == 0'>
+			AND ig.category = 0
+		</if>
+		<if test='searchValue!=null and searchValue!="" and searchOption=="goodsName"'>
+			AND ig.goods_name like concat('%',#{searchValue},'%')
+		</if>
+		<if test='searchValue!=null and searchValue!="" and searchOption=="goodsCode"'>
+			AND	ig.goods_code like concat('%',#{searchValue},'%')
+		</if>
+		<if test='brandNo!=null and brandNo!=""'>
+			AND ig.brand_no = #{brandNo}
+		</if>
+		<if test='callOpen!=null and callOpen!=""'>
+			AND ig.call_open = #{callOpen}
+		</if>   
+		<if test='soldOut!=null and soldOut!="" and soldOut == 1'>
+			AND ig.sold_out = 1
+		</if>
+		<if test='soldOut == 0'>
+			AND igo.stock = 0
+			AND ig.use_stock = 'Y'
+		</if>
+		<if test='userOpen!=null and userOpen!="" and userOpen ==1'>
+			AND ( 
+			    (use_stock = 'N' AND sold_out = 0) 
+			    OR 
+			    (use_stock = 'Y' AND sold_out = 0 AND igo.stock IS NOT NULL AND igo.stock != 0) 
+			)  
+			AND user_open = 1
+		</if>
+		<if test='useRegular!=null and useRegular!=""'>
+			AND ig.use_regular = #{useRegular}
+		</if>
+		ORDER BY ig.create_time desc
+		<if test='userOpen != 1'>
+		LIMIT #{itemSize}
+<!-- 		LIMIT #{itemSize} -->
+		OFFSET #{offset}
+		</if>
+	</select>
+
+	<select id="goodsListCnt" parameterType="com.brighten.idi.goods.dto.GoodsDto" resultType="Integer">
+		SELECT COUNT(*)
+		FROM idi_goods ig
+		LEFT JOIN (SELECT SUM(stock) stock , COUNT(*) ,goods_no FROM  idi_goods_option GROUP BY goods_no) igo
+		ON ig.goods_no = igo.goods_no
+		LEFT JOIN (SELECT * FROM idi_goods_option WHERE select_option = 'Y') go
+		ON ig.goods_no = go.goods_no
+		WHERE ig.hidden is not null
+		<if test='startDateTime != null'>
+			AND date_format(ig.create_time , '%Y-%m-%d') >= date_format( #{startDateTime} , '%Y-%m-%d')
+		</if>
+		<if test='endDateTime != null'>
+			AND date_format(ig.create_time , '%Y-%m-%d') <![CDATA[<=]]> date_format( #{endDateTime} , '%Y-%m-%d')
+		</if>
+		<if test='minPrice!=null and minPrice!=0'>
+			AND go.price >= #{minPrice}
+		</if>
+		<if test='maxPrice!=null and maxPrice!=0'>
+			AND go.price <![CDATA[<=]]> #{maxPrice}
+		</if>
+		<if test='category!=null and category!=""'>
+			AND LPAD( ig.category ,  if(  LENGTH(ig.category)%3 = 0 ,  ig.category  , ( LENGTH(ig.category) + 3 - LENGTH(ig.category)%3 ) )    , '0') like concat(#{category},'%') 
+		</if>
+		<if test='searchValue!=null and searchValue!="" and searchOption=="goodsName"'>
+			AND ig.goods_name like concat('%',#{searchValue},'%')
+		</if>
+		<if test='searchValue!=null and searchValue!="" and searchOption=="goodsCode"'>
+			AND	ig.goods_code like concat('%',#{searchValue},'%')
+		</if>
+		<if test='brandNo!=null and brandNo!=""'>
+			AND ig.brand_no = #{brandNo}
+		</if>
+		<if test='callOpen!=null and callOpen!=""'>
+			AND ig.call_open = #{callOpen}
+		</if>   
+		<if test='soldOut!=null and soldOut!="" and soldOut == 1'>
+			AND ig.sold_out = 1
+		</if>
+		<if test='soldOut == 0'>
+			AND igo.stock = 0
+			AND ig.use_stock = 'Y'
+		</if>
+		<if test='userOpen!=null and userOpen!=""'>
+			AND ig.user_open = #{userOpen}
+		</if>
+		<if test='useRegular!=null and useRegular!=""'>
+			AND ig.use_regular = #{useRegular}
+		</if>
+	</select>
+	
+	<select id="goodsByOptionSno" parameterType="com.brighten.idi.goods.dto.GoodsDto" resultType="com.brighten.idi.goods.dto.GoodsDto">
+		SELECT ig.*,
+				igo.price,
+				igo.consumer,
+				igo.reserve,
+				igo.sno,
+				igo.opt1,
+				igo.opt2,
+				#{ea} ea
+				
+		FROM idi_goods ig
+		LEFT JOIN idi_goods_option igo
+		ON ig.goods_no = igo.goods_no
+		WHERE igo.sno = #{sno}
+	</select>
+	
+	<select id="goodsOptionList" parameterType="com.brighten.idi.goods.option.GoodsOptionDto" resultType="com.brighten.idi.goods.option.GoodsOptionDto">
+		SELECT *
+		FROM idi_goods_option
+		WHERE goods_no = #{goodsNo}
+	</select>
+		
+	<select id="repeatGoodsOptionList" parameterType="Long" resultType="com.brighten.idi.goods.option.GoodsOptionDto">
+		SELECT *
+		FROM idi_goods_option
+		WHERE goods_no = #{goodsNo}
+		<if test='opt!=null and opt=="opt1"'>
+			AND opt1 = #{opt1}
+		</if>
+		<if test='opt!=null and opt=="opt2"'>
+			AND opt2 = #{opt2}
+		</if>
+		ORDER BY select_option DESC
+	</select>
+			
+	<select id="distinctOptionList" parameterType="com.brighten.idi.goods.option.GoodsOptionDto" resultType="com.brighten.idi.goods.option.GoodsOptionDto">
+		SELECT * , COUNT(*) listCount
+		FROM idi_goods_option
+		WHERE goods_no = #{goodsNo}
+		GROUP BY if('opt1'=#{opt} , opt1 , opt2)
+	</select>
+
+	
+	<insert id="goodsInsert" parameterType="com.brighten.idi.goods.dto.GoodsDto" keyProperty="goodsNo" useGeneratedKeys="true">
+		INSERT INTO idi_goods
+		(
+				goods_name, 
+				goods_code, 
+				country_origin, 
+				maker,  
+				brand_no, 
+				tax, 
+				delivery_type, 
+				keyword, 
+				short_content,  `		
+				long_content, 
+				icon_image, 
+				small_image, 
+				midium_image, 
+				large_image, 
+				mobile_image, 
+				content_image, 
+				create_time, 
+				icon, 
+				user_open, 
+				call_open, 
+				sold_out, 
+				ex1, 
+				ex2, 
+				ex3, 
+				ex4, 
+				ex5, 
+				ex6, 
+				use_stock, 
+				goods_delivery, 
+				use_emoney, 
+				min_ea, 
+				max_ea, 
+				update_time, 
+				open_mobile, 
+				detail_view, 
+				receiving_time, 
+				use_regular	,
+				hidden,
+				memo,
+				category
+		)VALUES(
+				#{goodsName}, 
+				#{goodsCode}, 
+				#{countryOrigin}, 
+				#{maker},  
+				#{brandNo}, 
+				#{tax}, 
+				#{deliveryType}, 
+				#{keyword}, 
+				#{shortContent},  
+				#{longContent}, 
+				#{iconImage}, 
+				#{smallImage}, 
+				#{midiumImage}, 
+				#{largeImage}, 
+				#{mobileImage}, 
+				#{contentImage}, 
+				now(), 
+				conv(#{stringIcon},2,10), 
+				#{userOpen}, 
+				#{callOpen}, 
+				#{soldOut}, 
+				#{ex1}, 
+				#{ex2}, 
+				#{ex3}, 
+				#{ex4}, 
+				#{ex5}, 
+				#{ex6}, 
+				#{useStock}, 
+				#{goodsDelivery}, 
+				#{useEmoney}, 
+				#{minEa}, 
+				#{maxEa}, 
+				null, 
+				#{openMobile}, 
+				#{detailView}, 
+				null, 
+				#{useRegular},
+				#{hidden},
+				#{memo},
+				#{category}		
+		)
+	</insert>
+	
+	<insert id="goodsOptionInsert" parameterType="com.brighten.idi.goods.option.GoodsOptionDto">
+		INSERT INTO idi_goods_option
+		(
+			goods_no, 
+			opt1, 
+			opt2, 
+			price, 
+			consumer, 
+			supply, 
+			stock, 
+			opt1img, 
+			opt1icon, 
+			opt2icon, 
+			optno, 
+			enabled, 
+			goods_name, 
+			select_option,
+			reserve
+		)VALUES(
+			#{goodsNo}, 
+			#{opt1}, 
+			#{opt2}, 
+			#{price}, 
+			#{consumer}, 
+			#{supply}, 
+			#{stock}, 
+			#{opt1img}, 
+			#{opt1icon}, 
+			#{opt2icon}, 
+			#{optno}, 
+			#{enabled}, 
+			#{goodsName}, 
+			#{selectOption},
+			#{reserve}
+		)
+	</insert>
+	
+	<update id="goodsUpdate" parameterType="com.brighten.idi.goods.dto.GoodsDto">
+	    UPDATE idi_goods
+	    SET goods_no = goods_no
+	        <if test="goodsName != null">
+	            ,goods_name = #{goodsName}
+	        </if>
+	        <if test="goodsCode != null">
+	            ,goods_code = #{goodsCode}
+	        </if>
+	        <if test="countryOrigin != null">
+	            ,country_origin = #{countryOrigin}
+	        </if>
+	        <if test="maker != null">
+	            ,maker = #{maker}
+	        </if>
+	        <if test="brandNo != null">
+	            ,brand_no = #{brandNo}
+	        </if>
+	        <if test="tax != null">
+	            ,tax = #{tax}
+	        </if>
+	        <if test="deliveryType != null">
+	            ,delivery_type = #{deliveryType}
+	        </if>
+	        <if test="keyword != null">
+	            ,keyword = #{keyword}
+	        </if>
+	        <if test="shortContent != null">
+	            ,short_content = #{shortContent}
+	        </if>
+	        <if test="longContent != null">
+	            ,long_content = #{longContent}
+	        </if>
+	        <if test="iconImage != null">
+	            ,icon_image = #{iconImage}
+	        </if>
+	        <if test="smallImage != null">
+	            ,small_image = #{smallImage}
+	        </if>
+	        <if test="midiumImage != null">
+	            ,midium_image = #{midiumImage}
+	        </if>
+	        <if test="largeImage != null">
+	            ,large_image = #{largeImage}
+	        </if>
+	        <if test="mobileImage != null">
+	            ,mobile_image = #{mobileImage}
+	        </if>
+	        <if test="contentImage != null">
+	            ,content_image = #{contentImage}
+	        </if>
+	        <if test="stringIcon != null">
+	            ,icon = conv(#{stringIcon},2,10)
+	        </if>
+	        <if test='userOpen != null or ( column != null and column == "userOpen"  )'>
+	            ,user_open = #{userOpen}
+	        </if>
+	        <if test='callOpen != null or ( column != null and column == "callOpen"  )'>
+	            ,call_open = #{callOpen}
+	        </if>
+	        <if test='soldOut != null or  ( column != null and column == "soldOut"  ) '>
+	            ,sold_out = #{soldOut}
+	        </if>
+	        <if test="ex1 != null">
+	            ,ex1 = #{ex1}
+	        </if>
+	        <if test="ex2 != null">
+	            ,ex2 = #{ex2}
+	        </if>
+	        <if test="ex3 != null">
+	            ,ex3 = #{ex3}
+	        </if>
+	        <if test="ex4 != null">
+	            ,ex4 = #{ex4}
+	        </if>
+	        <if test="ex5 != null">
+	            ,ex5 = #{ex5}
+	        </if>
+	        <if test="ex6 != null">
+	            ,ex6 = #{ex6}
+	        </if>
+	        <if test='useStock != null '>
+	            ,use_stock = #{useStock}
+	        </if>
+	        <if test="goodsDelivery != null">
+	            ,goods_delivery = #{goodsDelivery}
+	        </if>
+	        <if test="useEmoney != null">
+	            ,use_emoney = #{useEmoney}
+	        </if>
+	        <if test="minEa != null">
+	            ,min_ea = #{minEa}
+	        </if>
+	        <if test="maxEa != null">
+	            ,max_ea = #{maxEa}
+	        </if>
+        	,update_time = now()
+	        <if test="openMobile != null">
+	            ,open_mobile = #{openMobile}
+	        </if>
+	        <if test="detailView != null">
+	            ,detail_view = #{detailView}
+	        </if>
+	        <if test='useRegular != null or  ( column != null and column == "useRegular"  ) '>
+	            ,use_regular = #{useRegular}
+	        </if>
+	        <if test="hidden != null">
+	            ,hidden = #{hidden}
+	        </if>
+	        <if test="memo != null">
+	            ,memo = #{memo}
+	        </if>
+	    WHERE goods_no = #{goodsNo}
+	</update>
+	
+	<update id="goodsOptionUpdate" parameterType="com.brighten.idi.goods.option.GoodsOptionDto">
+		UPDATE idi_goods_option
+		SET
+    		goods_no = goods_no
+		<if test='opt1 != null'>
+		    ,opt1 = #{opt1}
+		</if>
+		<if test='opt2 != null'>
+		   ,opt2 = #{opt2}
+		</if>
+		<if test='price != null'>
+		    ,price = #{price}
+		</if>
+		<if test='consumer != null'>
+		    ,consumer = #{consumer}
+		</if>
+		<if test='supply != null'>
+		    ,supply = #{supply}
+		</if>
+		<if test='reserve != null'>
+		    ,reserve = #{reserve}
+		</if>
+		<if test='stock != null'>
+		    ,stock = #{stock}
+		</if>
+		<if test='opt1img != null'>
+		    ,opt1img = #{opt1img}
+		</if>
+		<if test='opt1icon != null'>
+		    ,opt1icon = #{opt1icon}
+		</if>
+		<if test='opt2icon != null'>
+		    ,opt2icon = #{opt2icon}
+		</if>
+		<if test='optno != null'>
+		    ,optno = #{optno}
+		</if>
+		<if test='goodsName != null'>
+		    ,goods_name = #{goodsName}
+		</if>
+		<if test='selectOption != null'>
+		    ,select_option = #{selectOption}
+		</if>
+	        ,reserve=if(#{reserve} is null , 0 , #{reserve} )		
+	WHERE goods_no = #{goodsNo}
+	<if test='sno!=null and sno !=""'>
+	AND sno = #{sno}
+	</if>
+	</update>
+	
+	<delete id="deleteOption" parameterType="Long">
+		DELETE 
+		FROM idi_goods_option
+		WHERE 1=1
+		AND goods_no = #{goodsNo}
+<!-- 			<if test='depth==1'>
+				AND sno = #{sno}
+			</if>
+			<if test='depth==2'>
+				AND opt1 = (SELECT opt1
+							FROM idi_goods_option
+							WHERE sno = #{sno})
+			</if> -->
+		
+	</delete>
+	
+		
+	<delete id="deleteGoods" parameterType="Long">
+		DELETE 
+		FROM idi_goods
+		WHERE 1=1
+		AND goods_no = #{goodsNo}
+	</delete>
+	
+	<select id="selectOption" resultType="com.brighten.idi.goods.option.GoodsOptionDto" parameterType="Long">
+		SELECT *
+		FROM idi_goods_option
+		WHERE sno = #{sno}
+	</select>
+	
+	<select id="callOrderGoods" parameterType="com.brighten.idi.goods.dto.GoodsDto" resultType="com.brighten.idi.goods.dto.GoodsDto">
+		SELECT ig.goods_no, 
+				ig.goods_name, 
+				ig.goods_code, 
+				ig.country_origin, 
+				ig.maker,  
+				LPAD( ig.category ,  if(  LENGTH(ig.category)%3 = 0 ,  ig.category  , ( LENGTH(ig.category) + 3 - LENGTH(ig.category)%3 ) )    , '0') category ,
+				ig.brand_no, 
+				ig.tax, 
+				ig.delivery_type, 
+				ig.keyword, 
+				ig.short_content,  
+				ig.long_content, 
+				ig.icon_image, 
+				ig.small_image, 
+				ig.midium_image, 
+				ig.large_image, 
+				ig.mobile_image, 
+				ig.content_image, 
+				ig.create_time, 
+				lpad(bin(ig.icon) , 8 , '0') icon, 
+				ig.user_open, 
+				ig.call_open, 
+				ig.sold_out, 
+				ig.ex1, 
+				ig.ex2, 
+				ig.ex3, 
+				ig.ex4, 
+				ig.ex5, 
+				ig.ex6, 
+				ig.ex7, 
+				ig.use_stock, 
+				ig.goods_delivery, 
+				ig.use_emoney, 
+				ig.min_ea, 
+				ig.max_ea, 
+				ig.update_time, 
+				ig.open_mobile, 
+				ig.detail_view, 
+				ig.receiving_time, 
+				ig.use_regular,
+				ig.memo,
+				igo.price,
+				igo.sno,
+				igo.consumer,
+				igo.supply,
+				igo.stock nowStock,
+				igo.reserve,
+				igo.opt1,
+				igo.opt2,
+				ib.name brandName,
+				iif.origin_name iconImageName, 
+				sif.origin_name smallImageName,
+				mif.origin_name midiumImageName,
+				lif.origin_name largeImageName,
+				mbif.origin_name mobileImageName,
+				cif.origin_name contentImageName
+		FROM idi_goods ig
+		LEFT JOIN idi_file iif
+		ON ig.icon_image = iif.id
+		LEFT JOIN idi_brand ib
+		ON ig.brand_no = ib.brand_no
+		LEFT JOIN idi_file sif
+		ON ig.icon_image = sif.id
+		LEFT JOIN idi_file mif
+		ON ig.icon_image = mif.id
+		LEFT JOIN idi_file lif
+		ON ig.icon_image = lif.id
+		LEFT JOIN idi_file mbif
+		ON ig.icon_image = mbif.id
+		LEFT JOIN idi_file cif
+		ON ig.icon_image = cif.id
+		LEFT JOIN idi_goods_option igo
+		ON ig.goods_no = igo.goods_no
+		WHERE 1=1
+		<if test='searchValue!=null and searchValue!="" and searchOption=="goodsName"'>
+			AND ig.goods_name like concat('%',#{searchValue},'%')
+		</if>
+		<if test='searchValue!=null and searchValue!="" and searchOption=="goodsCode"'>
+			AND	ig.goods_code like concat('%',#{searchValue},'%')
+		</if>
+		<if test='category!=null and category!=""'>
+			AND LPAD( ig.category ,  if(  LENGTH(ig.category)%3 = 0 ,  ig.category  , ( LENGTH(ig.category) + 3 - LENGTH(ig.category)%3 ) )    , '0') like concat(#{category} ,'%') 
+		</if>
+		<if test='brandNo!=null and brandNo!=""'>
+			AND ig.brand_no = #{brandNo}
+		</if>
+		<if test='soldOut == 1'>
+			AND igo.stock = 0
+			AND ig.use_stock = 'Y'
+		</if>
+		<if test='soldOut == 0'>
+			AND  ig.sold_out = 1
+		</if>
+		<if test='soldOut == 99'>
+			AND (( igo.stock != 0
+					AND ig.use_stock = 'Y')   
+			OR ig.use_stock = 'N')
+			AND ig.sold_out != 1
+		</if>
+	</select>
+	
+	<select id="mainImageSlide" resultType="com.brighten.idi.goods.dto.MainSlideDto">
+		SELECT *
+		FROM idi_main_slide
+		WHERE enabled = 'Y'
+		ORDER BY sort desc
+	</select>
+	
+	<select id="mainBestSeller" resultType="com.brighten.idi.goods.dto.MainSlideDto">
+		SELECT ig.goods_name , igo.price , igo.consumer , ig.short_content ,imbs.*
+		FROM idi_main_best_seller imbs
+		LEFT JOIN idi_goods ig
+		ON imbs.goods_no = ig.goods_no
+		LEFT JOIN (SELECT * FROM idi_goods_option WHERE select_option ='Y' ) igo
+		ON ig.goods_no = igo.goods_no
+		WHERE ig.user_open = 1
+		AND ig.sold_out = 0
+	</select>
+	
+	<select id="mainCareLine" resultMap="careLine">
+		SELECT imc.* , ifi.dir , ifi.id iconImageId , ic.category_no categoryNo 
+		FROM idi_main_careline imc
+		LEFT JOIN idi_category ic
+		ON imc.category_no = ic.category_no
+		LEFT JOIN idi_file ifi
+		ON ic.basic_Image_id = ifi.id
+		LEFT JOIN idi_file ifib
+		ON ic.basic_Image_id = ifib.id
+		ORDER BY imc.sno
+	</select>
+	
+	<select id="goodsListByCategoryNo" resultType="com.brighten.idi.goods.dto.GoodsDto" parameterType="Long">
+		SELECT ig.* , ifi.dir , ifi.name
+		FROM idi_goods ig
+		LEFT JOIN idi_file ifi
+		ON ig.large_image = ifi.id 
+		WHERE category = #{category_no}
+	</select>
+</mapper>	 

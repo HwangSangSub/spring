@@ -1,0 +1,468 @@
+{
+    "menu" : [
+        {
+            "id" : "0001",
+            "tit" : "메인",
+            "classname" : "main",
+            "url" : "/user/main",
+            "preparing" : false
+        },
+        {
+            "id" : "0002",
+            "tit" : "회원가입",
+            "classname" : "join",
+            "url" : "",
+            "preparing" : false,
+            "sub" : [
+                {
+                    "num" : "1",
+                    "id" : "000201",
+                    "tit" : "약관동의",
+                    "url" : "/user/join/agree",
+                    "preparing" : false
+                },
+                {
+                    "num" : "2",
+                    "id" : "000202",
+                    "tit" : "정보입력",
+                    "url" : "/user/join/info",
+                    "preparing" : false
+                },
+                {
+                    "num" : "3",
+                    "id" : "000203",
+                    "tit" : "가입완료",
+                    "url" : "/user/join/complete",
+                    "preparing" : false
+                },
+                {
+                    "num" : "4",
+                    "id" : "000204",
+                    "tit" : "아이디 / 비밀번호 찾기",
+                    "url" : "/user/join/search",
+                    "preparing" : false
+                }
+            ]
+        },
+        {
+            "id" : "0003",
+            "tit" : "장바구니",
+            "classname" : "basket",
+            "url" : "",
+            "preparing" : false,
+            "sub" : [
+                {
+                    "num" : "1",
+                    "id" : "000301",
+                    "tit" : "장바구니",
+                    "url" : "/user/basket/list",
+                    "preparing" : false
+                },
+                {
+                    "num" : "2",
+                    "id" : "000302",
+                    "tit" : "주문서작성",
+                    "url" : "/user/basket/order",
+                    "preparing" : false
+                },
+                {
+                    "num" : "3",
+                    "id" : "000303",
+                    "tit" : "주문완료",
+                    "url" : "/user/basket/complete",
+                    "preparing" : false
+                },
+                {
+                    "num" : "4",
+                    "id" : "000304",
+                    "tit" : "비회원 주문내역/배송조회",
+                    "url" : "/user/basket/detail",
+                    "preparing" : false
+                },
+                {
+                    "num" : "5",
+                    "id" : "000305",
+                    "tit" : "스피드주문",
+                    "url" : "/user/basket/speed",
+                    "preparing" : false
+                }
+            ]
+        },
+        {
+            "id" : "0004",
+            "tit" : "로그인",
+            "classname" : "login",
+            "url" : "/user/login",
+            "preparing" : false
+        },
+        {
+            "id" : "0005",
+            "tit" : "안내",
+            "classname" : "guide",
+            "url" : "/user/guide",
+            "preparing" : false,
+            "sub" : [
+                {
+                    "num" : "1",
+                    "id" : "000501",
+                    "tit" : "개인정보취급방침",
+                    "url" : "/user/guide/personal",
+                    "preparing" : false
+                },
+                {
+                    "num" : "2",
+                    "id" : "000502",
+                    "tit" : "이용약관",
+                    "url" : "/user/guide/terms",
+                    "preparing" : false
+                },
+                {
+                    "num" : "3",
+                    "id" : "000503",
+                    "tit" : "고객센터",
+                    "url" : "/user/guide/center",
+                    "preparing" : false
+                },
+                {
+                    "num" : "4",
+                    "id" : "000504",
+                    "tit" : "이용안내",
+                    "url" : "/user/guide/info",
+                    "preparing" : false
+                }
+            ]
+        },
+        {
+            "num" : "1",
+            "id" : "01",
+            "tit" : "brand",
+            "url" : "/user/brand",
+            "preparing" : false
+        },
+        {
+            "num" : "2",
+            "id" : "02",
+            "tit" : "product",
+            "url" : "",
+            "preparing" : false,
+            "sub" : [
+                {
+                    "num" : "1",
+                    "id" : "0201",
+                    "tit" : "상품목록",
+                    "url" : "/user/product/list?regular=N",
+                    "preparing" : false
+                },
+                {
+                    "num" : "2",
+                    "id" : "0202",
+                    "tit" : "상품상세",
+                    "url" : "/user/product/detail",
+                    "preparing" : false
+                },
+                {
+                    "num" : "3",
+                    "id" : "0203",
+                    "tit" : "굿즈구매",
+                    "url" : "/user/product/goods",
+                    "preparing" : false
+                }
+            ]
+        },
+        {
+            "num" : "3",
+            "id" : "03",
+            "tit" : "정기구매",
+            "url" : "",
+            "preparing" : false,
+            "sub" : [
+                {
+                    "num" : "1",
+                    "id" : "0301",
+                    "tit" : "상품목록",
+                    "url" : "/user/product/list?regular=Y",
+                    "preparing" : false
+                },
+                {
+                    "num" : "2",
+                    "id" : "0302",
+                    "tit" : "상품상세",
+                    "url" : "/user/product/detail",
+                    "preparing" : false
+                },
+                {
+                    "num" : "3",
+                    "id" : "0303",
+                    "tit" : "굿즈구매",
+                    "url" : "/user/product/goods",
+                    "preparing" : false
+                }
+            ]
+        },
+        {
+            "num" : "4",
+            "id" : "04",
+            "tit" : "faq",
+            "url" : "",
+            "preparing" : false,
+            "sub" : [
+                {
+                    "num" : "1",
+                    "id" : "0401",
+                    "tit" : "자주하는 질문",
+                    "url" : "/user/faq",
+                    "preparing" : false
+                }
+            ]
+        },
+        {
+            "num" : "5",
+            "id" : "05",
+            "tit" : "media",
+            "url" : "",
+            "preparing" : false,
+            "sub" : [
+                {
+                    "num" : "1",
+                    "id" : "0501",
+                    "tit" : "미디어",
+                    "url" : "",
+                    "preparing" : false,
+                    "sub" : [
+                        {
+                            "num" : "1",
+                            "id" : "050101",
+                            "tit" : "방송 보도자료",
+                            "url" : "/user/media/video",
+                            "preparing" : false
+                        },
+                        {
+                            "num" : "2",
+                            "id" : "050102",
+                            "tit" : "일반 보도자료",
+                            "url" : "/user/media/press",
+                            "preparing" : false
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "num" : "6",
+            "id" : "06",
+            "tit" : "event",
+            "url" : "",
+            "preparing" : false,
+            "sub" : [
+                {
+                    "num" : "1",
+                    "id" : "0601",
+                    "tit" : "공지사항",
+                    "url" : "/user/notice",
+                    "preparing" : false
+                },
+                {
+                    "num" : "2",
+                    "id" : "0602",
+                    "tit" : "이벤트",
+                    "url" : "/user/event",
+                    "preparing" : false
+                }
+            ]
+        },
+        {
+            "num" : "7",
+            "id" : "07",
+            "tit" : "mypage",
+            "url" : "",
+            "preparing" : false,
+            "sub" : [
+                {
+                    "num" : "1",
+                    "id" : "0701",
+                    "tit" : "마이페이지",
+                    "url" : "/user/mypage/dashboard",
+                    "preparing" : false
+                },
+                {
+                    "num" : "2",
+                    "id" : "0702",
+                    "tit" : "나의 정보관리",
+                    "url" : "",
+                    "preparing" : false,
+                    "sub" : [
+                        {
+                            "num" : "1",
+                            "id" : "070201",
+                            "tit" : "회원정보수정",
+                            "url" : "",
+                            "preparing" : false,
+                            "sub" : [
+                                {
+                                    "num" : "1",
+                                    "id" : "07020101",
+                                    "tit" : "비밀번호 확인",
+                                    "url" : "/user/mypage/info/modify/pw",
+                                    "preparing" : false
+                                },
+                                {
+                                    "num" : "2",
+                                    "id" : "07020102",
+                                    "tit" : "회원정보수정 페이지",
+                                    "url" : "/user/mypage/info/modify/form",
+                                    "preparing" : false
+                                }
+                            ]
+                        },
+                        {
+                            "num" : "2",
+                            "id" : "070202",
+                            "tit" : "후원회원신청",
+                            "url" : "/user/mypage/info/support",
+                            "preparing" : false
+                        },
+                        {
+                            "num" : "3",
+                            "id" : "070203",
+                            "tit" : "후원회원연동",
+                            "url" : "/user/mypage/info/interlock",
+                            "preparing" : false
+                        },
+                        {
+                            "num" : "4",
+                            "id" : "070204",
+                            "tit" : "배송지관리",
+                            "url" : "/user/mypage/info/address",
+                            "preparing" : false
+                        },
+                        {
+                            "num" : "5",
+                            "id" : "070205",
+                            "tit" : "비밀번호 변경",
+                            "url" : "/user/mypage/info/pw",
+                            "preparing" : false
+                        },
+                        {
+                            "num" : "6",
+                            "id" : "070206",
+                            "tit" : "회원탈퇴",
+                            "url" : "/user/mypage/info/withdrawal",
+                            "preparing" : false
+                        }
+                    ]
+                },
+                {
+                    "num" : "3",
+                    "id" : "0703",
+                    "tit" : "나의 정기구매",
+                    "url" : "",
+                    "preparing" : false,
+                    "sub" : [
+                        {
+                            "num" : "1",
+                            "id" : "070301",
+                            "tit" : "정기구매 내역조회",
+                            "url" : "/user/mypage/regular/history",
+                            "preparing" : false
+                        }
+                    ]
+                },
+                {
+                    "num" : "4",
+                    "id" : "0704",
+                    "tit" : "나의 구매내역",
+                    "url" : "",
+                    "preparing" : false,
+                    "sub" : [
+                        {
+                            "num" : "1",
+                            "id" : "070401",
+                            "tit" : "주문내역/배송조회",
+                            "url" : "/user/mypages/order/history",
+                            "preparing" : false
+                        },
+                        {
+                            "num" : "2",
+                            "id" : "070402",
+                            "tit" : "취소내역",
+                            "url" : "/user/mypages/order/cancel",
+                            "preparing" : false
+                        },
+                        {
+                            "num" : "3",
+                            "id" : "070403",
+                            "tit" : "반품내역",
+                            "url" : "/user/mypages/order/refund",
+                            "preparing" : false
+                        }
+                    ]
+                },
+                {
+                    "num" : "5",
+                    "id" : "0705",
+                    "tit" : "나의 쇼핑활동",
+                    "url" : "",
+                    "preparing" : false,
+                    "sub" : [
+                        {
+                            "num" : "1",
+                            "id" : "070501",
+                            "tit" : "IDI페이 관리",
+                            "url" : "/user/mypages/activity/pay",
+                            "preparing" : false
+                        },
+                        {
+                            "num" : "2",
+                            "id" : "070502",
+                            "tit" : "1:1문의",
+                            "url" : "/user/mypages/activity/question",
+                            "preparing" : false
+                        },
+                        {
+                            "num" : "3",
+                            "id" : "070503",
+                            "tit" : "상품문의",
+                            "url" : "/user/mypages/activity/qna",
+                            "preparing" : false
+                        },
+                        {
+                            "num" : "4",
+                            "id" : "070504",
+                            "tit" : "상품후기",
+                            "url" : "/user/mypages/activity/review",
+                            "preparing" : false
+                        },
+                        {
+                            "num" : "5",
+                            "id" : "070505",
+                            "tit" : "상품보관함",
+                            "url" : "/user/mypages/activity/wish",
+                            "preparing" : false
+                        },
+                        {
+                            "num" : "6",
+                            "id" : "070506",
+                            "tit" : "적립금",
+                            "url" : "/user/mypages/activity/emoney",
+                            "preparing" : false
+                        },
+                        {
+                            "num" : "7",
+                            "id" : "070507",
+                            "tit" : "쿠폰내역",
+                            "url" : "/user/mypages/activity/coupon",
+                            "preparing" : false
+                        },
+                        {
+                            "num" : "8",
+                            "id" : "070508",
+                            "tit" : "최근 본 상품",
+                            "url" : "/user/mypages/activity/recently",
+                            "preparing" : false
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

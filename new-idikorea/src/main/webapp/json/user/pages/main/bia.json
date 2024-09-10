@@ -1,0 +1,47 @@
+{
+    "line" : [
+        {
+            "category" : "coffee",
+            "cateName" : "Coffee",
+            "cateEx" : ["생각의 여유를", "만드는 이디의", "커피한잔..."],
+            "cateExImg" : "/images/user/main/main_bia.jpg",
+            "product" : [
+                {
+                    "id" : "001300001",
+                    "name" : "C-O>LAVAZZA QUALITA ORO",
+                    "imgUrl" : "/images/user/sample/3b7e1445f9fc433b8ef7cf7091014e08.jpg",
+                    "url" : "/user/product/detail/001300001",
+                    "outStock" : false
+                },
+                {
+                    "id" : "001300001",
+                    "name" : "C-O>LAVAZZA QUALITA ORO",
+                    "imgUrl" : "/images/user/sample/3b7e1445f9fc433b8ef7cf7091014e08.jpg",
+                    "url" : "/user/product/detail/001300001",
+                    "outStock" : false
+                },
+                {
+                    "id" : "001300001",
+                    "name" : "C-O>LAVAZZA QUALITA ORO",
+                    "imgUrl" : "/images/user/sample/3b7e1445f9fc433b8ef7cf7091014e08.jpg",
+                    "url" : "/user/product/detail/001300001",
+                    "outStock" : false
+                },
+                {
+                    "id" : "001300001",
+                    "name" : "C-O>LAVAZZA QUALITA ORO",
+                    "imgUrl" : "/images/user/sample/3b7e1445f9fc433b8ef7cf7091014e08.jpg",
+                    "url" : "/user/product/detail/001300001",
+                    "outStock" : false
+                },
+                {
+                    "id" : "001300001",
+                    "name" : "C-O>LAVAZZA QUALITA ORO",
+                    "imgUrl" : "/images/user/sample/3b7e1445f9fc433b8ef7cf7091014e08.jpg",
+                    "url" : "/user/product/detail/001300001",
+                    "outStock" : false
+                }
+            ]
+        }
+    ]
+}

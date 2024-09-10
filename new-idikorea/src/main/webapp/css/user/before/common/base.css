@@ -1,0 +1,105 @@
+
+/* 추가 수정이 없는 부분 */
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    /* color: #333; */
+    text-decoration: none;
+}
+
+img, fieldset, hr {
+    border: 0;
+}
+
+img {
+    vertical-align: middle;
+}
+
+ul, ol, li {
+    list-style: none;
+}
+
+
+input[type="text"],
+input[type="password"],
+input[type="tel"],
+input[type="search"] {
+    /* @include input-clear-style();     */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    
+    border: none;
+    background: transparent;
+    /* @include input-clear-style();     */
+
+    outline-style: none;
+}
+
+input[type="text"]::placeholder,
+input[type="password"]::placeholder,
+input[type="tel"]::placeholder,
+input[type="search"]::placeholder {
+    opacity: 0.8;
+
+}
+
+input[type="search"] {
+    &::-webkit-search-decoration,
+    &::-webkit-search-results-decoration,
+    &::-webkit-search-results-button,
+    &::-webkit-search-cancel-button {
+        display: none
+    }
+
+}
+
+button,
+input[type="submit"],
+input[type="button"] {
+    /* @include input-clear-style();     */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    
+    border: none;
+    background: transparent;
+    /* @include input-clear-style();     */
+    cursor: pointer;
+}
+
+
+button {
+}
+
+textarea{
+    resize: none;
+    outline: none;
+    /* @include input-clear-style();     */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    
+    border: none;
+    background: transparent;
+    /* @include input-clear-style();     */
+}
+
+select{
+    appearance: none;
+}
+
+table{
+    table-layout:fixed;
+    border-collapse:collapse;
+    border-spacing:0;
+    width:100%;
+}
+/* 레이아웃 공통
+ */

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.brighten.idi.file.mapper.FileMapper">
+	
+	<insert id="register" parameterType="com.brighten.idi.file.dto.FileDto" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO idi_file
+		(
+			content_type,
+			create_time,
+			dir,
+			enabled,
+			extention,
+			name,
+			origin_name,
+			size,
+			sort,
+			update_time,
+			file_group_id
+		)VALUES(
+			#{contentType},
+			now(),
+			#{dir},
+			#{enabled},
+			#{extention},
+			#{name},
+			#{originName},
+			#{size},
+			#{sort},
+			#{updateTime},
+			#{fileGroupId}
+		) 
+	</insert>
+	
+	<select id="get" parameterType="Long" resultType="com.brighten.idi.file.dto.FileDto">
+		SELECT *
+		FROM idi_file
+		WHERE id = #{id}
+	</select>
+	
+	<delete id="remove" parameterType="Long">
+		DELETE 
+		FROM idi_file
+		WHERE id = #{id}
+	</delete>
+</mapper>	 

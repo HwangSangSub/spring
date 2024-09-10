@@ -1,0 +1,1271 @@
+
+$careTxtBoxHLaptop : 155;
+$careTxtBoxHPad : 245;
+
+.wrap-typeMain .idi_footer {
+    margin-top: 50px;
+}
+
+.main {
+
+    &-sect {
+        &.sect {
+
+            &-visual {
+                position: relative;
+                width: 100%;
+                overflow: hidden;
+
+                > .layout {
+                    max-width: px($sizeLayoutMax);
+                }
+            }
+            &-best {}
+            &-care {
+                .main-sect-care {
+                    @include laptop {
+                        padding-bottom: 46px;
+                    }
+                }
+            }
+        }
+        &-tit {
+            font-family: $playBasicItalic, sans-serif;
+            font-size:36px;
+            color:#000;
+            text-align:center;
+            padding:76px 0 62px;
+            letter-spacing:0.02em;
+            @include mobile {
+                padding: 40px 0 30px;
+                font-size: 28px;
+            }
+        }
+    }
+    // section - news
+    &-news {
+        $newsBoxH: 280;
+        
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(2, minmax(px($newsBoxH), 1fr));
+        gap: 40px;
+        @include laptop {
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: auto px($newsBoxH);
+            gap: 20px;
+        }
+
+        &-box {
+            cursor: pointer;
+            border: 1px solid #d9d9d9;
+            transition: border .3s;
+            &.event {
+
+                .main-news-box {
+
+                    &-img {
+                        width: 100%;
+                        height: px($newsBoxH);
+        
+                        > img {}
+                    }
+                    &-cont {
+                        padding: 30px 27px 94px;
+                    }
+                    &-cate {
+                        border: 1px solid #474747;
+                        padding: 8px 20px;
+
+                        .icon {
+                            display: none;
+                        }
+                        .txt {
+                            font-family: $playBasicItalic, sans-serif;
+                            font-size: 16px;
+                            color: #474747;
+                            letter-spacing: 0.03em;
+                            text-transform: capitalize;
+                        }
+                    }
+                    &-tit {
+                        font-family: $notoKr, sans-serif;
+                        font-size: 19px;
+                        color: #000;
+                        line-height: 25px;
+                        margin: 29px 0 15px;
+                    }
+                    &-desc {
+                        width: auto;
+                        height: 55px;
+                        @include line-skip(2);
+                        font-family: 'Verdana', Malgun Gothic;
+                        font-size: 16px;
+                        color: #666666;
+                        line-height: 25px;
+                        margin-bottom: 20px;
+                    }
+                    &-day {
+                        margin-top: 3px;
+                        
+                        .icon > img {
+                            vertical-align: -6px;
+                            display: inline-block;
+                            width: 61px;
+                        }
+                        .txt {
+                            display: inline-block;
+                            font-family: 'Verdana', Malgun Gothic;
+                            font-size: 16px;
+                            color: #666666;
+                            letter-spacing: 0.01em;
+                        }
+                    }
+                    
+                }
+            }
+            &.blog {
+                display: flex;
+                flex-direction: column;
+                padding: 26px 26px 23px;
+                overflow: hidden;
+
+                .main-news-box {
+
+                    &-cont {
+                        display: flex;
+                        flex-direction: column;
+                        height: 100%;
+                    }
+                    &-cate {
+
+                        .icon {
+                            width: 40px;
+
+                            > img {
+                                width: 100%;
+                            }
+                        }
+                        .txt {
+                            display: none;
+                        }
+                    }
+                    &-tit {    
+                        position: relative;
+                        font-family: 'Verdana', 'Malgun Gothic';
+                        font-weight: bold;
+                        font-size: 16px;
+                        color: #000;
+                        margin: 18px 0 21px;
+                    }
+                    &-desc {    
+                        width: auto;
+                        // height: 126px;
+                        font-family: 'Verdana', Malgun Gothic;
+                        font-size: 14px;
+                        color: #666666;
+                        line-height: 21px;
+                        @include line-skip(6);
+                    }
+                    &-day {
+                        margin-top: auto;
+                        
+                        .icon > img {}
+                        .txt {
+                            display: block;
+                            font-family: 'pt_sans_c';
+                            font-size: 11px;
+                            color: #666666;
+                            letter-spacing: 0.05em;
+                        }
+                    }
+                    
+                }
+            }
+            &:hover {
+                border-color: #474747;
+            }
+
+            @for $i from 1 through 2 {
+                &#{$i}x {
+                    grid-column: span $i;
+                    grid-row: span $i;
+                    @include laptop {
+                        grid-row: span 1;
+                    }
+                }
+            } 
+            &-img {
+                position: relative;
+                overflow: hidden;
+
+                > img {
+                    @include absolute-all-center;
+                    min-width: 100%;
+                    min-height: 100%;
+                }
+            }
+            &-cont {}
+            &-cate {
+                display: inline-block;
+
+                .icon {
+                    display: block;
+                }
+            }
+            &-tit {
+                display: flex;
+                align-items: center;
+                gap: 6px;
+                
+                .txt {
+                    display: block;
+                    @include line-skip;
+                }
+                .icon.new {
+                    display: none;
+                    vertical-align: -1px;
+                    margin-right: 5px;
+                    &.active {
+                        display: block;
+                    }
+                    
+                    > img {
+                        width: 18px;
+                        @include laptop {
+                            width: 14px;
+                        }
+                    }
+                }
+            }
+            &-desc { }
+            &-day {
+                margin-top: 3px;
+                
+                .icon > img {
+                    vertical-align: -6px;
+                    display: inline-block;
+                    width: 61px;
+                }
+                .txt {
+                    display: inline-block;
+                    font-family: 'Verdana', Malgun Gothic;
+                    font-size: 16px;
+                    color: #666666;
+                    letter-spacing: 0.01em;
+                }
+            }
+        }
+    }
+}
+
+.m {
+
+    // 공통 - swiper 버튼
+    &_swiper_round_btn {
+        display: inline-block;
+        width: 48px;
+        height: 48px;
+        border-radius: 100%;
+        background-color: #bababa;
+        transition: all .3s;
+        margin: 0 2px;
+        position: relative;
+        &.swiper-button-disabled {
+            opacity: .5;
+            pointer-events: none;
+        }aa
+        &:hover {
+            background-color: #474747;
+        }
+        &.prev span {
+            transform-origin: 0 0;
+            left: 20px;
+            top: 50%;
+            &:first-child {
+                transform: rotate(-45deg);
+                left: 19px;
+            }
+            &:last-child {
+                transform: rotate(45deg);
+            }
+        }
+        &.next span {
+            transform-origin: 100% 0;
+            right: 18px;
+            top: 50%;
+            &:first-child {
+                transform: rotate(-45deg);
+                right: 19px;
+            }
+            &:last-child {
+                transform: rotate(45deg);
+            }
+        }
+    
+        span {
+            display: block;
+            width: 10px;
+            height: 2px;
+            border-top: 1px solid #fff;
+            transition: all .3s;
+            position: absolute;
+            top:48% !important
+        }
+    
+        &s {
+            position: absolute;
+            z-index: 5;
+        }
+    }
+    // 공통 - 상품
+    &_product {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        // height: 100%;
+        aspect-ratio: 1/1;
+        padding: 15px 30px 0 30px;
+        overflow: hidden;
+        background-color: #fff;
+        transition: all .5s;  
+        &:hover {
+            
+            .m_product_overlay {
+                opacity: 1;
+            }
+            .btns-prod {
+                left: 50%;
+                opacity: 1;
+            }
+        }
+        
+        img {
+            width: 90%;
+            aspect-ratio: 1/1;
+        }
+    
+        &s {
+            position: relative;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            aspect-ratio: 1 / 1;
+            overflow: hidden;
+            &::before, &::after {
+                content: '';
+                position: absolute;
+                z-index: 5;
+            }
+            &::before {  
+                top: 0;
+                left: 50%;
+                width: 2px;
+                height: 100%;
+                border-right: 1px solid #dbdbdb;
+            }
+            &::after {   
+                top: 50%;
+                left: 0;
+                width: 100%;
+                height: 2px;
+                border-top: 1px solid #dbdbdb;
+            }
+        }
+        &_overlay {
+            cursor:pointer;
+            position:absolute;
+            left:0;
+            top:0;
+            width:100%;
+            height:100%;
+            background:rgba(255,255,255,0.7);
+            opacity:0;
+            transition: opacity .3s;
+        }
+        &_name {
+            margin-top:10px;
+            display:block;
+            font-family:'Verdana', Malgun Gothic;
+            font-size:14px;
+            text-align:center;
+            line-height:23px;
+            overflow:hidden;
+            text-overflow:ellipsis;
+            white-space:nowrap;
+            width:100%;
+            color:#000
+        }
+    }
+    // 공통 - 상품소개 페이지
+    &_page {
+        position:relative;
+        display: flex;
+        gap: 80px;
+        width:100%;
+        // height:600px;
+        @include desktopMin {
+            gap: transNum(40, pc);
+        }
+        @include laptop {
+            gap: 0;
+        }
+
+        &_rep {
+
+            &_wrap {
+                position: relative;
+                flex: 1;
+                height: 100%;
+                @include laptop {
+                    flex: unset;
+                    @include flex-all-center;
+                    height: transNum($careTxtBoxHLaptop, laptop);
+                }
+                @include pad {
+                    height: px($careTxtBoxHPad);
+                }
+            }
+            &_img {
+                width: 100%;
+                @include laptop {
+                    display: none;
+                }
+            }
+            &_txt {
+                position:absolute;
+                top:64px;
+                left:64px;
+                @include laptop {
+                    position: relative;
+                    left: unset;
+                    top: unset;
+                    @include flex-all-center;
+                    flex-direction: column;
+                }
+            
+                h2 {
+                    font-family: $playBasicItalic, sans-serif;
+                    font-size:16px;
+                    letter-spacing:0.05em;
+                    @include mobile {
+                        font-size: 12px;
+                    }
+                }
+            }
+            &_desc {
+                margin-top:34px;
+                @include laptop {
+                    display: flex;
+                    gap: 6px;
+                    margin-top:24px;
+                }
+                @include pad {
+                    flex-direction: column;
+                    gap: 0px;
+                }
+                @include mobile {
+
+                }
+        
+                span {
+                    display: block;
+                    font-family:$nanumS, sans-serif;
+                    @include transFontsize(34, pc);
+                    line-height: transNum(46, pc);
+                    color:#000;
+                    @include pad {
+                        @include transFontsize(34, pad);
+                        line-height: transNum(46, pad);
+                    }
+                    @include mobile {
+                        @include transFontsize(24, mobile);
+                        line-height: transNum(30, mobile);
+                    }
+                    &:not(:first-child) {
+                        font-weight: 700;
+                    }
+                }
+            }
+        }
+        &_btn {
+            width: 37px;
+            height: 37px;
+            &.prev {
+
+                span {
+                    transform-origin: 0 0;
+                    left: 16px;
+                    top: 50%;
+                    &:first-child {
+                        left: 15px;
+                    }
+                }
+            }
+            &.next {
+
+                span {
+                    right: 14px;
+                    &:first-child {
+                        right: 15px;
+                    }
+                }
+            }
+            &.swiper-button-lock {
+                display: none;
+            }
+
+            span {
+                width: 7px;
+            }
+
+            &s {
+
+            }
+        }
+        &_list_img {
+            position: relative;
+            flex: 1 1 100px;
+            max-width: 600px;
+            overflow: hidden;
+            @include laptop {
+                flex: unset;
+                max-width: unset;
+            }
+        }
+    } 
+    // section - 비주얼
+    &_visual_swiper {
+        max-width:1903px;
+        margin:0 auto;
+        width: 100%;
+        
+        .image_wrap img {
+            width: 100%;
+            height: auto;
+        }
+
+        &_btn {
+            @include pad {
+                display: none;
+            }
+            &.prev {
+                left: 3%;
+            }
+            &.next {
+                right: 3%;
+            }
+            &::after {
+                display: none;
+            }
+        }
+    }
+    // section - 베스트셀러
+    &_best {
+        position: relative;
+        @include pad {
+            display: flex;
+            flex-direction: column-reverse;
+            padding: 0 transNum($layoutPaddingLaptop, pad);
+        }
+        &::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: calc((100% - 1200px) / 2 + (1200px - (100% - 1230px)));
+            width: calc((100% - 1200px) / 2 + 420px + 100px);
+            height: 100%;
+            background-color: #fff;
+            z-index: 3;
+            @include desktopMin {
+                width: calc(transNum($layoutPadding, pc) + 420px + 100px);
+            }
+            @include laptop {
+                width: calc(transNum($layoutPadding, pc) + 380px + 40px);
+            }
+            @include pad {
+                display: none;
+            }
+        }
+        
+        &_content_wrap {
+            position: relative;
+            width: 1200px;
+            height: 690px;
+            margin: 0 auto;
+            @include desktopMin {
+                padding-left: transNum($layoutPadding, pc);
+            }
+            @include laptop {
+                height: calc(100vw - (4rem + 380px + 40px));
+                min-height: 350px;
+                // min-height: 540px;
+                padding-left: transNum($layoutPaddingLaptop, laptop);
+            }
+            @include pad {
+                width: 100%;
+                padding-left: 0;
+            }
+        }
+        &_btns {
+            bottom: 135px;
+            left: 0;
+            @include desktopMin {
+                left: transNum($layoutPadding, pc);
+            }
+            @include laptop {
+                bottom: transNum(20, laptop);
+            }
+            @include pad {
+                display: none;
+            }
+        }
+        &_txt_swiper {
+            position:relative;
+            width:420px;
+            height:100%;
+            margin: 0;
+            z-index:5;
+            pointer-events: none;
+            @include laptop {
+                width: auto;
+                max-width: 380px;
+                min-height: 420px;
+            }
+            @include pad {
+                width: 100%;
+                max-width: unset;
+                min-height: unset;
+                pointer-events: unset;
+            }
+
+            p {
+                margin-top:30px;
+                font-family:'NotoKrL';
+                color:#666666;
+                font-size:21px;
+                line-height:32px;
+                width:420px;
+                letter-spacing:-0.03em;
+                height:auto;
+                text-overflow:ellipsis;
+                overflow:hidden;
+                display:-webkit-box;
+                -webkit-box-orient:vertical;
+                -webkit-line-clamp:3;
+                margin-bottom:25px;
+                @include laptop {
+                    margin-top: 10px;
+                    width: 360px;
+                    height: 63px;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    display: -webkit-box !important;
+                    -webkit-box-orient: vertical;
+                    -webkit-line-clamp: 2;
+                }
+                @include pad {
+                    width: 100%;
+                    height: auto;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: inline-block;
+                    font-size: 15px;
+                    line-height: 22px;
+                    margin-top: 5px;
+                    margin-bottom: 12px;
+                }
+            }
+            span:nth-of-type(1) {
+                margin-top:0px;
+                display:inline-block;
+                color:#ed1b24;
+                font-size:31px;
+                @include laptop {
+                    font-size: 26px;
+                }
+                @include pad {
+                    font-size: 17px;
+                }
+                &.star_color_no {
+                    color:#cccccc
+                }
+            }
+            .swiper-slide {
+                width: 100%;
+                height: 100%;
+            }
+            .m_best_name {
+                cursor:pointer;
+                font-family: $nanumS;
+                font-weight: 700;
+                font-size: 40px;
+                color: #000;
+                margin-top:73px;
+                line-height:50px;
+                width:420px;
+                height:auto;
+                text-overflow:ellipsis;
+                overflow:hidden;
+                display:-webkit-box;
+                -webkit-box-orient:vertical;
+                -webkit-line-clamp:2;
+                @include desktopMin {
+                    margin-top:33px;
+                }
+                @include laptop {
+                    display: -webkit-box;
+                    width: 100%;
+                    height: 80px;
+                    display: inline-block;
+                    font-size: 30px;
+                    line-height: 40px;
+                    margin-top: 20px;
+                }
+                @include pad {
+                    height: auto;
+                    min-height: 60px;
+                    display: -webkit-box !important;
+                    font-size: 23px;
+                    line-height: 30px;
+                    text-overflow: ellipsis;
+                    margin-top: 15px;
+                    overflow: hidden;
+                }
+            }
+            .m_best_pay_list {
+                margin-top: 43px;
+                @include laptop {
+                    margin-top: 15px;
+                }
+
+                >li {
+                    float: left;
+                    position: relative;                    
+                    font-family: 'Playfair Display SC', serif;
+                    font-size: 48px;
+                    color: #000;
+                    &:first-child {
+                        opacity: .5;
+                        font-size: 34px;
+                        margin-right: 28px;
+                        margin-top:3px;
+                        @include laptop {
+                            margin-right: 23px;
+                        }
+                        @include pad {
+                            font-size: 20px;
+                            margin-right: 20px;
+                            margin-top: -2px;
+                        }
+                        &::before {
+                            content: '';
+                            position: absolute;
+                            top: 64%;
+                            /* transform: translateY(-50%); */
+                            width: 112%;
+                            height: 1px;
+                            background: #e0e0e0;
+                            z-index:15;
+                        }
+                        &::after {
+                            content: '';
+                            position: absolute;
+                            top: 17.3px;
+                            right: -13%;
+                            width:6px;
+                            height:11px;
+                            background:url('/images/user/common/arrow_last.png') no-repeat center center;
+                            background-size:6px 11px;
+                        }
+
+                        strong {
+                            font-family: $nanumS;
+                            font-weight: 300;
+                            font-size: 21px;
+                            opacity: .5;
+                            font-weight: normal;
+                            margin-right: 5px;
+                        }
+                    }
+                    &:nth-child(2) {
+                        margin-top: -7px;
+                        @include pad {
+                            font-size: 27px;
+                        }
+
+                        strong {
+                            font-family: $nanumS;
+                            font-weight: 300;
+                            font-size: 30px;
+                            color: #000;
+                            margin-right: 5px;
+                        }
+                    }
+                }
+            }
+        }
+        &_img_swiper {
+            /* slide 너비 */
+            position: absolute;
+            /* layout 1200px 좌우 빈 간격의 하나에서 자기 슬라이드 width 만큼 하나 더 뺀다 */
+            left: calc((100% - 1200px) / 2 + (1200px - (100% - 1230px)));
+            left: calc((100% - 1200px) / 2 + 420px + 100px);;
+            top: 0;
+            width: calc(100% - 1230px);
+            width: 100%;
+            max-width: 690px;
+            height: 100%;
+            margin: 0;
+            z-index: 1;
+            overflow: visible;
+            @include desktopMin {
+                left: calc(transNum($layoutPadding, pc) + 420px + 100px);
+                width: calc(100% - (transNum($layoutPadding, pc) + 420px + 100px));
+            }
+            @include laptop {
+                left: calc(transNum($layoutPadding, pc) + 380px + 40px);
+                width: calc(100% - (transNum($layoutPadding, pc) + 380px + 40px));
+            }
+            @include pad {
+                position: relative;
+                left: unset;
+                top: unset;
+                width: 100%;
+                height: auto;
+            }
+
+            .swiper-slide {
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+                
+                img {
+                    width: 100%;
+                    @include laptop {
+                        aspect-ratio: 1 / 1;
+                    }
+                }
+                div:nth-child(2) img {
+                    display: block;
+                    text-align: center;
+                }
+            }
+        }
+        &_overlay {}        
+    }
+    // section - 케어 라인
+    &_care {
+        // care line
+        $lineW: 120;
+        $lineWMobile: 95;
+
+        &_line {
+
+            &_container {
+                @include pad {
+                    @include scroll-custom-basic;
+                    @include scroll-custom-gray;
+                    overflow-x: auto;
+                }
+            }
+            &_list {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: auto;  
+                // padding:70px 0 84px;
+                padding: 0px 0 84px;
+                @include laptop {
+                    padding-bottom: 46px;
+                }
+                @include pad {
+                    width: px($lineW * 6);
+                }
+                @include mobile {
+                    width: px($lineWMobile * 6);
+                    padding: 70px 0 35px;
+                }
+
+                > li {    
+                    @include flex-all-center;
+                    flex-direction: column;
+                    gap: px(12);
+                    width: px($lineW);
+                    position:relative;
+                    cursor:pointer;
+                    @include mobile {
+                        width: px($lineWMobile * 6);
+                    }
+                    &.active {
+                        .m_care_line_name {    
+                            background:#474747;
+                            color:#fff;
+                            letter-spacing:0.05em;
+                        }
+                    }
+                    @each $line, $imgTit, $top, $width, $height, $color, $bgColor in $careLines {
+                        &.#{nth($line, 2)} .m_care_line_img {
+                            margin-top: #{nth($top, 2)};
+                            width: #{nth($width, 2)};
+                            height: #{nth($height, 2)};
+                            // background:url('/images/user/main/#{nth($imgTit, 2)}.png') no-repeat center center;
+                        }
+                    }
+                    > img {
+						 height: px(45);
+					}
+                }
+            }
+            &_img {
+                position: relative;
+                display: flex;
+                align-items: flex-end;
+                height: 45px;
+
+                > img {
+                    height: 100%;
+                    object-fit: contain;
+                }
+            }
+            &_name {
+                display: flex;
+                align-items: center;    
+                justify-content: center;
+                width: fit-content;
+                font-family:'pt_sans_c';
+                font-size:13px;
+                color:#666666;
+                padding:5px 16px;
+                border-radius:15px;
+                transition: background .3s, color .3s, letter-spacing .3s;
+            }
+        }
+        &_page {
+            &:not(:has(.swiper .swiper-slide)) .m_care_btns {
+                display: none;
+            }
+            @include laptop {
+                flex-direction: column;
+            }
+        }
+        &_rep {
+
+            &_wrap {
+                @include laptop {
+                    @each $line, $imgTit, $top, $width, $height, $color, $bgColor in $careLines {
+                        &:has(.m_care_rep_txt.#{nth($line, 2)}) {
+                            background-color: nth($bgColor, 2);
+                        }
+                    }
+                }
+            }
+            &_img {}
+            &_txt {
+                @each $line, $imgTit, $top, $width, $height, $color, $bgColor in $careLines {
+                    &.#{nth($line, 2)} h2 {
+                        color: #{nth($color, 2)};
+                    }
+                }
+            }
+            &_desc {}
+        }
+        &_btn {
+            &.prev {
+
+                span {}
+            }
+            &.next {
+
+                span {}
+            }
+
+            span { }
+            
+            &s {
+                bottom: 265px;
+                left: 61px;   
+                @include laptop {
+                    left: 50%;
+                    top: px($careTxtBoxHLaptop / 2);
+                    right: unset;
+                    bottom: unset;
+                    transform: translate(-50%, -50%);
+                    display: flex;
+
+                    justify-content: space-between;
+                    width: calc(100% - transNum($layoutPaddingLaptop, laptop) * 2);
+                }
+                @include pad {
+                    top: px($careTxtBoxHPad / 2);
+                }
+            }
+        }// care line
+        &_list_swiper {
+            width: 100%;
+
+            .swiper-slide {
+                width: 100%;
+                overflow: hidden;
+                &.swiper-slide-visible {
+
+                    .m_product {
+                        opacity: 1;
+                    }
+                }
+
+                .m_product {
+                    opacity: 0;
+                    &:nth-child(2n + 1) {
+                        left: -50%;
+                    }
+                    &:nth-child(2n) {
+                        right: -50%;
+                    }
+                    &:nth-child(-n + 2) {
+                        top: -50%;
+                    }
+                    &:nth-child(n + 3) {
+                        bottom: -50%;
+                    }
+                }
+                
+                &-active .m_product {
+                    &:nth-child(2n + 1) {
+                        left: 0%;
+                    }
+                    &:nth-child(2n) {
+                        right: 0%;
+                    }
+                    &:nth-child(-n + 2) {
+                        top: 0%;
+                    }
+                    &:nth-child(n + 3) {
+                        bottom: 0%;
+                    }
+                }
+            }            
+        }
+        &_overlay {}
+        &_list_img { }
+    }    
+    // section - 브랜드, 하단(원본) 참고
+    &_brand {}
+    // section - bia 커피
+    &_bia {
+
+        &_page {
+            flex-direction: row-reverse;
+            @include laptop {
+                flex-direction: column;
+            }
+        }
+        &_rep {
+
+            &_wrap {
+                @include laptop {
+                    @each $line, $imgTit, $top, $width, $height, $color, $bgColor in $biaLines {
+                        &:has(.m_bia_rep_txt.#{nth($line, 2)}) {
+                            background-color: nth($bgColor, 2);
+                        }
+                    }
+                }
+            }
+            &_img {}
+            &_txt {
+                @each $line, $imgTit, $top, $width, $height, $color, $bgColor in $biaLines {
+                    &.#{nth($line, 2)} h2 {
+                        color: #{nth($color, 2)};
+                    }
+                }
+            }
+            &_desc {}
+        }
+        &_btn {
+            &.prev {
+
+                span {}
+            }
+            &.next {
+
+                span {}
+            }
+
+            span { }
+            
+            &s {
+                right: 357px;
+                bottom: 265px;
+                @include laptop {
+                    left: 50%;
+                    top: px($careTxtBoxHLaptop / 2);
+                    right: unset;
+                    bottom: unset;
+                    transform: translate(-50%, -50%);
+                    display: flex;
+                    justify-content: space-between;
+                    width: calc(100% - transNum($layoutPaddingLaptop, laptop) * 2);
+                }
+                @include pad {
+                    top: px($careTxtBoxHPad / 2);
+                }
+            }
+        }
+        &_list_swiper {
+            width: 100%;
+            
+            .swiper-slide {
+                width: 100%;
+                overflow: hidden;
+                &.swiper-slide-visible {
+
+                    .m_product {
+                        opacity: 1;
+                    }
+                }
+
+                .m_product {
+                    opacity: 0;
+                    &:nth-child(2n + 1) {
+                        left: -50%;
+                    }
+                    &:nth-child(2n) {
+                        right: -50%;
+                    }
+                    &:nth-child(-n + 2) {
+                        top: -50%;
+                    }
+                    &:nth-child(n + 3) {
+                        bottom: -50%;
+                    }
+                }
+                
+                &-active .m_product {
+                    &:nth-child(2n + 1) {
+                        left: 0%;
+                    }
+                    &:nth-child(2n) {
+                        right: 0%;
+                    }
+                    &:nth-child(-n + 2) {
+                        top: 0%;
+                    }
+                    &:nth-child(n + 3) {
+                        bottom: 0%;
+                    }
+                }
+            }            
+        }
+        &_overlay {}
+        &_list_img { }
+    }
+
+}
+
+
+/* idi brand */
+
+.m_brand {
+    position:relative;
+    width:100%;
+    height:605px;
+    margin-top:100px;
+    @include laptop {
+        height: auto;
+    }
+    @include mobile {
+        margin-top:60px;
+    }
+}
+.m_brand > div:first-child {
+    position:relative;
+    float:left;
+    width:50%;
+    height:100%;
+    background:#8c8e8b url(/images/user/main/m_brand_left.png) no-repeat -50px center;
+    background-size:cover;
+    padding:90px 117px 98px 18%;
+    @include desktopHighMax {
+        padding:90px 117px 98px 118px;
+    }
+    @include desktopMin {
+        padding:68px 57px
+    }
+    @include laptop {
+        float:none;
+        width:100%;
+    }
+    @include mobile {
+        padding:36px 20px 40px;
+        overflow:hidden;
+    }
+}
+
+
+.m_brand > div:first-child h3 {
+    letter-spacing:0.07em;
+    font-family: $playBasicItalic, sans-serif;
+    font-size:16px;
+    color:#d8d4ae
+}
+.m_brand > div:first-child h4 {
+    margin:37px 0;
+    font-family:$nanumS;
+    font-size:34px;
+    color:#fff;
+    line-height:49px;
+    @include mobile {
+        text-align:center;
+        font-size:27px;
+        line-height:38px;
+        margin:27px 0 10px;
+    }
+} 
+.m_brand > div:first-child p {
+    font-family:'Verdana', Malgun Gothic;
+    font-size:16px;
+    color:#ffffff;
+    line-height:30px;
+    width:99%;
+    max-width:610px;
+    @include mobile {
+        font-size:14px;
+        line-height:26px;
+    }
+}
+.m_brand > div:first-child a {
+    font-size:16px;
+    color:#fff;
+    display:inline-block;
+    padding:15px 30px;
+    border:1px solid #fff;
+    margin-top:58px;
+    @include mobile {
+        float:right;
+        margin-top:20px;
+        font-size:13px;
+        padding:10px 21px;
+        text-align:center;
+        width:100%;
+    }
+}
+
+.m_brand > div:nth-child(2) {
+    position:relative;
+    float:right;
+    width:50%;
+    height:100%;
+    background:url(/images/user/main/m_brand_right_test.png) no-repeat left center;
+    /* background-size:cover; */
+    @include laptop {
+        display:none;
+    }
+}
+.m_brand > div:nth-child(2) img {
+    margin-left:-1px;
+    height:658px;
+    object-fit:cover;
+}
+/* idi brand */

@@ -1,0 +1,230 @@
+
+.basket {
+    
+    &-sect {
+        &.sect-step {
+            padding-top: px(55);
+            @include mobile {
+                padding-top: px(30);
+            }
+        }
+        &.sect-inquiry {
+            display: none;
+            padding-top: px(40);
+            &.active {
+                display: block;
+            }
+        }
+        &.sect-info {
+            padding-top: px(40);
+        }
+    }
+    &-top {
+        position: relative;
+        width: 100%;
+        padding: 40px 50px;
+        border: 10px solid #f4f4f4;
+        // margin-top: 55px;
+        overflow: hidden;
+        @include pad {
+            padding: 40px 10px;
+        }
+        @include mobile {
+            padding: 10px 0;
+            // margin-top: 30px;
+            border: 0;
+        }
+    
+        h1 {
+            font-family: $nanumS, sans-serif;
+            font-weight: 700;
+            font-size: 30px;
+            color: #373737;
+            float: left;
+            @include laptop {
+                float: none;
+                text-align: center;
+            }
+            @include pad {
+            }
+        }
+    
+        &-list {
+            
+            li {
+                float: left;
+                position: relative;
+                &.active {
+    
+                    img {
+                        &:nth-child(1) {
+                            display: none;
+                        }
+                        &:nth-child(2) {
+                            display: block;
+                        }
+                    }
+                    .basket-txt {
+    
+                        h2, h3 {
+                            color: #333;
+                            font-weight: bold;
+                        }
+                    }
+                }
+                &:not(:last-child) {
+                    margin-right: 72px;
+                    @include pad {
+                        margin-right: transNum(50, pad);
+                    }
+                    @include mobile {
+                        margin-right: transNum(20, mobile);
+                    }
+                    &:before {
+                        content: '';
+                        position: absolute;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        right: -31px;
+                        width: 13px;
+                        height: 23px;
+                        background: url('/images/user/basket/right_arrow.png') no-repeat;
+                        background-size: 13px 23px;
+                        @include pad {
+                            right: -27px;
+                        }
+                        @include mobile {
+                            right: -12px;
+                        }
+                    }
+                }
+                &:first-child img {
+                    width: 40px;
+                }
+                &:nth-child(2) img {
+                    width: 50px;
+                    height: 40px;
+                }
+                &:nth-child(3) img {
+                    width: 43px;
+                    height: 40px;
+                }
+    
+                img {
+                    float: left;
+                    @include pad {
+                        float: none;
+                        text-align: center;
+                        margin: 0 auto;
+                    }
+                    &:nth-child(2) {
+                        display: none;
+                    }
+                }
+                .basket-txt {
+                    float: left;
+                    padding: 2px 15px;
+                    @include pad {
+                        float: none;
+                        padding: transNum(10, pad) transNum(15, pad);
+                    }
+                    @include mobile {
+                        padding: transNum(8, pad) transNum(8, pad);
+                    }
+    
+                    h2 {
+                        font-size: 12px;
+                        font-family: 'Verdana', Malgun Gothic;
+                        color: #c3c3c3;
+                        letter-spacing: 0.02em;
+    
+                        .num {
+                            letter-spacing: 0.05em;
+                        }
+                    }
+                    h3 {
+                        font-family: 'Malgun Gothic';
+                        font-size: 14px;
+                        color: #c3c3c3;
+                        margin-top: 6px;
+                        font-weight: bold;
+                    }
+                }
+            }
+            
+            &-wrap {
+                float: right;
+                @include laptop {
+                    float: none;
+                    text-align: center;
+                    margin: 0 auto;
+                    margin-top: 20px;
+                    display: table;
+                }
+            }
+        }
+    }
+    &-board {
+        padding-top: px(65);
+    }
+
+    /* 비회원 조회 */
+    &-inquiry {
+        max-width: px(400);
+        margin: 0 auto;
+
+        .btn {
+            @include flex-all-center;
+            width: 100%;
+        }
+        .input-box.bg-gray {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            height: 50px;
+            padding: px(0) px(18);
+        }
+
+        &-input {
+            @include flex-all-center;
+            flex-direction: column;
+
+            h3 {
+                font-family: 'nanum_basicB';
+                font-size: 30px;
+                text-align: center;    
+                padding-top: 35px;
+                margin-bottom: 30px;
+            }
+            .btn {
+                margin-top: px(25);
+            }
+        }
+        &-ad {
+            @include flex-all-center;
+            flex-direction: column;
+            padding: px(25) 0 px(15);
+
+            span {
+                position: relative;
+                padding: 0 px(15);
+                &::before {
+                    content: '';
+                    position: absolute;
+                    // top: 48%;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    left: -23px;
+                    width: 16px;
+                    height: 16px;
+                    background: url('/images/user/mypage/idi_notice.png') no-repeat center center;
+                    background-size: 16px 16px;
+                }
+            }
+            .btn {
+                margin-top: px(18);
+            }
+        }
+    }   
+    /* //비회원 조회 */
+}

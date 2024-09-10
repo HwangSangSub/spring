@@ -1,0 +1,317 @@
+*
+{
+	max-height: 99999px;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "verdana","malgun gothic";
+	font-size: 12px;
+	letter-spacing: -0.025em;
+	/* color: #1e1e1e; 에디터 폰트 컬러 */
+	word-break: break-all;
+	-webkit-text-size-adjust: none;
+	outline: none;
+}
+
+*::after,
+*::before
+{
+	box-sizing: border-box;
+}
+
+ul
+{
+	list-style: none;
+}
+
+img
+{
+	vertical-align: middle;
+	border: none;
+	max-width: 100%;
+	border: 1px solid #ccc;
+}
+
+fieldset
+{
+	border: none;
+}
+
+legend,
+.dp_none
+{
+	display: none;
+}
+
+a
+{
+	text-decoration: none;
+	color: #1e1e1e;
+}
+
+button,
+input[type="submit"],
+input[type="button"]
+{
+	cursor: pointer;
+	border: none;
+	background: none;
+
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+
+	border: none;
+	border-radius: 0;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+}
+
+/*
+a,
+input,
+select,
+button
+{
+	vertical-align: middle;
+}
+*/
+
+input[type=radio]
+{
+	vertical-align: -2px;
+}
+
+input[type=text],
+input[type=password],
+input[type=time]
+{
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+
+	border: none;
+	border-radius: 0;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+}
+
+/*
+input:not([type="radio"])
+{
+	-webkit-appearance: checkbox;
+	-webkit-border-radius: 0;
+}
+*/
+
+input[type=color]
+{
+	width: 90px;
+	height: 24px;
+	padding: 0;
+	border: none;
+	background: none;
+}
+
+label
+{
+	display: inline-block;
+}
+
+/*
+select
+{
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	border-radius: 0; /* iPhone
+	cursor: pointer;
+	background: #fff;
+}
+
+select::-ms-expand
+{
+	display: none;
+}
+*/
+
+table
+{
+	width: 100%;
+	table-layout: fixed;
+	word-break: break-all;
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+table caption.cap_hide
+{
+	width: 0;
+	height: 0;
+	padding: 0;
+	overflow: hidden;
+}
+
+.clearFix::after
+{
+	content: "";
+	clear: both;
+	display: block;
+}
+
+.textAL
+{
+	text-align: left !important;
+	padding-left: 6px !important;
+}
+
+.textAC
+{
+	text-align: center !important;
+}
+
+.textAR
+{
+	text-align: right !important;
+	padding-right: 3px !important;
+}
+
+.textCut
+{
+	display: block;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+.borderTN
+{
+	border-top: none !important;
+}
+
+.borderRN
+{
+	border-right: none !important;
+}
+
+.borderBN
+{
+	border-bottom: none !important;
+}
+
+.borderLN
+{
+	border-left: none !important;
+}
+
+.flex_between_center
+{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.flex_center_center
+{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.flex_center_stretch
+{
+	display: flex;
+	justify-content: center;
+	align-items: stretch;
+}
+
+.flex_center_end
+{
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
+}
+
+.flex_between_end
+{
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
+}
+
+/* Datepicker */
+.ui-datepicker select.ui-datepicker-month,
+.ui-datepicker select.ui-datepicker-year
+{
+	width: 57px;
+	padding: 2px;
+	margin: 0 3px;
+}
+
+/* responsive youtube */
+.responsive_youtube
+{
+	width: 100%;
+}
+
+.responsive_youtube div
+{
+	position: relative;
+	width: 100%;
+	height: auto;
+	padding-top: 56.25%;
+}
+
+.responsive_youtube div iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	width: 100%;
+	height: 100%;
+}
+
+/* 20220629 */
+.scroll_bar::-webkit-scrollbar
+{
+	width: 5px;
+	height: 12px;
+}
+
+.scroll_bar::-webkit-scrollbar-button:start:decrement,
+.scroll_bar::-webkit-scrollbar-button:end:increment
+{
+	display: block;
+	width: 0px;
+	height: 0px;
+}
+
+.scroll_bar::-webkit-scrollbar-track
+{
+	background: rgba(0,0,0,0.1);
+}
+
+.scroll_bar::-webkit-scrollbar-thumb
+{
+	background: rgba(0,0,0,0.1);
+}
+
+/* 20221124 */
+input.textAR::placeholder
+{
+	text-align: left !important;
+}
+
+/* 20230908 */
+.img_cover
+{
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+/* 20231128 */
+.fa
+{
+	font-size: 15px;
+}

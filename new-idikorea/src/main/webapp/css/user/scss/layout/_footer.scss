@@ -1,0 +1,221 @@
+
+/* footer */
+.idi_footer
+{
+    position:relative;
+    width:100%;
+    height:260px;
+    border-top:1px solid #d9d9d9;
+    margin-top:110px;
+    @include laptop {
+        height:auto;
+        padding-bottom:30px;
+    }
+}
+.idi_footer > div:first-child
+{
+    position:relative;
+    width:100%;
+    height:47px;
+    border-bottom:1px solid #d9d9d9;
+    @include pad {
+        height:auto;
+        overflow:hidden;
+        margin-top:0px;
+        padding:5px 0;
+    }
+    @include mobile {
+        padding:6px 0 5px;
+    }
+}
+.idi_footer > div:first-child > div.layout
+{
+    @include mobile {
+        padding:0 0 0 10px!important;
+    }
+}
+.idi_footer .layout > div:first-child > ul {
+    @include mobile {
+        width: max-content;
+        padding-right: 10px;
+    }
+}
+.idi_footer > div:first-child ul:first-child
+{
+    float:left
+}
+.idi_footer > div:first-child ul li
+{
+    float:left;
+    line-height:44px;
+    font-size:14px;
+    color:#666666;
+    @include mobile {
+        line-height:26px;
+    }
+}
+.idi_footer > div:first-child ul li:last-child
+{
+    @include mobile {
+        margin-right:0;
+    }
+}
+.idi_footer > div:first-child ul li:not(:first-child)
+{
+    margin-left:36px;
+    @include pad {
+        margin-left:0;
+    }
+}
+.idi_footer > div:first-child ul li:not(:last-child)
+{
+    @include pad {
+        margin-right:16px;
+    }
+}
+.idi_footer > div:first-child ul li:hover a
+{
+    color:#000;
+    font-weight:bold;
+    transition:all .5s
+}
+.idi_footer > div:first-child ul li a
+{
+    font-size:14px
+}
+.idi_footer > div:first-child ul li:nth-child(2) a
+{
+    color:#000;
+    font-weight:bold;
+}
+.idi_footer > div:first-child ul:nth-child(2)
+{
+    float:right
+}
+.idi_footer > div:first-child ul:nth-child(2) li:not(:fisrt-child)
+{
+    margin-left:0;
+    @include pad {
+        margin-right:10px;
+    }
+}
+.idi_footer > div:first-child ul:nth-child(2) li
+{
+    margin-left:6px;
+    line-height:42px
+}
+.idi_footer > div:nth-child(2) img
+{
+    position:absolute;
+    top:30px;
+    left:0;
+    @include laptop {
+        display:none
+    }
+}
+.idi_footer > div:nth-child(2) > div > div {
+    padding:40px 0 0 133px;
+    @include laptop {
+        padding:25px 0 0 0
+    }
+}
+.idi_footer > div:nth-child(2) > div > div ul:nth-child(2) {
+    @include mobile {
+        margin-top:3px;
+    }
+}
+.idi_footer > div:nth-child(2) > div > div ul:last-child {
+    margin-top:32px;
+}
+.idi_footer > div:nth-child(2) > div > div ul:not(:first-child) {
+    margin-top:17px;
+    @include laptop {
+        margin-top:8px;
+    }
+}
+.idi_footer > div:nth-child(2) > div > div ul li
+{
+    float:left;
+    font-family:$ptSansCaption, sans-serif;
+    font-size:14px;
+    color:#666666;
+    position:relative;
+    @include laptop {
+        line-height:22px;
+    }
+    @include mobile {
+        float:none;
+        font-size:13px;
+    }
+}
+.idi_footer > div:nth-child(2) > div > div ul li:nth-child(2) {
+    @include mobile {
+        margin-top:5px;
+        font-family: $ptSansCaption, sans-serif;
+    }
+}
+.idi_footer > div:nth-child(2) > div > div ul li:not(:last-child)
+{
+    @include laptop {
+        margin-right:32px;
+    }
+    @include mobile {
+        margin-right:0;
+        font-family: $ptSansCaption, sans-serif;
+    }
+}
+.idi_footer > div:nth-child(2) > div > div ul li:not(:last-child):after
+{
+    content:'';
+    position:absolute;
+    top:50%;
+    right:-18px;
+    transform:translateY(-50%);
+    width:1px;
+    height:11px;
+    background:#c2c2c2;
+    @include mobile {
+        display: none;
+    }
+}
+.idi_footer > div:nth-child(2) > div > div ul li:not(:first-child)
+{
+    margin-left:32px;
+    @include laptop {
+        margin-left:0;
+    }
+}
+.idi_footer > div:nth-child(2) > div > div ul:nth-child(2) li:nth-child(3) {
+    @include mobile {
+        margin-top:3px;
+    }
+}
+.idi_footer > div:nth-child(2) > div > div ul:nth-child(2) li:nth-child(4) {
+    @include mobile {
+        margin-top:5px;
+    }
+}
+
+.idi_footer .layout > div:first-child
+{
+    @include mobile {
+        overflow-x:auto;
+        -webkit-overflow-scrolling:touch;
+    }
+}
+.idi_footer .layout > div:first-child > ul
+{
+    @include mobile {
+        width:max-content;
+        padding-right:10px;
+    }
+}
+.idi_footer #snsLinkList
+{
+    @include mobile {
+        display:none !important;
+    }
+}
+
+
+    /* 서브8. 상품 리스트 */

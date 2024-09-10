@@ -1,0 +1,60 @@
+
+.event {
+
+    &Bd {}
+    &-list-wrap {
+        @include mobile {
+            padding-top: px(15);
+        }
+    }
+    &-box {
+        @include flex-all-center;
+        @include pad {
+            flex-direction: column;
+        }
+        &.empty {
+            flex-direction: column;
+            gap: px(21);
+            padding: px(65) 0;
+
+            .icon{
+                width: 36px;
+            }
+            .txt {
+                position: relative;
+                font-family: $verdana, Malgun Gothic;
+                font-weight: 400;
+                font-size: 13px;
+                color: #cccccc;
+            }
+        }
+    }
+    &-plate {
+        flex: 1;
+        min-width: 0;
+        @include pad {
+            flex: unset;
+        }
+
+        &-img {
+            flex: 0 0 px(350);
+            @include pad {
+                flex: unset;
+                width: 100%;
+            }
+        }
+        &-info {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            padding: 0 px(50);
+        }
+
+    }
+    &-thumbnail-img {
+
+        &-wrap {
+            @include flex-all-center;
+        }
+    }
+}

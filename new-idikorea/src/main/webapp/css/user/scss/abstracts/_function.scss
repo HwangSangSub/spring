@@ -1,0 +1,70 @@
+
+
+// @function dummy($condition) {
+//     @if $condition {
+//       @return true;
+//     }
+//     @return false;
+//   }
+
+
+@function transNum($px, $step) {
+    @if $step == laptop {
+        @return calc($px / 10 * 48 / 44 * 1rem);
+    }
+    @else if $step == pad {
+        @return calc($px / 10 * 48 / 40 * 1rem);
+    }
+    @else if $step == mobile {
+        @return calc($px / 10 * 48 / 32 * 1rem);
+    }
+    @else {
+        @return calc($px / 10 * 1rem);
+    }
+
+}
+
+@function px($px) {
+    @return calc($px * 1px);
+}
+
+@function layoutW($step) {
+    @if $step == pc {
+        @return 1280px;
+    }
+    @else if $step == mobile {
+        @return calc(100vw - 15px * 2);
+    }
+    @else {
+        @return calc(100vw - 40px * 2);
+    }
+}
+
+
+
+@function maxColumns($grid) {
+    $max : 0;
+    @each $list in $grid {
+        $max : max(length($list), $max);
+    }
+
+    @return $max;
+}
+
+
+@function typeNum($before) {
+    $num : $before;
+    @return $num * 1;
+}
+
+
+@function checkMax($a, $b) {
+    $result : MAX($a, $b);
+    @return $result;
+}
+
+
+@function checkMin($a, $b) {
+    $result : MIN($a, $b);
+    @return $result;
+}

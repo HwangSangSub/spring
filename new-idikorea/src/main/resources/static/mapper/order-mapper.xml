@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.brighten.idi.order.mapper.OrderMapper">
+
+<resultMap type="com.brighten.idi.order.dto.OrderDto" id="orderList">
+    <id property="orderNo" column="order_no"/>
+    <collection property="orderItemList" ofType="com.brighten.idi.order.item.dto.OrderItemDto"
+                column="order_no" select="orderItem"/>
+</resultMap>
+
+	
+	<select id="orderList" parameterType="com.brighten.idi.order.dto.OrderDto" resultMap="orderList">
+		SELECT 
+		io.order_no, 
+		io.member_no, 
+		io.receiver_name, 
+		io.receiver_phone, 
+		io.receiver_mobile, 
+		io.zipcode, 
+		io.address, 
+		io.memo, 
+		io.admin_memo, 
+		io.settle_log, 
+		io.settle_kind, 
+		io.status, 
+		io.origin_price, 
+		io.member_dc, 
+		io.emoney, 
+		io.coupon, 
+		io.enuri, 
+		io.delivery_type, 
+		io.delivery_title, 
+		io.delivery_price, 
+		io.bank_account, 
+		io.bank_sender, 
+		io.bank_name, 
+		io.delivery_no, 
+		io.delivery_code, 
+		io.order_type, 
+		io.create_time, 
+		io.payment_time, 
+		io.delivery_time, 
+		io.order_complete_time, 
+		io.cash_receipt_no, 
+		io.cash_receipt_url, 
+		io.cash_receipt_identity_number, 
+		io.cash_receipt_yn, 
+		io.cash_receipt_code, 
+		io.cash_receipt_status, 
+		io.cash_receipt_option, 
+		io.toss_order_no, 
+		io.toss_key,
+		#{flag},
+		im.member_name  
+		FROM idi_order io
+		LEFT JOIN idi_member im
+		ON io.member_no = im.member_no
+		WHERE 1=1
+		
+		<if test='(flag==null or flag=="Y")  and orderSearchValue != null and orderSearchValue !="" and orderSearchOption == "orderNo"'>
+			AND io.order_no = #{orderSearchValue} 
+		</if>
+		<if test='(flag==null or flag=="Y")  and orderSearchValue != null and orderSearchValue !="" and orderSearchOption == "memberName"'>
+			AND im.member_name = #{orderSearchValue}
+		</if>
+		<if test='(flag==null or flag=="Y")  and orderSearchValue != null and orderSearchValue !="" and orderSearchOption == "receiverName"'>
+			AND ioi.receiver_name = #{orderSearchValue}
+		</if>
+		<if test='(flag==null or flag=="Y")  and orderSearchValue != null and orderSearchValue !="" and orderSearchOption == "memberId"'>
+			AND im.member_id = #{orderSearchValue}
+		</if>
+		AND io.status =COALESCE(#{status}, '주문접수')
+		<if test='(flag==null or flag=="Y")  and orderType!=null and orderType.name()!=null and orderType.name()!="" and orderType.name()!="all"'>
+		AND io.order_type = #{orderType}
+		</if>
+		<if test='(flag==null or flag=="Y")  and deliveryCodeCheck!=null and deliveryCodeCheck=="Y" '>
+			AND io.delivery_code is not null
+			AND io.delivery_code != ''
+		</if>
+		<if test='(flag==null or flag=="Y")  and deliveryCodeCheck!=null and deliveryCodeCheck=="Y" '>
+			AND (io.delivery_code is null
+					OR io.delivery_code = '')
+		</if>
+	    <if test='(flag==null or flag=="Y")  and startTime != null'>
+	        AND io.create_time >= #{startTime}
+	    </if>
+	    <if test='(flag==null or flag=="Y")  and endTime != null'>
+	        AND io.create_time &lt;= DATE_ADD(#{endTime}, INTERVAL 1 DAY) - INTERVAL 1 SECOND
+	    </if>			
+	    <if test='flag=="N"'>
+	    	AND io.order_no in 
+		    <foreach item="id" collection="orderNoList" open="(" separator="," close=")">
+		        #{id}
+		    </foreach>
+	    </if>
+		ORDER BY create_time desc
+		LIMIT #{itemSize}
+		OFFSET #{offset}
+	</select>
+		
+	<select id="orderListCnt" parameterType="com.brighten.idi.order.dto.OrderDto" resultType="Long">
+		SELECT count(*)
+		FROM idi_order io
+		LEFT JOIN idi_member im
+		ON io.member_no = im.member_no
+		WHERE 1=1
+		<if test=' orderSearchValue != null and orderSearchValue !="" and orderSearchOption == "orderNo"'>
+			AND io.order_no = #{orderSearchValue} 
+		</if>
+		<if test=' orderSearchValue != null and orderSearchValue !="" and orderSearchOption == "memberName"'>
+			AND im.member_name = #{orderSearchValue}
+		</if>
+		<if test=' orderSearchValue != null and orderSearchValue !="" and orderSearchOption == "receiverName"'>
+			AND ioi.receiver_name = #{orderSearchValue}
+		</if>
+		<if test=' orderSearchValue != null and orderSearchValue !="" and orderSearchOption == "memberId"'>
+			AND im.member_id = #{orderSearchValue}
+		</if>
+		<if test='orderType!=null and orderType.name()!=null and orderType.name()!="" and orderType.name()!="all"'>
+		AND order_type = #{orderType}
+		</if>
+	    <if test="startTime != null">
+	        AND io.create_time >= #{startTime}
+	    </if>
+	    <if test="endTime != null">
+	        AND io.create_time &lt;= DATE_ADD(#{endTime}, INTERVAL 1 DAY) - INTERVAL 1 SECOND
+	    </if>		
+   		<if test='deliveryCodeCheck!=null and deliveryCodeCheck=="Y" '>
+			AND io.delivery_code is not null
+			AND io.delivery_code != ''
+		</if>
+		<if test='deliveryCodeCheck!=null and deliveryCodeCheck=="Y" '>
+			AND (io.delivery_code is null
+					OR io.delivery_code = '')
+		</if>
+		AND status =COALESCE(#{status}, '주문접수')
+		ORDER BY io.create_time desc
+	</select>
+	
+	<select id="orderStatusCount" parameterType="com.brighten.idi.order.dto.OrderDto" resultType="com.brighten.idi.order.dto.OrderDto">
+		SELECT  STATUS , COUNT(STATUS) status_count
+		FROM idi_order io
+		LEFT JOIN idi_member im
+		ON io.member_no = im.member_no
+		WHERE 1=1
+		<if test=' orderSearchValue != null and orderSearchValue !="" and orderSearchOption == "orderNo"'>
+			AND io.order_no = #{orderSearchValue} 
+		</if>
+		<if test=' orderSearchValue != null and orderSearchValue !="" and orderSearchOption == "memberName"'>
+			AND im.member_name = #{orderSearchValue}
+		</if>
+		<if test=' orderSearchValue != null and orderSearchValue !="" and orderSearchOption == "receiverName"'>
+			AND ioi.receiver_name = #{orderSearchValue}
+		</if>
+		<if test=' orderSearchValue != null and orderSearchValue !="" and orderSearchOption == "memberId"'>
+			AND im.member_id = #{orderSearchValue}
+		</if>
+		<if test='receiverName!=null and receiverName!=""'>
+			AND receiver_name = #{receiverName} 
+		</if>
+		<if test='memberNo!=null and memberNo!=""'>
+			AND member_no = #{memberNo} 
+		</if>
+		<if test='orderType.name()!=null and orderType.name()!="" and orderType.name()!="all"'>
+		AND order_type = #{orderType}
+		</if>
+	    <if test="startTime != null">
+	        AND io.create_time >= #{startTime}
+	    </if>
+	    <if test="endTime != null">
+	        AND io.create_time &lt;= DATE_ADD(#{endTime}, INTERVAL 1 DAY) - INTERVAL 1 SECOND
+	    </if>			
+		GROUP BY STATUS
+	</select>
+	
+	<select id="orderItem" parameterType="Long" resultType="com.brighten.idi.goods.dto.GoodsDto">
+		SELECT *
+		FROM idi_order_item ioi
+		<!-- LEFT JOIN idi_goods ig
+		ON ioi.goods_no = ig.goods_no -->
+		LEFT JOIN idi_order_cancel ioc
+		ON ioi.cancel_no = ioc.cancel_no
+		WHERE ioi.order_no=#{orderNo}
+		ORDER BY item_status
+	</select>
+	
+	<select id="order" parameterType="Long" resultType="com.brighten.idi.order.dto.OrderDto">
+		SELECT 
+		io.order_no, 
+		io.member_no, 
+		io.receiver_name, 
+		io.receiver_phone, 
+		io.receiver_mobile, 
+		io.zipcode, 
+		io.address, 
+		io.sub_address,
+		io.memo, 
+		io.admin_memo, 
+		io.settle_log, 
+		io.settle_kind, 
+		io.status, 
+		io.origin_price, 
+		io.member_dc, 
+		io.emoney, 
+		io.coupon, 
+		io.enuri, 
+		io.delivery_type, 
+		io.delivery_title, 
+		io.delivery_price, 
+		io.bank_account, 
+		io.bank_sender, 
+		io.bank_name, 
+		io.delivery_no, 
+		io.delivery_code, 
+		io.order_type, 
+		io.create_time, 
+		io.payment_time, 
+		io.delivery_time, 
+		io.order_complete_time, 
+		io.cash_receipt_no, 
+		io.cash_receipt_url, 
+		io.cash_receipt_identity_number, 
+		io.cash_receipt_yn, 
+		io.cash_receipt_code, 
+		io.cash_receipt_status, 
+		io.cash_receipt_option, 
+		io.toss_order_no, 
+		io.toss_key,
+		im.member_name,  
+		im.member_id, 
+		idl.company,
+		idl.delivery_url,
+		totalRefund,
+		totalRefundEmoney
+		FROM idi_order io
+		LEFT JOIN idi_member im
+		ON io.member_no = im.member_no
+		LEFT JOIN idi_delivery_list idl
+		ON io.delivery_no = idl.delivery_no
+		LEFT JOIN (SELECT SUM(refund) totalRefund, SUM(refund_emoney) totalRefundEmoney, order_no
+					FROM idi_order_cancel
+					GROUP BY order_no) a
+		ON io.order_no = a.order_no			
+		WHERE io.order_no = #{orderNo}
+	</select>
+	
+	<update id="updateOrder" parameterType="com.brighten.idi.order.dto.OrderDto">
+		UPDATE idi_order
+		SET 
+			order_no = order_no
+			<if test='status.name()!=null and status.name()!=""'>
+			,status =#{status}
+			</if>
+		WHERE 1=1
+		AND order_no = #{orderNo}
+	</update>
+
+	<select id="orderCancelList" parameterType="Long">
+		SELECT *
+		FROM idi_order_cancel
+		WHERE order_no = #{orderNo}
+	</select>
+	
+	<insert id="orderItemCancel" parameterType="com.brighten.idi.order.item.dto.OrderItemDto" keyProperty="cancelNo" useGeneratedKeys="true">
+		INSERT INTO idi_order_cancel
+		(
+			order_no,
+			memo,
+			cancel_time,
+			refund,
+			refund_emoney,
+			member_no,
+			refund_bank_account,
+			refund_bank_sender,
+			refund_bank_name,
+			refund_reason,
+			admin_name
+		)VALUES(
+			#{orderNo},
+			#{memo},
+			now(),
+			#{refund},
+			#{refundEmoney},
+			(
+				SELECT member_no 
+				FROM idi_order
+				WHERE order_no = #{orderNo}
+			),
+			'',
+			'',
+			'',
+			#{refundReason},
+			#{adminName}
+			
+		)
+		
+	</insert>
+	
+	<insert id="orderInsert" parameterType="com.brighten.idi.order.dto.OrderDto" keyProperty="orderNo" useGeneratedKeys="true">
+		INSERT INTO idi_order
+		(
+			member_no, 
+			receiver_name, 
+			receiver_phone, 
+			receiver_mobile, 
+			zipcode, 
+			address, 
+			sub_address,
+			memo, 
+			admin_memo, 
+			settle_log, 
+			settle_kind, 
+			status, 
+			origin_price, 
+			member_dc, 
+			emoney, 
+			coupon, 
+			enuri, 
+			delivery_type, 
+			delivery_title, 
+			delivery_price, 
+			bank_account, 
+			bank_sender, 
+			bank_name, 
+			delivery_no, 
+			delivery_code, 
+			order_type, 
+			create_time, 
+			payment_time, 
+			order_complete_time, 
+			cash_receipt_no, 
+			cash_receipt_url, 
+			cash_receipt_identity_number, 
+			cash_receipt_yn, 
+			cash_receipt_code, 
+			cash_receipt_status, 
+			cash_receipt_option, 
+			toss_order_no, 
+			toss_key,
+			unpaid,
+			catalog,
+			unpaid_memo,
+			lg_order_no
+		)VALUES(
+			#{memberNo},
+			#{receiverName},
+			#{receiverPhone},
+			#{receiverMobile},
+			#{zipcode},
+			#{address},
+			#{subAddress},
+			#{memo},
+			#{adminMemo},
+			#{settleLog},
+			#{settleKind},
+			#{status},
+			#{originPrice},
+			#{memberDc},
+			#{emoney},
+			#{coupon},
+			#{enuri},
+			#{deliveryType},
+			#{deliveryTitle},
+			#{deliveryPrice},
+			#{bankAccount},
+			#{bankSender},
+			#{bankName},
+			#{deliveryNo},
+			#{deliveryCode},
+			#{orderType},
+			now(),
+			#{paymentTime},
+			#{orderCompleteTime},
+			#{cashReceiptNo},
+			#{cashReceiptUrl},
+			#{cashReceiptIdentityNumber},
+			#{cashReceiptYn},
+			#{cashReceiptCode},
+			#{cashReceiptStatus},
+			#{cashReceiptYn},
+			#{tossOrderNo},
+			#{tossKey},
+			#{unpaid},
+			#{catalog},
+			#{unpaidMemo},
+			#{lgOrderNo}
+		)
+		
+	</insert>
+	
+	<update id="updateOrderItem" parameterType="com.brighten.idi.order.item.dto.OrderItemDto">
+		UPDATE idi_order_item
+		SET 
+			item_status = #{itemStatus},
+			cancel_no = #{cancelNo}
+		WHERE 
+			item_no = #{itemNo}
+	</update>
+	
+</mapper>	 

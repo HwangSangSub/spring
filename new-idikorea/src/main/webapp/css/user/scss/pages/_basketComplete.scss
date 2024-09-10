@@ -1,0 +1,116 @@
+
+
+.basket {
+
+    &-sect {
+        
+        &.sect {
+            
+            &-complete {}
+            &-receipt {}
+            &-bottom {}
+        }
+    }
+    &-complete {
+        @include flex-all-center;
+        flex-direction: column;
+        padding-top: transNum(60, pc);
+        @include pad {
+            padding-top: transNum(40, pad);
+        }
+        
+        h3 {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-family: $nanumS;
+            font-size: 24px;
+            color: #999999;
+            text-align: center;
+            margin: 33px 0 20px;
+            word-break: keep-all;
+            @include pad {
+                flex-direction: column;
+            }
+            
+            i {
+                font-weight: 700;
+            }
+            .point {
+                color: #333333;
+            }
+        }
+        h4 {
+            text-align: center;
+            font-size: 14px;
+            color: #666666;
+            font-family: "Verdana", Malgun Gothic;
+            line-height: 23px;
+            word-break: keep-all;
+        }
+    }
+    &-receipt {
+
+        &-li {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: px(46);
+            &.order-num {
+
+                .popovers {
+                    right: unset;
+                    left: 0;
+                }
+            }
+            
+            .popovers {
+                width: px(550);
+                @include pad {
+                    width: calc(100vw - transNum(100, pad));
+                }
+    
+                &-box {}
+            }
+            
+            &st {
+                width: 100%;
+                max-width: px(550);
+                @include pad {
+                    max-width: unset;
+                }
+                
+                &-wrap {
+                    @include flex-all-center;
+                    width: 100%;
+                }
+            }
+        }
+        &-tit {
+            @include flex-all-center;
+        }
+        &-info {
+            @include flex-all-center;
+            color: #666666;
+        }
+        &-btn {
+
+            &-popovers {
+                
+                .icon {
+                    position: relative;
+                    width: 16px;
+                    height: 16px;
+                    background: url('/images/user/common/idi_layer.png') no-repeat center;
+                }
+            }
+        }
+    }
+    &-bottom {
+        @include flex-all-center;
+        padding-top: transNum(40, pc);
+    }
+}
+
+
+

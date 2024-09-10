@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.brighten.idi.member.mapper.MemberMapper">
+	
+	<select id="member" parameterType="com.brighten.idi.member.dto.MemberDto" resultType="com.brighten.idi.member.dto.MemberDto" >
+		SELECT im.member_no,
+				im.member_id,
+				im.member_name,
+				im.christian_name,
+				im.password,
+				im.enabled,
+				im.gender,
+				im.birth_year,
+				im.birth,
+				im.calendar,
+				im.email,
+				im.zipcode,
+				im.address,
+				im.road_address,
+				im.sub_address,
+				im.phone,
+				im.mobile,
+				ie.emoney,
+				im.mailing,
+				im.sms,
+				im.last_login,
+				im.last_login_ip,
+				im.last_sale,
+				im.login_cnt,
+				im.memo,
+				im.recommid,
+				im.saint_date,
+				im.saint_date_bn,
+				im.zonecode,
+				im.sign,im.addr_yn,
+				im.level,
+				im.di,
+				im.create_time,
+				img.group_name ,
+				img.dc,
+				img.level
+		FROM IDI_MEMBER im
+		LEFT JOIN IDI_MEMBER_GROUP img
+		ON im.level = img.level
+		LEFT JOIN  ( SELECT  sum(emoney) emoney , member_no FROM idi_emoney GROUP BY member_no) ie
+		ON im.member_no = ie.member_no
+		WHERE 1=1
+		<if test='memberId !=null and memberId !=""'>
+			AND	im.member_id = #{memberId}
+		</if>
+		<if test='memberNo!=null and memberNo !=""'>
+			AND im.member_no = #{memberNo}
+		</if>
+<!-- 		<if test='username!=null and username !=""'>
+		</if> -->
+		<!-- <if test=''>
+		
+		</if> -->
+	</select>
+
+	<select id="passwordMatch" parameterType="HashMap" resultType="boolean">
+		SELECT if( #{encodedPassword} = password(#{rawPassword}) , 1, 0 )
+	</select>
+
+	<select id="passwordEncode" parameterType="String" resultType="String">
+		SELECT password(#{password})
+	</select>
+	
+	<select id="memberGroupList" resultType="com.brighten.idi.member.group.dto.MemberGroupDto">
+		SELECT *
+		FROM IDI_MEMBER_GROUP
+	</select>
+	
+	<select id="memberList" parameterType="com.brighten.idi.member.dto.MemberDto" resultType="com.brighten.idi.member.dto.MemberDto">
+		SELECT im.member_no,
+				im.member_id,
+				im.member_name,
+				im.christian_name,
+				im.password,
+				im.enabled,
+				im.gender,
+				im.birth_year,
+				im.birth,
+				im.calendar,
+				im.email,
+				im.zipcode,
+				im.address,
+				im.road_address,
+				im.sub_address,
+				im.phone,
+				im.mobile,
+				im.mailing,
+				im.sms,
+				im.last_login,
+				im.last_login_ip,
+				im.last_sale,
+				im.login_cnt,
+				im.memo,
+				im.recommid,
+				im.saint_date,
+				im.saint_date_bn,
+				im.zonecode,
+				im.sign,im.addr_yn,
+				im.level,
+				im.di,
+				im.create_time,
+				img.group_name groupName ,
+				ie.emoney 
+		<if test='sumPriceCheck!=null and sumPriceCheck==true'>
+			, a.totalBuyPrice
+		</if>
+		FROM idi_member im
+		JOIN idi_member_group img
+		ON im.level = img.level
+		LEFT JOIN (
+					SELECT member_no , SUM(emoney) emoney 
+					FROM idi_emoney
+					GROUP BY member_no
+					) ie
+		ON im.member_no = ie.member_no
+		<if test='sumPriceCheck!=null and sumPriceCheck==true'>
+		LEFT JOIN 
+		(SELECT SUM( ioi.price*ioi.ea) - SUM( ioi.member_dc*ioi.ea) totalBuyPrice , member_no
+		FROM idi_order IO
+		LEFT JOIN idi_order_item ioi
+		ON IO.order_no = ioi.order_no
+		AND ioi.item_status NOT IN( '주문취소' , '결제시도' , '결제실패', 'PG확인')
+		<if test='orderDate!=null and orderDate.length!=0'>
+			<if  test='orderDate[0]!=null'>
+				AND io.create_time >= '${orderDate[0]}'
+			</if> 
+			<if  test='orderDate.length==2 and orderDate[1]!=null'>
+				AND io.create_time <![CDATA[<=]]> '${orderDate[1]}'
+			</if> 
+		</if> 
+		GROUP BY IO.member_no) a 
+		ON im.member_no = a.member_no
+		</if>
+		WHERE 1=1
+		<if test='searchValue!=null and searchValue!="" and searchOption=="memberName"'>
+			AND im.member_name like CONCAT('%',#{searchValue},'%') 
+		</if>
+		<if test='searchValue!=null and searchValue!="" and searchOption=="memberId"'>
+			AND im.member_id like CONCAT('%',#{searchValue},'%') 
+		</if>
+		<if test='searchValue!=null and searchValue!="" and searchOption=="christianName"'>
+			AND im.christian_name like CONCAT('%',#{searchValue},'%') 
+		</if>
+		<if test='searchValue!=null and searchValue!="" and searchOption=="email"'>
+			AND im.email like CONCAT('%',#{searchValue},'%') 
+		</if>
+		<if test='searchValue!=null and searchValue!="" and searchOption=="phone"'>
+			AND im.phone like CONCAT('%',#{searchValue},'%') 
+		</if>
+		<if test='searchValue!=null and searchValue!="" and searchOption=="mobile"'>
+			AND im.mobile like CONCAT('%',#{searchValue},'%') 
+		</if>
+
+		<if test='birthDate!=null and birthDate.length!=0'>
+			<if  test='birthDate[0]!=null'>
+				AND date_format(concat(birthYear,birth),'%Y%m%d' ) >= '${birthDate[0]}'
+			</if> 
+			<if  test='birthDate.length==2 and birthDate[1]!=null'>
+				AND date_format(concat(birthYear,birth),'%Y%m%d' ) <![CDATA[<=]]> '${birthDate[1]}'
+			</if> 
+		</if> 
+		<if test='saveEmoney!=null and saveEmoney.length!=0'>
+			<if  test='saveEmoney[0]!=null'>
+				AND ie.emoney >= '${saveEmoney[0]}'
+			</if> 
+			<if  test='saveEmoney.length==2 and saveEmoney[1]!=null'>
+				AND ie.emoney <![CDATA[<=]]> '${saveEmoney[1]}'
+			</if> 
+		</if> 
+		<if test='sumPriceCheck!=null and sumPriceCheck==true and buyMoney!=null and buyMoney.length!=0'>
+			<if  test='buyMoney[0]!=null'>
+				AND a.totalBuyPrice >= '${buyMoney[0]}'
+			</if> 
+			<if  test='buyMoney.length==2 and buyMoney[1]!=null'>
+				AND a.totalBuyPrice <![CDATA[<=]]> '${buyMoney[1]}'
+			</if> 
+		</if> 
+		<if test='groupOption!=null and groupOption !="All"'>
+			AND im.level = #{groupOption}
+		</if>
+		<if test='genderType!="All" and genderType!=null'>
+			AND im.gender = #{genderType}
+		</if>
+		ORDER BY im.member_no desc
+<!-- 		AND member_id like CONCAT('%',#{SE},'%') -->
+		LIMIT #{itemSize}
+		OFFSET #{offset}
+	</select>
+	
+	<select id="memberListCnt" parameterType="com.brighten.idi.member.dto.MemberDto" resultType="Integer">
+		SELECT COUNT(*)
+		FROM idi_member im
+		JOIN idi_member_group img
+		ON im.level = img.level
+		LEFT JOIN (
+					SELECT member_no , SUM(emoney) emoney 
+					FROM idi_emoney
+					GROUP BY member_no
+					) ie
+		ON im.member_no = ie.member_no
+		<if test='sumPriceCheck!=null and sumPriceCheck==true'>
+		LEFT JOIN 
+		(SELECT SUM( ioi.price*ioi.ea) - SUM( ioi.member_dc*ioi.ea) totalBuyPrice , member_no
+		FROM idi_order IO
+		LEFT JOIN idi_order_item ioi
+		ON IO.order_no = ioi.order_no
+		AND ioi.item_status NOT IN( '주문취소' , '결제시도' , '결제실패', 'PG확인')
+		<if test='orderDate!=null and orderDate.length!=0'>
+			<if  test='orderDate[0]!=null'>
+				AND io.create_time >= '${orderDate[0]}'
+			</if> 
+			<if  test='orderDate.length==2 and orderDate[1]!=null'>
+				AND io.create_time <![CDATA[<=]]> '${orderDate[1]}'
+			</if> 
+		</if> 
+		GROUP BY IO.member_no) a 
+		ON im.member_no = a.member_no
+		</if>
+		WHERE 1=1
+		<if test='searchValue!=null and searchValue!="" and searchOption=="memberName"'>
+			AND im.member_name like CONCAT('%',#{searchValue},'%') 
+		</if>
+		<if test='searchValue!=null and searchValue!="" and searchOption=="memberId"'>
+			AND im.member_id like CONCAT('%',#{searchValue},'%') 
+		</if>
+		<if test='searchValue!=null and searchValue!="" and searchOption=="christianName"'>
+			AND im.christian_name like CONCAT('%',#{searchValue},'%') 
+		</if>
+		<if test='searchValue!=null and searchValue!="" and searchOption=="email"'>
+			AND im.email like CONCAT('%',#{searchValue},'%') 
+		</if>
+		<if test='searchValue!=null and searchValue!="" and searchOption=="phone"'>
+			AND im.phone like CONCAT('%',#{searchValue},'%') 
+		</if>
+		<if test='searchValue!=null and searchValue!="" and searchOption=="mobile"'>
+			AND im.mobile like CONCAT('%',#{searchValue},'%') 
+		</if>
+
+		<if test='birthDate!=null and birthDate.length!=0'>
+			<if  test='birthDate[0]!=null'>
+				AND date_format(concat(birthYear,birth),'%Y%m%d' ) >= '${birthDate[0]}'
+			</if> 
+			<if  test='birthDate.length==2 and birthDate[1]!=null'>
+				AND date_format(concat(birthYear,birth),'%Y%m%d' ) <![CDATA[<=]]> '${birthDate[1]}'
+			</if> 
+		</if> 
+		<if test='saveEmoney!=null and saveEmoney.length!=0'>
+			<if  test='saveEmoney[0]!=null'>
+				AND ie.emoney >= '${saveEmoney[0]}'
+			</if> 
+			<if  test='saveEmoney.length==2 and saveEmoney[1]!=null'>
+				AND ie.emoney <![CDATA[<=]]> '${saveEmoney[1]}'
+			</if> 
+		</if> 
+		<if test='sumPriceCheck!=null and sumPriceCheck==true and buyMoney!=null and buyMoney.length!=0'>
+			<if  test='buyMoney[0]!=null'>
+				AND a.totalBuyPrice >= '${buyMoney[0]}'
+			</if> 
+			<if  test='buyMoney.length==2 and buyMoney[1]!=null'>
+				AND a.totalBuyPrice <![CDATA[<=]]> '${buyMoney[1]}'
+			</if> 
+		</if> 
+		<if test='groupOption!=null and groupOption !="All"'>
+			AND im.level = #{groupOption}
+		</if>
+		<if test='genderType!="All" and genderType!=null'>
+			AND im.gender = #{genderType}
+		</if>
+<!-- 		AND member_id like CONCAT('%',#{SE},'%') -->
+	</select>
+	
+	<update id="updateMember" parameterType="com.brighten.idi.member.dto.MemberDto">
+		UPDATE idi_member
+		SET 
+			member_no = member_no
+			<if test='birth != null and birth != ""'>
+			,birth = #{birth}
+			</if>
+			<if test='birthYear != null and birth !=""'>
+			,birth_year = #{birthYear}
+			</if>
+			<if test='calendar.name() != null and calendar.name() != ""'>
+			,calendar = #{calendar}
+			</if>
+			<if test='christianName!=null and christianName!=""'>
+			,christian_name = #{christianName}
+			</if>
+			<if test='memberName != null and memberName !=""'>
+			,member_name = #{memberName}
+			</if>
+			<if test='memo != null and memo != ""'>
+			,memo = #{memo}
+			</if>
+			<if test='recommid != null and recommid != ""'>
+			,recommid = #{recommid}
+			</if>
+			<if test='mobile != null and mobile !=""'>
+			,mobile = #{mobile}
+			</if>
+			<if test='phone != null and phone !=""'>
+			,phone = #{phone}
+			</if>
+			<if test='roadAddress != null and roadAddress !=""'>
+			,road_address = #{roadAddress}
+			</if>
+			<if test='subAddress != null and subAddress !=""'>
+			,sub_address = #{subAddress}
+			</if>
+			<if test='zipcode != null and zipcode !=""'>
+			,zipcode = #{zipcode}
+			</if>
+			<if test='password != null and password !=""'>
+			,password = password(#{password})
+			</if>
+		WHERE 1=1
+		<if test='(memberId==null or memberId=="") and memberNo != null and memberNo !=""'>
+			AND member_no = #{memberNo}
+		</if>
+		<if test='(memberNo==null or memberNo=="") and memberId != null and memberId !=""'>
+			AND member_id = #{memberId}
+		</if>
+	</update>
+</mapper>	 

@@ -1,0 +1,387 @@
+
+.wrap-typeBrand {
+    .idi_footer {
+        margin-top: 0;
+    }
+}
+
+.brand {
+
+    &-sect {
+
+        &.sect {
+
+            &-idi {
+                position: relative;
+                width: 100%;
+                height: 890px;
+                background: url('/images/user/brand/brand_idi.png') no-repeat center center;
+                background-size: cover;
+            }
+            &-history {
+                position: relative;
+                width: 100%;
+                height: auto;
+                background: #474747;
+            }
+            &-story {
+                padding: 125px 0 150px;
+                @include pad {
+                    padding: 55px 0 60px;
+                }
+            }
+            &-rule {
+                background-color: #fafafa;
+                padding: 140px 0 140px;
+                @include pad {
+                    padding: 60px 0 40px;
+                }
+
+            }
+        }
+    }
+    &-gift {
+        padding: 122px 0 172px;
+        max-width: 650px;
+        margin: 0 auto;
+        text-align: center;
+
+        h2 {
+            font-family: 'nanum_basicR', sans-serif;
+            font-size: 30px;
+            color: #474747;
+            line-height: 46px;
+            @include mobile {
+                font-size: 26px;
+                line-height: 34px;
+            }
+        }
+        p {
+            margin-top: 35px;
+            line-height: 27px;
+            font-family: 'Malgun Gothic';
+            font-size: 15px;
+            color: #666666;
+            @include mobile {
+                padding: 0 50px;
+                margin-top: 30px;
+            }
+        }
+    }
+    &-idi {    
+        max-width: 600px;
+        margin: 0 auto;
+        text-align: center;
+
+        img {
+            margin-top: -50px;
+        }
+        p {
+            font-size: 15px;
+            font-family: 'Verdana', Malgun Gothic;
+            color: #666666;
+            line-height: 25px;
+            width: 77%;
+            margin: 40px auto 0;
+        }
+    }
+    &-list {
+        padding: 120px 0 135px;
+
+        ul {
+            display: flex;
+            justify-content: center;
+            gap: px(120);
+            // padding: 0 148px;
+            @include desktop {
+                // padding: 0;
+                gap: px(60);
+            }
+            @include laptop {
+                gap: px(30);
+            }
+            @include mobile {
+                flex-direction: column;
+                gap: px(60);
+            }
+
+                
+            > li {
+                flex: 1;
+                text-align: center;
+
+                h2 {
+                    font-family: $nanumS;
+                    font-weight: bold;
+                    font-size: 20px;
+                    color: #474747;
+                    margin: 56px 0 28px;
+                    @include mobile {
+                        margin: 26px 0 18px;
+                    }
+                }
+                p {
+                    font-size: 15px;
+                    color: #666666;
+                    line-height: 28px;
+                    text-align: left;
+                }
+            }
+        }
+    }
+    &-history {
+        padding: 132px 104px 138px 104px;
+        @include pad {
+            padding: px(60) 0;
+        }
+
+        h2 {
+            font-family: $nanumS, sans-serif;
+            font-size: 30px;
+            color: #ffffff;
+            text-align: center;
+            opacity: .8;
+            letter-spacing: 0.1em;
+        }
+
+        &-swiper {
+            position: relative;
+            
+            &-btn {
+                position: relative;
+                @include mobile {
+                    display: none;
+                }
+                &.prev {
+                    position: absolute;
+                    left: px(50);
+                    top: 50%;
+                    transform: translateY(-50%);
+                    @include pad {
+                        left: 22%;
+                        top: calc(50% - 150px);
+                    }
+                    &:hover img {
+                        // content: url('/images/user/brand/brand_slide_left_on.png');
+                    }
+                }
+                &.next {
+                    position: absolute;
+                    right: px(50);
+                    top: 50%;
+                    transform: translateY(-50%);
+                    @include pad {
+                        right: 22%;
+                        top: calc(50% - 150px);
+                    }
+                    &:hover img {
+                        // content: url('/images/user/brand/brand_slide_right_on.png');
+                    }
+                }
+            }
+            &-pagination {
+                
+            }
+            &-controller {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 2;
+            }
+        }
+        &-slide {
+            display: flex;
+            align-items: flex-start;
+            gap: px(83);
+            color: #fff;
+            padding: 70px 120px 80px;
+            overflow: hidden;
+            @include desktop {
+                gap: px(30);
+                padding: 50px 20px 60px;
+            }
+            @include pad {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            h3 {
+                font-family: 'pt_serif_i', sans-serif;
+                font-size: 20px;
+                color: #fff;
+                letter-spacing: 0.1em;
+            }
+
+            &-info {
+
+                p {
+                    font-family: $verdana, Malgun Gothic;
+                    font-size: 15px;
+                    color: #c3c3c3;
+                    margin-top: 25px;
+                    line-height: 28px;
+                }
+            }
+        }
+    }
+    &-story {
+
+        &-tit {
+            @include flex-all-center;
+            flex-direction: column;
+            font-family: $nanumS;
+            font-size: 30px;
+            color: #474747;
+            line-height: 46px;
+            @include pad {
+                display: block;
+                font-size: 24px;
+                line-height: 33px;
+                text-align: center;
+            }
+
+            b {
+                letter-spacing: 0.05em;
+            }
+            p {
+                display: inline;
+            }
+        }
+        &-poster {
+            @include flex-all-center;
+            flex-direction: column;
+            background: url('/images/user/brand/brand_story_bg.png') no-repeat center;
+            aspect-ratio: 1200 / 465;
+            margin-top: px(70);
+            @include pad {
+                padding: px(30) px(15);
+            }
+
+            h4 {
+                font-family: $playBasicItalic;
+                font-size: 48px;
+                color: #fff;
+                letter-spacing: 0.1em;
+                @include pad {
+                    font-size: 32px;
+                }
+            }
+            p {
+                font-family: $nanumS;
+                font-weight: 300;
+                font-size: 19px;
+                color: #fff;
+                margin-top: 22px;
+                @include pad {
+                    font-size: 15px;
+                    margin-top: 15px;
+                    text-align: center;
+                    word-break: keep-all;
+                }
+            }
+
+            &-wrap {}
+        }
+        &-li {
+            flex: 1;
+            font-size: 15px;
+            color: #666666;
+            line-height: 26px;
+
+            &st {
+                display: flex;
+                justify-content: center;
+                gap: 10px 100px;
+                @include desktop {
+                    gap: 10px 60px;
+                }
+                @include pad {
+                    flex-direction: column;
+                    gap: 30px;
+                }
+
+                &-wrap {
+                    padding: px(70) px(128);
+                    @include desktop {
+                        padding: px(70) px(0);
+                    }
+                    @include pad {
+                        padding: px(30) px(0);
+                    }
+                }
+            }
+        }
+    }
+    &-rule {
+        display: flex;
+        justify-content: center;
+        gap: 128px;
+        @include laptop {
+            gap: px(60);
+        }
+        @include pad {
+            flex-direction: column;
+            gap: px(40);
+        }
+
+        &-philosophy {
+            width: 200px;
+            @include pad {
+                width: auto;
+                text-align: center;
+            }
+
+            h2 {
+                font-family: $nanumS;
+                font-weight: 300;
+                font-size: px(30);
+                color: #474747;
+                margin-bottom: px(30);
+            }
+            p {
+                font-size: px(15);
+                color: #666;
+                line-height-step: px(26);
+            }
+        }
+        &-list {
+            &.ordered-num-list {
+
+                > li {
+                    align-items: center;
+                    color: #666;
+                    font-size: 15px;
+                    line-height: 20px;
+                    gap: px(15);
+                    &::before {
+                        flex: 0 0 px(30);
+                        width: 30px;
+                        height: 30px;
+                        background-color: #474747;
+                        color: #fff;
+                        font-family: $playBasicItalic;
+                        font-size: px(18);
+                        line-height: px(27 - 2);
+                        text-align: center;
+                    }
+                }
+            }
+
+            > li {
+                &:not(:first-child) {
+                    padding-top: 30px;
+                }
+            }
+            
+            &-wrap {
+                padding-top: px(60);
+                @include pad {
+                    padding-top: 0;
+                }
+    
+            }
+        }
+    }
+}

@@ -1,0 +1,359 @@
+
+// nav 변수
+$navGap: transNum(68, pc);
+$modalNavPY : 20px;
+
+// nav 변수
+
+
+/* 공통 네비 */
+
+.user-menu {
+    @include flex-all-center;
+    gap: 26px;
+    
+    .link {           
+        color:#666666;
+        font-family: $ptSansCaption, sans-serif;
+        font-size:13px;
+    }
+}
+
+/* //공통 네비 */
+
+
+/* 해더 네비 */
+.header-nav {
+    .nav {
+        height: 100%;
+        @include desktopMin {
+            display: none;
+        }
+    
+        @each $name in $navNames {
+            &-#{$name}li {
+                @if($name == '') {
+                    position: relative;
+                    @include flex-all-center;
+                    height: px(50);
+                    &.active {
+                        .nav-link {
+                            &::before {
+                            }
+                        }
+                    }
+                    &.current {
+                        &::before {
+                            display: block;
+                        }
+                    }
+                    &:nth-child(1) {
+                        /* 중앙 배열의 위한 여백추가 */
+                        margin-left: transNum(64, pc);
+                    }
+                    &:nth-child(4) {
+                        /* logo 나둘 거리 확보 */
+                        margin-left: transNum(224, pc);
+                    }
+                    &:has(.current)::before {
+                        display: block;
+                    }
+                    &::before {
+                        content: '';
+                        position: absolute;
+                        left: 50%;
+                        top: 0;
+                        transform: translate(-50%, -50%);
+                        display: none;
+                        width: 5px;
+                        height: 5px;
+                        border-radius: 50%;
+                        background-color: #000000;
+
+                    }
+                }
+                @if($name == 'sub') {
+                }
+                @if($name == 'third'){
+                }
+                &.active {               
+                }
+    
+                &st {
+                    @if($name == '') {
+                        position: absolute;
+                        position: relative;
+                        // bottom: transNum(16, pc);
+                        display: flex;
+                        align-items: flex-end;
+                        justify-content: space-around;
+                        gap: $navGap;
+                        height: 100%;
+                        padding: 0 $navGap;
+                    }
+                    @if($name == 'sub') {
+                    }
+                    @if($name == 'third'){
+                    }
+    
+                    &-wrap {
+                        display: none;
+                        &.checkH {                                      
+                            @if($name == 'sub') {               
+                            }
+                        }                    
+                        &.active {  
+                            @if($name == '') {
+                                &::before {
+                                }
+                            }                  
+                            @if($name == 'sub') {
+                            }
+                        }
+                    }
+                }
+                &nk {
+                    @include flex-all-center;
+                    @if($name == '') {
+                        font-family: $ptCSans, sans-serif;
+                        font-weight: bold;
+                        font-size: px(14);
+                        letter-spacing: 0.13rem;
+                        @include laptop {
+                            @include transFontsize(14, laptop, false);
+                        }
+                        &:lang(en) {
+                            text-transform: uppercase;
+                        }
+                        &:hover {
+                            // color: $colorRed;
+                        }
+                        // }
+                    }
+                    @if($name == 'sub') {
+                        &:hover {
+                        }
+                    }
+                    @if($name == 'third') {
+                    }
+                }
+            }
+    
+        }
+    }
+}
+/* //해더 네비 */
+
+
+/* 서브메뉴의 네비 */
+.subnav {
+
+    &-wrap {
+        &.up {
+        }
+        &.meet {           
+        }
+        &.hide {
+        }
+
+        .layout {        }
+    }
+    &-layout {
+        // .subnav-layout 
+    }
+    &-home {
+        
+    }
+    &-submenu {
+
+        &-layout {
+        }
+        &-li {
+            &.active {
+                &.open {
+                }
+                
+                > [class*=link] { 
+                }
+                .subnav-submenu-link {
+                }
+
+
+            }
+            &.left {
+                .subnav-thirdmenu {
+                }
+            }
+            &.right {
+                .subnav-thirdmenu {
+                }
+            }
+            &.center {
+                .subnav-thirdmenu {
+                }
+            }            
+            &.open {
+                @include laptop {
+                    // height: auto;
+                    
+                    .subnav-submenu-li {                       
+                    }
+                    .subnav-submenu-link {
+                        // height: $subnavH - 10px;
+                    }
+                    .subnav-thirdmenu {
+                        // display: block;
+                    }
+                }
+                &::before {
+                }
+            }
+
+            &st {
+                &:has(.open) {
+
+                    .subnav-submenu-li{
+                    }
+                }
+            }
+            &nk {
+            }
+        }
+        &-now {
+        }
+        &-wrap {
+        }
+
+    }
+    &-thirdmenu {
+
+        &-li {
+
+            &.active {
+            }
+
+            [class*=link] {  
+            }
+
+            &st {
+            }
+            &nk {
+            }
+        }
+        &-now {
+        }
+        &-wrap {
+        }
+    }
+
+
+}
+/* //서브메뉴의 네비 */
+
+
+
+/* modal 네비 / 전체 네비 */
+
+.modal-nav {
+
+    .nav {
+        
+        @each $name in $navNames {
+            &-#{$name}li {
+                @if($name == '') {
+                    // padding: 19px 0;
+                    width: 100%;
+                    @include flex-all-center;
+                    // cursor: pointer;
+                }
+                @if($name == 'sub') {
+                }
+                @if($name == 'third'){
+                }
+                @if($name == 'fourth'){
+                }
+                &.active {  
+                    @if($name == '') {
+                    }
+                    @if($name == 'sub') {
+                    }
+                    @if($name == 'third'){
+                    }
+                    @if($name == 'fourth'){
+                    }           
+                }
+    
+                &st {
+                    @if($name == '') {
+                        display: flex;
+                        align-items: center;
+                        flex-direction: column;
+                        padding-top: $modalNavPY;
+                    }
+                    @if($name == 'sub') {
+                    }
+                    @if($name == 'third'){
+                    }
+                    @if($name == 'fourth'){
+                    }
+    
+                    &-wrap {
+                        display: none;
+                        @if($name == 'sub') {
+                            // display: none;
+                        }
+                        @if($name == 'third'){
+                            // display: none;
+                        }
+                        @if($name == 'fourth'){
+                            // display: none;
+                        }
+                    }
+                }
+                &nk {
+                    position: relative;
+                    @if($name == '') {
+                        @include flex-all-center;
+                        gap: 10px;
+                        width: 100%;
+                        padding: $modalNavPY 0;
+                        cursor: pointer;
+                        font-family: $ptSansCaption, sans-serif;
+                        font-size: 14px;
+                        letter-spacing: 0.08em;
+                        color: #666;
+                        text-transform: uppercase;
+                        &:hover {
+                            &::before {
+                                opacity: 1;
+                            }
+                        }
+                        &::before {
+                            content: '';
+                            // position: absolute;
+                            // top: 50%;
+                            // transform: translateY(-50%);
+                            // left: -14px;
+                            position: relative;
+                            display: block;
+                            width: 5px;
+                            height: 5px;
+                            background: #000000;
+                            border-radius: 50%;
+                            opacity: 0;
+                            transition: opacity .5s;
+                        }
+                    }
+                    @if($name == 'sub') {
+                    }
+                    @if($name == 'third'){
+                    }
+                    @if($name == 'fourth'){
+                    }
+                }
+            }
+    
+        }
+    }
+}
+/* //modal 네비 / 전체 네비  */

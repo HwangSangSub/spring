@@ -1,0 +1,402 @@
+// 레이아웃 사이즈
+$sizeLayout : 1200;
+$sizeLayoutMax : 1903;
+$layoutPadding : 40;
+$layoutPaddingLaptop : 20;
+$layoutPaddingMobile : 15;
+
+// 반응형 크기(px 기준)
+
+$sizeMinMobile: 449;
+$sizeMobile: 509;
+$sizeMaxMobile: 616;
+
+$sizeMinPad: 676;
+$sizePad: 768;
+$sizeMaxPad: 839;
+
+$sizeMinLaptop: 899;
+$sizeLaptop: 1023;
+$sizeMaxLaptop: 1199;
+
+$sizeMinDesktop: 1289;
+$sizeDesktop: 1439;
+$sizeMaxDesktop: 1589;
+
+$sizeHighMaxDesktop: 1919;
+
+// 폰트
+$fontsize : 14; 
+$fontsizePad : 14;
+$fontSpacing : 0.00; 
+$ptCSans : 'PT C-Sans';
+$ptSansCaption : 'PT Sans Caption';
+$verdana : "Verdana";
+$nanumS : "NanumSquare";
+$playfairDisplaySC : "Playfair Display SC";
+$playBasic : "play_basic_Regular";
+$playBasicItalic : "play_basicRI";
+$notoKr : "NotoKR";
+
+// $fontSpacingPad : -0.09rem; // -0.75px
+// $fontSpacingMobile : -0.1125rem; // -0.75px
+
+
+
+
+// 삼각형 제작에 필요, 향하는 방향, 영향받는 길이, 가장 긴 길이을 차지하는 방향
+$directionArr : 
+'top' 'width' 'bottom',
+'right' 'height' 'left', 
+'bottom' 'width' 'top', 
+'left' 'height' 'right';
+
+
+// minmap, 필요시 수치 조정, 한칸당 110 * 30
+// $mindmapGrid : (
+// 1: (box1: (type: "top", col: 2, row: 3), box2: (type: "empty", col: 1, row: 3), box3: (type: "top", col: 5, row: 3), box4: (type: "empty", col: 1, row: 3), box5: (type: "top", col: 2, row: 3)),
+// 2: (box1: (type: "empty", col: 11, row: 1)),
+// 3: (box1: (type: "box", col: 2, row: 2), box2: (type: "empty", col: 1, row: 2), box3: (type: "box", col: 3, row: 2), box4: (type: "empty", col: 3, row: 2), box5: (type: "box", col: 2, row: 2)),
+// 4: (box1: (type: "box", col: 2, row: 6), box2: (type: "arrow", col: 1, row: 6), box3: (type: "box", col: 3, row: 6), box4: (type: "arrow", col: 1, row: 6), box5: (type: "stepbox", col: 1, row: 6), box6: (type: "arrow", col: 1, row: 6), box7: (type: "box", col: 2, row: 6)),
+// 5: (box1: (type: "arrow", col: 2, row: 1), box2: (type: "empty", col: 7, row: 1), box3: (type: "arrow", col: 2, row: 1)),
+// 6: (box1: (type: "arrow", col: 3, row: 2), box2: (type: "stepbox", col: 5, row: 2), box3: (type: "arrow", col: 3, row: 2))
+// );
+
+
+// main
+
+
+// 경로
+// $path : '/novogen/assets';
+// $path : '/assets';
+
+//  상대경로
+// $path : '../../../../assets';
+$path : '';
+
+
+
+// header
+$headerTopmenuH : 74;
+
+$headerMainmenuH : 0;
+$headerMainmenuPadH : 50;
+$headerMainmenuMobileH : 50;
+
+$headerH : $headerTopmenuH + $headerMainmenuH;
+
+
+// nav 1차, 2차, 3차메뉴 클래스 구분
+$navNames : '', 'sub', 'third', 'forth';
+// $navSubListH : 284px;
+// $navLinkH : 16px;
+$navLiH : 52;
+
+
+// sub banner
+
+
+// subnav
+$subnavH : 60;
+$subnavLaptopH : 50;
+$subnavMobileH : 45;
+$subnavMenuW : 25;
+$subnavMenuH : 50;
+
+
+
+// scrollbar size
+$scrollbarW : 80px;
+$scrollbarPadW : 60px;
+$scrollbarMobileW : 50px;
+
+
+// $subbanners : 
+// 'login' '0002',
+// 'pw' '0003',
+// 'result' '0004',
+// 'platform'  '1', 
+// 'hub'  '2', 
+// 'matching' '3', 
+// 'show'  '4', 
+// 'laboratory'  '5', 
+// 'support' '6';
+
+
+// search-wrap border-top, 게시판 타이틀 있을 시 반응형 높이
+// $hasTitBoardPadTop : 95px;
+$hasTitBoardPadTop : 70px;
+
+// pagenavigation classname
+$pnavArr : 'first', 'prev', 'num', 'next', 'last';
+
+
+// main
+$mainPaddingT : 100;
+$mainPaddingPadT : 45;
+$mainPaddingB : 140;
+$mainPaddingPadB : 90;
+
+
+// main care line
+$careLines : (
+    'line' : cleansing,
+    'imgTit' : m_care1,
+    'top' : -65px,
+    'width' : 20px,
+    'height' : 46px,
+    'color' : #b79c67,
+    'bgColor' : #f7f1e7
+), (
+    'line' : skin,
+    'imgTit' : m_care2,
+    'top' : -65px,
+    'width' : 22px,
+    'height' : 46px,
+    'color' : #009b41,
+    'bgColor' : #f5f6e8
+), (
+    'line' : special,
+    'imgTit' : m_care3,
+    'top' : -53px,
+    'width' : 33px,
+    'height' : 27px,
+    'color' : #fb872b,
+    'bgColor' : #faeee4
+), (
+    'line' : premium,
+    'imgTit' : m_care4,
+    'top' : -65px,
+    'width' : 20px,
+    'height' : 45px,
+    'color' : #d55b92,
+    'bgColor' : #f7e7ef
+), (
+    'line' : bodyHair,
+    'imgTit' : m_care5,
+    'top' : -65px,
+    'width' : 23px,
+    'height' : 43px,
+    'color' : #a528ae,
+    'bgColor' : #f8e9f7
+);
+// main care line
+
+// main bia
+$biaLines : (
+    'line' : coffee,
+    'imgTit' : m_bia,
+    'top' : unset,
+    'width' : auto,
+    'height' : auto,
+    'color' : #795039,
+    'bgColor' : #e9e4dc
+), (
+    'line' : sample,
+    'imgTit' : m_sample,
+    'top' : unset,
+    'width' : auto,
+    'height' : auto,
+    'color' : #000,
+    'bgColor' : #fff
+);
+// main care
+
+
+// sub subbanner pages 글자에 따른 이미지
+$subbanners : (
+    'name' : unquote($string: "site helper"),
+    'imgUrl' : '/images/user/sub/sub_common_bg.png',
+    'height' : 334
+    ),(
+    'name' : unquote($string: "basket"),
+    'imgUrl' : '/images/user/basket/basket_bg.png',
+    'height' : 334
+    ),(
+    'name' : unquote($string: "since 1857"),
+    'imgUrl' : '/images/user/brand/brand_sub_bg.png',
+    'height' : 560
+    ), (
+    'name' : unquote($string: "product"),
+    'imgUrl' : '/images/user/product/prod_sub_bg.jpg',
+    'height' : 334
+    ), (
+    'name' : unquote($string: "Frequently Asked questions"),
+    'imgUrl' : '/images/user/qna/qna_bg.jpg',
+    'height' : 334
+    ), (
+        'name' : unquote($string: "media"),
+        'imgUrl' : '/images/user/media/media_bg.jpg',
+        'height' : 334
+    ), (
+        'name' : unquote($string: "event"),
+        'imgUrl' : '/images/user/event/event_bg.jpg',
+        'height' : 334
+    ), (
+        'name' : unquote($string: "mypage"),
+        'imgUrl' : '/images/user/mypage/mypage_bg.png',
+        'height' : 334
+    );
+// //sub pages
+
+
+// boardnormal,  클래스명 flex_basis flexsize
+// $boardNormalList : 
+// 'num' 90px 0,
+// 'tit' 0 7,
+// 'writer' 0 2,
+// 'date' 0 1.5,
+// 'hits' 0 1.5,
+// 'attach' 0 1;
+$bdNormalList : 
+'num' 100px 0,
+'tit' 0 6.4,
+'attachment' 0 1.2,
+'writer' 0 1.2,
+'day' 0 1.4,
+'hits' 0 1.0,
+'else' 0 1.0,
+;
+
+// boardresult, 이미지일반게시판+반응박스형,  클래스명 flex_basis flexsize
+$boardResultList : 
+'num' 90px 0,
+'img' 80px 0,
+'tit' 0 7,
+'writer' 0 2,
+'date' 0 1.5,
+'btns' 100px 1;
+
+
+// board basket order
+$bdBasketList : 
+'num' 90px 0,
+'img' 140px 0,
+'name' 0 5,
+'fund' 0 1.5,
+'sum' 0 2.0,
+'price' 0 2.5,
+'order-price' 0 2.5,
+'check-buy' 0 1.0,
+'day' 120px 0,
+'period' 250px 0,
+'cate' 120px 0.0,
+'else' 0 1.0
+;
+$bdOrderList : 
+'img' 140px 0,
+'name' 0 7,
+'sum' 0 1.5,
+'price' 0 2.5,
+'order-price' 0 2.5,
+'else' 0 1.0,
+'info' 0 4.0
+;
+$bdModalAddList : 
+'nickname' 140px 0,
+'name' 0 2,
+'tel' 0 2,
+'phone' 0 1.5,
+'post' 0 1.5,
+'address' 0 4;
+$bdMypageAddList : 
+'num' 80px 0,
+'nickname' 0 1.5,
+'cont' 0 3.5,
+'base' 0 1.0,
+'modify' 0 1.0,
+'remove' 0 1.0,
+'ordername' 0 1.0,
+'date' 0 0.3,
+'episode' 0 0.3,
+'change' 0 0.5,
+'more' 0 0.5,
+'order-date' 0 1.5,
+'order-prod' 0 4.0,
+'price' 0 1.0,
+'state' 0 1.0,
+'cancel' 0 1.0,
+'else' 0 1.0
+;
+
+$bdNormalHeadH: 45;
+$bdOrderHeadH: 45;
+
+$bdTypes : 'v', 'fm', 'bd', 'bdQ';
+// //board basket order
+
+
+// bdNormalL 의 높이나 사용한 값
+$bdNormalLHeadH: 54;
+$bdNormalLHeadW: 180;
+
+
+// 제품 태그
+$productTags : (
+        'name' : unquote($string: "베스트"),
+        'color' : #51bec0,
+        'borderColor' : #51bec0,
+        'borderWidth' : 2,
+        'bgColor' : #ffffff
+    ),(
+        'name' : unquote($string: "신상품"),
+        'color' : #fb8e8c,
+        'borderColor' : #fb8e8c,
+        'borderWidth' : 2,
+        'bgColor' : #ffffff
+    ),(
+        'name' : unquote($string: "이벤트"),
+        'color' : #bf6dd8,
+        'borderColor' : #bf6dd8,
+        'borderWidth' : 2,
+        'bgColor' : #ffffff
+    ),(
+        'name' : unquote($string: "인기"),
+        'color' : #e33886,
+        'borderColor' : #e33886,
+        'borderWidth' : 2,
+        'bgColor' : #ffffff
+    ),(
+        'name' : unquote($string: "추천"),
+        'color' : #001e41,
+        'borderColor' : #001e41,
+        'borderWidth' : 2,
+        'bgColor' : #ffffff
+    ),(
+        'name' : unquote($string: "기획"),
+        'color' : #0dac59,
+        'borderColor' : #0dac59,
+        'borderWidth' : 2,
+        'bgColor' : #ffffff
+    ),(
+        'name' : unquote($string: "세일"),
+        'color' : #f88122,
+        'borderColor' : #f88122,
+        'borderWidth' : 2,
+        'bgColor' : #ffffff
+    ),(
+        'name' : unquote($string: "예약"),
+        'color' : #bda474,
+        'borderColor' : #bda474,
+        'borderWidth' : 2,
+        'bgColor' : #ffffff
+    ),(
+        'name' : unquote($string: "품절"),
+        'color' : #888888,
+        'borderColor' : #b4b4b4,
+        'borderWidth' : 2,
+        'bgColor' : #ffffff
+    ),(
+        'name' : unquote($string: "더보기"),
+        'color' : #9e9e9e,
+        'borderColor' : #9e9e9e,
+        'borderWidth' : 2,
+        'bgColor' : #ffffff
+    );
+
+
+
+
+// base width
+$width290 : 290px;
+

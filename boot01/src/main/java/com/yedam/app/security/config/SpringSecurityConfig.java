@@ -36,7 +36,7 @@ public class SpringSecurityConfig {
 				User.builder() 
 				.username("admin1")
 				.password(passwordEncoder().encode("1234"))
-				.authorities("ROLE_ADMIN")
+				.authorities("ROLE_ADMIN", "ROLE_USER") // 동시에 권한을 부여할 수 있다.
 				.build(); // 생성
 		
 		return new InMemoryUserDetailsManager(user, admin);
@@ -58,9 +58,9 @@ public class SpringSecurityConfig {
 					.anyRequest().authenticated()// 위에 정의된 부분을 제외한 나머지 들을 일괄처리 한다.// 권한상관없이 인증만 받은 모든 사용자 (나머지 부분에서는 인증을 받아야한다)
 			)// 권한설정
 			.formLogin(formlogin -> formlogin
-					.defaultSuccessUrl("/all")) // 로그인 성공 시 이동할 기본 페이지
+					.defaultSuccessUrl("/all")) // 로그인 성공 시 이동할 기본 페이지(리다이렉트 경로)
 			.logout(logout -> logout
-					.logoutSuccessUrl("/login")) // 로그아웃이 성공할 경우 이동할 페이지
+					.logoutSuccessUrl("/login")) // 로그아웃이 성공할 경우 이동할 페이지(자동완성에 아이콘에 사선이 있으면 그방식을 사용하지 말라는 의미) > 로그아웃에서는 무조건 커스텀마이징을 하라는 의미
 			;
 		return http.build();
 	}// end filterChain

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.brighten.idi.category.mapper.CategoryMapper">
+
+	<select id="category" parameterType="String" resultType="com.brighten.idi.category.dto.CategoryDto">
+		SELECT *
+		FROM idi_category 
+		<if test='_parameter!=null and _parameter!=""'>
+		WHERE hidden = 0
+		AND (length(category_code)=3 || category_code LIKE '009%')
+		AND category_code != 009
+		</if>
+		ORDER BY sort
+	</select> 
+	
+</mapper>	 

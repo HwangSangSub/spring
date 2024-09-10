@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.brighten.idi.test.TestMapper">
+	
+	<select id="selectOriginMember" resultType="HashMap" parameterType="int">
+		SELECT *
+		FROM ZBR_MEMBER
+		limit 50
+		OFFSET #{i}
+	</select>
+
+	<select id="originMemberCount" resultType="int">
+		SELECT COUNT(*)
+		FROM zbr_member
+	</select>
+
+	<insert id="newMemberInsert" parameterType="list">
+	
+			INSERT INTO IDI_MEMBER_COPY
+			(
+				member_no,
+				member_id,
+				member_name,
+				christian_name,
+				password,
+				enabled,
+				gender,
+				birth_year,
+				birth,
+				calendar,
+				email,
+				zipcode,
+				address,
+				road_address,
+				sub_address,
+				phone,
+				mobile,
+				emoney,
+				mailing,
+				sms,
+				last_login,
+				last_login_ip,
+				last_sale,
+				login_cnt,
+				memo,
+				recommid,
+				saint_date,
+				saint_date_bn,
+				zonecode,
+				sign,
+				addr_yn,
+				level,
+				di,
+				create_time
+			)VALUES
+		<foreach item="item"  collection="list" separator=",">
+			(
+				#{item.m_no},
+				#{item.m_id},
+				#{item.name},
+				#{item.nickname},
+				#{item.password},
+				#{item.status},
+				#{item.sex},
+				#{item.birth_year},
+				#{item.birth},
+				#{item.calendar},
+				#{item.email},
+				#{item.zipcode},
+				#{item.address},
+				#{item.road_address},
+				#{item.address_sub},
+				#{item.phone},
+				#{item.mobile},
+				#{item.emoney},
+				#{item.mailing},
+				#{item.sms},
+				#{item.last_login},
+				#{item.last_login_ip},
+				#{item.last_sale},
+				#{item.cnt_login},
+				#{item.memo},
+				#{item.recommid},
+				#{item.namedate},
+				#{item.namebn},
+				#{item.zonecode},
+				#{item.sign},
+				#{item.addrYN},
+				#{item.level},
+				#{item.di},
+				#{item.regdt}
+			)
+		</foreach>
+	
+	</insert>
+	
+	<select id="originGrp" resultType="HashMap">
+		SELECT *
+		FROM zbr_member_grp
+	</select>
+	
+<!-- 	<update id="newGrpInsert" parameterType="HashMap">
+		update idi_emoney
+		set emoney = 73510
+		where emoney_id = 327681 
+	</update> -->
+ 	
+	<insert id="newGrpInsert" parameterType="HashMap">
+		INSERT INTO idi_member_group
+		(
+			level,
+			group_name,
+			dc,
+			add_emoney,
+			free_delivery,
+			excate,
+			excep,
+			create_time,
+			update_time
+		)VALUES(
+			#{level},
+			#{grpnm},
+			#{dc},
+			#{add_emoney},
+			#{free_deliveryfee},
+			#{excate},
+			#{excep},
+			#{regdt},
+			#{moddt}
+		)
+	</insert> 
+	
+	
+	<!-- 멤버테이블 이관 쿼리
+	INSERT INTO idi_member
+(member_no,
+member_id,
+member_name,
+christian_name,
+password,
+enabled,
+gender,
+birth_year,
+birth,
+calendar,
+email,
+zipcode,
+address,
+road_address,
+sub_address,
+phone,
+mobile,
+emoney,
+mailing,
+sms,
+last_login,
+last_login_ip,
+last_sale,
+login_cnt,
+memo,
+recommid,
+saint_date,
+saint_date_bn,
+zonecode,
+sign,
+addr_yn,
+level,
+di,
+create_time)
+SELECT m_no,
+				m_id,
+				name,
+				nickname,
+				password,
+				status,
+				sex,
+				birth_year,
+				birth,
+				calendar,
+				email,
+				zipcode,
+				address,
+				road_address,
+				address_sub,
+				phone,
+				mobile,
+				emoney,
+				mailling,
+				sms,
+				last_login,
+				last_login_ip,
+				last_sale,
+				cnt_login,
+				memo,
+				recommid,
+				namedate,
+				namebn,
+				zonecode,
+				sign,
+				addrYN,
+				level,
+				di,
+				regdt
+FROM zbr_member 
+	
+	  -->
+</mapper>	 

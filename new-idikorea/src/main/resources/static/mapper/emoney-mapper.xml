@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.brighten.idi.emoney.mapper.EmoneyMapper">
+	
+	<select id="emoneyList" parameterType="com.brighten.idi.member.dto.MemberDto" resultType="com.brighten.idi.emoney.dto.EmoneyDto">
+		SELECT *
+		FROM idi_emoney
+		WHERE member_no = #{memberNo}
+		ORDER BY create_time
+		LIMIT 20
+		OFFSET #{offset}
+	</select>
+	
+	<insert id="insertEmoney" parameterType="com.brighten.idi.emoney.dto.EmoneyDto">
+		INSERT INTO idi_emoney
+		(
+			member_no,
+			order_no,
+			emoney,
+			memo,
+			create_time
+		)VALUES(
+			#{memberNo},
+			#{orderNo},
+			<if test='emoney!=null and sumPrice == null'>
+				#{emoney},
+			</if>
+			<if test='emoney==null and sumPrice != null'>
+				(SELECT #{sumPrice}*save_emoney_percent/100 FROM idi_emoney_info ORDER BY create_time desc LIMIT 1),
+			</if>
+			#{memo},
+			now()
+		)
+	</insert>
+	
+	<select id="emoneyInfo" resultType="com.brighten.idi.emoney.dto.EmoneyInfoDto">
+		SELECT *
+		FROM idi_emoney_info
+		ORDER BY id desc
+		LIMIT 1	
+	</select>
+</mapper>	 
