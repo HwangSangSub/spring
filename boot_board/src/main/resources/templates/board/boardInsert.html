@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{common/layouts/default_layout}"
+	layout:fragment="Content">
+<h3>게시글 정보 등록</h3>
+ <!-- onSubmit="return Checkform()" --> 
+<form th:action="@{/boardInsert}" name="insertForm" method="post" class="form-control">
+	<div class="input-group mb-3">
+		<label for="title" class="input-group-text" >제목</label> <input type="text" id="title"
+			name="title" class="form-control" >
+	</div>
+	<div class="input-group mb-3">
+		<label for="contents" class="input-group-text" >내용</label>
+		<textarea id="contents" name="contents" class="form-control" ></textarea>
+	</div>
+	<div class="input-group mb-3">
+		<label for="writer" class="input-group-text" >작성자</label> <input type="text" class="form-control"  id="writer"
+			name="writer">
+	</div>
+	<div class="input-group mb-3">
+		<label for="image" class="input-group-text" >첨부파일</label> <input type="text" class="form-control"  id="image"
+			name="image">
+	</div>
+	<div class="input-group mb-3">
+		<label for="regdate" class="input-group-text" >작성일자</label> <input type="date" class="form-control"  id="regdate"
+			name="regdate">
+	</div>
+	<div>
+		<button type="submit" class="btn btn-primary">저장</button>
+	</div>
+</form>
+<script>
+	// submit을 하기 전 제목, 작성자, 작성일자 확인
+	$(insertForm).on('submit', boardInsertHandler);
+	
+	function boardInsertHandler(event){
+		event.preventDefault();// submit의 이벤트를 멈추는 명령문
+		
+		let title = $('form [name="title"]');
+		if(title.val() == ''){
+			alert("제목이 입력되지 않았습니다.");
+			title.focus();
+			return;
+		}
+
+		let writer = $('form [name="writer"]');
+		if(writer.val() == ''){
+			alert("작성자가 입력되지 않았습니다.");
+			writer.focus();
+			return;
+		}
+		
+		let regdate = $('form [name="regdate"]');
+		if(regdate.val() == ''){
+			alert("작성일자가 입력되지 않았습니다.");
+			regdate.focus();
+			return;
+		}
+		alert('게시글이 등록되었습니다.');
+		insertForm.submit();
+	}
+	/*
+	function Checkform() {
+
+		if (insertForm.title.value == "") {
+			insertForm.title.focus();
+			alert("제목을 입력해 주십시오.");
+			return;
+		}
+
+		if (insertForm.writer.value == "") {
+			insertForm.writer.focus();
+			alert("작성자를 입력해 주십시오.");
+			return;
+		}
+
+		if (insertForm.regdate.value == "") {
+			insertForm.regdate.focus();
+			alert("등록일자를 입력해 주십시오.");
+			return;
+		}
+
+	}
+	*/
+</script>

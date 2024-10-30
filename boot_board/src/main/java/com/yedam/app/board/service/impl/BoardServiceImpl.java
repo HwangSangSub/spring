@@ -1,5 +1,7 @@
 package com.yedam.app.board.service.impl;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -48,22 +50,28 @@ public class BoardServiceImpl implements BoardService{
 		if(result == 1) {
 			isSuccessed = true;
 		}
+		
+		String updateDate = getUpdateDate(); // 내부 메소드를 사용
+		
+		map.put("date", updateDate);
 		map.put("result", isSuccessed);
 		map.put("target", boardVO);
 		return map;
 	}// end boardUpdate
+	
+	// 내부적인 메소드
+	private String getUpdateDate() {
+		// 날짜를 다루는 클래스 > now() : 현재 시점
+		// format 때문에 사용한다.
+		LocalDate today = LocalDate.now();  
+		String updateDt = today.format(DateTimeFormatter.ofPattern("yyyy/MM/dd")); // 자신이 가지고 있는 날짜에 대해선 출력하고자 하는 포멧을 결정하는것.
+		return updateDt;
+		// return LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
+	}
 
 	@Override
-	public Map<String, Object> boardDelete(int bno) {
-		Map<String, Object> map = new HashMap<>();
-		
-		int result = boardMapper.deleteBoardInfo(bno);
-		
-		if(result == 1) {
-			map.put("bno", bno);
-		}
-		
-		return map;
+	public int boardDelete(int bno) {
+		return boardMapper.deleteBoardInfo(bno);
 	} // end boardDelete
 	
 }// end class

@@ -17,6 +17,6 @@ public interface BoardService {
 	public Map<String, Object> boardUpdate(BoardVO boardVO);
 	
 	// 삭제
-	public Map<String, Object> boardDelete(int bno);
+	public int boardDelete(int bno);
 	
 }// end interface

@@ -7,11 +7,11 @@
 </head>
 <body>
 	<div class="container">
-		<header th:insert="~{common/fragments/default_header :: defaultHeader}"></header>
+		<header class="p-3 mb-3 border-bottom"  th:insert="~{common/fragments/default_header :: defaultHeader}"></header>
 		<main>
 			<div layout:fragment="Content"></div>
 		</main>
-		<footer th:insert="~{common/fragments/default_footer :: defaultFooter}"></footer>
+		<footer class="p-3 mb-3 d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top" th:insert="~{common/fragments/default_footer :: defaultFooter}" ></footer>
 	</div>
 </body>
 </html>

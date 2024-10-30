@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{common/layouts/default_layout}"
+	layout:fragment="Content">
+<h3>게시글 정보 조회</h3>
+	<div class="input-group mb-3">
+		<label for="title" class="input-group-text">제목</label> 
+		<input type="text" class="form-control" id="title" name="title" th:value="${board.bno}" readonly>
+	</div>
+	<div class="input-group mb-3">
+		<label for="contents" class="input-group-text">내용</label> 
+		<textarea id="contents" class="form-control" name="contents" th:text="${board.contents}" readonly></textarea>
+	</div>
+	<div class="input-group mb-3">
+		<label for="writer" class="input-group-text">작성자</label> 
+		<input type="text" class="form-control" id="writer" name="writer" th:value="${board.writer}" readonly>
+	</div>
+	<div class="input-group mb-3">
+		<label for="image" class="input-group-text">첨부파일</label> 
+		<input type="text" class="form-control" id="image" name="image" th:value="${board.image}" readonly>
+		<img th:src="@{/images/{file}(file=${board.image})}" style="width:50%;" alt="Image"/>
+		<!-- 
+			이미지 경로 넣기
+			/images/cat.jpg
+			@{|/images/${board.image}|}
+			@{/images/{file}(file=${board.image})}
+		 -->
+	</div>
+	<div class="input-group mb-3">
+		<label for="regdate" class="input-group-text">등록일</label> 
+		<input type="text" class="form-control" id="regdate" name="regdate" th:value="${#dates.format(board.regdate, 'yyyy/MM/dd')}" readonly>
+	</div>
+	<div class="btn-group" role="group" aria-label="Basic example">
+			<button type="button" th:onclick="|location.href='@{/boardUpdate(bno=${board.bno})}'|" class="btn btn-warning">수정</button>
+			<button type="button" th:onclick="|location.href='@{/boardList}'|" class="btn btn-primary">목록</button>
+			<button type="button" th:onclick="|location.href='@{/boardDelete(bno=${board.bno})}'|" class="btn btn-danger">삭제</button>
+	</div>

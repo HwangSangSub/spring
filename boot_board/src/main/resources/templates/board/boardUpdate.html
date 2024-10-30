@@ -4,31 +4,35 @@
 	layout:decorate="~{common/layouts/default_layout}"
 	layout:fragment="Content">
 <h3>게시글 정보 수정</h3>
-<form th:action="@{/boardUpdate}" method="post" class="form-control"
-	th:object="${board}">
-	<div>
-		<label for="title">제목</label> <input type="text" id="title"
+<form th:action="@{/boardUpdate}" name="updateForm" method="post"
+	class="form-control" th:object="${board}">
+	<div class="input-group mb-3">
+		<label for="bno" class="input-group-text">게시글번호</label> <input type="number" class="form-control" id="bno"
+			th:field="*{bno}" readonly>
+	</div>
+	<div class="input-group mb-3">
+		<label for="title" class="input-group-text">제목</label> <input type="text" class="form-control" id="title"
 			th:field="*{title}">
 	</div>
-	<div>
-		<label for="content">내용</label>
-		<textarea id="content" th:field="*{content}"></textarea>
+	<div class="input-group mb-3">
+		<label for="contents" class="input-group-text">내용</label>
+		<textarea id="contents" class="form-control" th:field="*{contents}"></textarea>
 	</div>
-	<div>
-		<label for="writer">작성자</label> <input type="text" id="writer"
+	<div class="input-group mb-3">
+		<label for="writer" class="input-group-text">작성자</label> <input type="text" class="form-control" id="writer"
 			th:field="*{writer}">
 	</div>
-	<div>
-		<label for="image">이미지등록</label> <input type="file" id="image"
-			th:field="*{image}" multiple>
+	<div class="input-group mb-3">
+		<label for="image" class="input-group-text">이미지등록</label> <input type="text" class="form-control" id="image"
+			th:field="*{image}">
 	</div>
 	<div>
-		<button type="button" id="updateBtn">저장</button>
+		<button type="button" id="updateBtn" class="btn btn-primary">저장</button>
 	</div>
 </form>
 
 <script>
-		$('#updateBtn').on('click', updateAjax);
+$('#updateBtn').on('click', updateAjax);
 		function updateAjax(event){
 			// 1) 보낼 데이터 가져오기
 			let dataObj = getFormData(); 
@@ -46,7 +50,7 @@
 				}else{
 					alert('수정되지 않았습니다.');
 				}
-/* 				return 'result : ' + data.result; */
+				return 'result : ' + data.result; 
 			})
 	/* 		.done((msg) => {
 				console.log(msg);
